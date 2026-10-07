@@ -1,0 +1,82 @@
+/* Home: leitura em camadas, do atendimento à experiência e às páginas clínicas. */
+.hero-actions{display:flex;flex-direction:column;align-items:center;gap:16px}
+.hero-actions .home-button{background:#294b62;color:#fff;border-color:#294b62;font-weight:550;box-shadow:0 5px 18px #233e5210}
+.hero-actions .home-button:hover{background:#1f3c51}
+.hero-secondary{display:inline-flex;align-items:center;gap:12px;font-size:12px;text-decoration:none;color:#476579;padding:4px}
+.hero-secondary:hover{text-decoration:underline}
+.home-consultation{padding-top:54px;scroll-margin-top:12px}
+.consultation-panel{display:grid;grid-template-columns:.9fr 1.1fr;column-gap:64px;padding:46px 48px 0;border:1px solid #dce6ed;border-radius:30px;background:linear-gradient(125deg,#edf3f7,#f7f9fb 65%,#eef4f7);overflow:hidden}
+.consultation-intro h2{font-size:34px;line-height:1.5;margin-bottom:19px;color:#28485f}
+.consultation-intro>p{font-size:16px;line-height:1.85;color:#4b6375;max-width:420px}
+.consultation-intro strong{font-weight:650;color:#294b62}
+.consultation-link{display:inline-flex;align-items:center;gap:15px;font-size:13px;font-weight:550;text-decoration:none;color:#315b78;margin-top:22px;padding-block:5px}
+.consultation-link svg{width:19px;height:19px}
+.consultation-topics>div{padding:0 0 18px}
+.consultation-topics>div+div{border-top:1px solid #d6e1e9;padding-top:18px}
+.consultation-topics h3{font-size:16px;line-height:1.5;font-weight:600;color:#294b62;margin-bottom:6px}
+.consultation-topics p{font-size:14px;line-height:1.8;color:#52697b}
+.consultation-topics strong{font-weight:600;color:#37576e}
+.consultation-practical{grid-column:1/-1;display:flex;justify-content:center;gap:32px;border-top:1px solid #d4e0e9;margin-top:16px;padding:23px 0;font-size:15px;line-height:1.7;color:#405e74}
+.consultation-practical>span{display:flex;align-items:center;gap:12px}
+.consultation-practical svg{width:21px;height:21px;color:#64869e}
+.consultation-practical strong{font-weight:600;color:#36566f}
+.home-doctor{grid-template-columns:.83fr 1.17fr;gap:70px;padding:66px 0 70px;align-items:center}
+.home-portrait{margin:0;min-height:0;height:650px;align-self:center;border-width:6px;border-radius:30px;box-shadow:none}
+.home-portrait img{object-position:50% 42%}
+.doctor-heading{text-align:left;border:0;padding:0;margin-bottom:22px}
+.doctor-heading h2{font-size:36px}
+.doctor-specialty{font-size:16px;margin-top:1px;font-style:normal}
+.doctor-registration{color:#52697b;font-size:11px;margin-top:7px}
+.biography-text p{font-size:15px;line-height:1.85}
+.doctor-experience{border-left:3px solid #90adbf;padding-left:20px;margin-top:23px}
+.doctor-experience h3{font-size:17px;font-weight:600;line-height:1.5;margin-bottom:7px;color:#2d4e65}
+.doctor-experience p{font-size:14px;line-height:1.85;color:#52697b}
+.doctor-facts{padding:0;list-style:none;margin:25px 0 0}
+.doctor-facts li{position:relative;padding:15px 0 15px 20px;border-top:1px solid #e1e8ee;font-size:15px;line-height:1.75;color:#425f75}
+.doctor-facts li::before{content:'';position:absolute;left:0;top:22px;width:5px;height:5px;border-radius:50%;background:#789bb3}
+.doctor-facts strong{display:block;font-size:16px;font-weight:600;color:#31526a;margin-bottom:5px}
+.doctor-facts span{display:block}
+.home-biography>.home-button{margin:23px 0 0;background:#294b62;color:#fff}
+.home-differences{background:linear-gradient(115deg,#29485f,#203c50);color:#fff;padding:54px 0;border-radius:34px}
+.home-differences .section-kicker{color:#b7cbd9}
+.home-differences .section-heading{margin-bottom:32px}
+.home-differences h2{font-size:32px}
+.home-differences .difference-symbol{color:#a8c5d8}
+.home-differences .differences-grid h3{color:#dce9f1}
+.home-differences .differences-grid p{color:#d0dee8;font-size:14px;line-height:1.8}
+.home-differences .differences-grid strong{color:#fff}
+.home-differences .home-button{background:#d5e3ed;color:#25455c}
+.home-areas{padding:62px 0 66px;background:#fff}
+.areas-panel{padding:0;border:0;box-shadow:none;background:transparent;border-radius:0}
+.areas-panel .section-heading{text-align:left;display:flex;align-items:baseline;gap:22px;margin-bottom:30px}
+.areas-panel .section-kicker{display:none}
+.areas-panel h2{font-size:36px}
+.areas-grid{gap:20px}
+.area-item{min-height:310px;border-radius:24px;border-color:#dfe7ed;background:linear-gradient(135deg,#f7f9fb,#eef3f6);box-shadow:none;transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease}
+.area-copy{padding:27px 26px 22px;position:relative}
+.area-symbol{display:flex;align-items:center;justify-content:center;width:43px;height:43px;border:1px solid #c9d9e4;border-radius:14px;margin-bottom:20px;color:#7293ab;background:#ffffff80}
+.area-symbol svg{width:27px;height:27px}
+.area-item h3{font-size:23px;line-height:1.45;color:#294b62;letter-spacing:-.02em}
+.area-active h3{font-size:30px}
+.area-description{font-size:13px;line-height:1.8;color:#50697c;max-width:none;margin:12px 0 20px}
+.area-active{background:linear-gradient(135deg,#eef5fa,#dce9f2);border-color:#a7c0d1}
+.area-active .area-symbol{background:#315a75;color:#e2eef5;border-color:#315a75}
+.area-item a{font-size:12px;line-height:1.6;font-weight:650;gap:12px;align-self:stretch;justify-content:space-between;padding-top:15px;border-top:1px solid #b5ccdc;color:#294f6a}
+.area-item a::after{border-radius:24px}
+.area-arrow{width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border-radius:50%;background:#fff9;transition:transform .28s ease,background .28s ease}
+.area-pending{padding-top:15px;border-top:1px solid #d6e1e8;color:#6c8090;font-size:11px}
+.area-active:focus-within{outline:3px solid #517f9f;outline-offset:4px;transform:translateY(-5px);box-shadow:0 16px 28px #284a6218}
+@media(hover:hover){.area-active:hover{transform:translateY(-7px);border-color:#648ca7;box-shadow:0 18px 30px #284a6221}.area-active:hover .area-arrow{transform:translateX(4px);background:#fff}.area-active:hover h3{color:#193e58}}
+@media(max-width:1100px){.consultation-panel{padding:34px 32px 0;column-gap:35px}.consultation-intro h2{font-size:29px}.consultation-intro>p{font-size:15px}.home-doctor{gap:40px}.home-portrait{height:630px}.doctor-heading h2{font-size:31px}.areas-grid{grid-template-columns:repeat(2,1fr)}.area-item{min-height:290px}}
+@media(max-width:760px){
+ .hero-actions{gap:12px}.hero-copy .hero-actions .home-button{font-size:13px;padding-inline:23px}.hero-secondary{font-size:11px}
+ .home-consultation{padding-top:32px}.consultation-panel{grid-template-columns:1fr;padding:27px 24px 0;border-radius:25px;gap:25px}
+ .consultation-intro h2{font-size:28px;line-height:1.45;margin-bottom:15px}.consultation-intro h2 br{display:none}.consultation-intro>p{font-size:14px;line-height:1.85;max-width:none}
+ .consultation-link{display:none}.consultation-topics h3{font-size:15px}.consultation-topics p{font-size:13px;line-height:1.85}.consultation-topics>div{padding-bottom:16px}.consultation-topics>div+div{padding-top:16px}.consultation-topics>div:last-child{padding-bottom:0}
+ .consultation-practical{margin-top:0;padding:19px 0;flex-direction:column;gap:8px;font-size:13px;line-height:1.7}.consultation-practical svg{width:21px;height:21px;flex-shrink:0}
+ .home-doctor{grid-template-columns:1fr;gap:27px;padding:40px 0 44px}.home-portrait{height:335px;width:100%;max-width:420px;border-radius:25px;border-width:4px}.home-portrait img{object-position:50% 34%}.doctor-heading{margin-bottom:17px}.doctor-heading h2{font-size:29px}.doctor-specialty{font-size:15px}.biography-text p{font-size:14px;line-height:1.85}.doctor-experience{margin-top:20px;padding-left:16px}.doctor-experience h3{font-size:16px}.doctor-experience p{font-size:13px}.doctor-facts{margin-top:20px}.doctor-facts li{font-size:14px;line-height:1.8;padding-block:14px}.doctor-facts strong{font-size:15px}.home-biography>.home-button{font-size:13px;min-height:46px;margin-top:20px}
+ .home-differences{padding:38px 0;border-radius:26px}.home-differences h2{font-size:28px}.home-differences .section-heading{margin-bottom:25px}.home-differences .differences-grid article+article{border-color:#acc4d32e}.home-differences .differences-grid p{font-size:13px}
+ .home-areas{padding:40px 0 44px}.areas-panel .section-heading{margin-bottom:23px}.areas-panel h2{font-size:29px}.areas-grid{grid-template-columns:1fr;gap:15px}.area-item{min-height:0;border-radius:22px}.area-copy{padding:23px 24px 19px}.area-symbol{width:36px;height:36px;border-radius:12px;margin-bottom:15px}.area-symbol svg{width:23px;height:23px}.area-item h3{font-size:24px;line-height:1.45;max-width:100%}.area-active h3{font-size:29px}.area-description{font-size:13px;line-height:1.75;margin:10px 0 19px}.area-item a{font-size:11px;min-height:46px;padding-top:13px}.area-pending{padding-top:12px;font-size:10px}
+}
+@media(max-width:360px){.consultation-panel{padding-inline:20px}.consultation-intro h2{font-size:25px}.area-copy{padding-inline:21px}.area-item h3{font-size:22px}.area-active h3{font-size:27px}}
+@media(prefers-reduced-motion:reduce){.area-item,.area-arrow{transition:none}.area-active:hover,.area-active:focus-within,.area-active:hover .area-arrow{transform:none}}

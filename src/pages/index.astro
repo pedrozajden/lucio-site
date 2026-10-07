@@ -1,0 +1,156 @@
+---
+import { Image } from 'astro:assets';
+import home from '../content/home.json';
+import banner from '../assets/home-banner.png';
+import reviewPhoto from '../assets/home-depoimentos.jpg';
+import Icon from '../components/Icon.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import { emphasize } from '../utils/emphasis';
+import '../styles/home.css';
+import '../styles/home-refinements.css';
+import '../styles/home-journey.css';
+const areaPreviews = [
+  { title: 'Depressão', text: 'Sintomas, diagnóstico e abordagens de tratamento.' },
+  { title: 'Ansiedade generalizada', text: 'Preocupação excessiva e persistente e seus impactos na rotina.' },
+  { title: 'TDAH', text: 'Desatenção, hiperatividade e impulsividade.' },
+  { title: 'Transtorno bipolar', text: 'Episódios de mania ou hipomania e períodos de depressão.' },
+  { title: 'Transtorno de personalidade borderline', text: 'Instabilidade emocional intensa, impulsividade e dificuldades nos relacionamentos.' },
+  { title: 'Esquizofrenia', text: 'Alterações no pensamento, na percepção da realidade e no comportamento.' },
+];
+const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...text.matchAll(/\*\*(.*?)\*\*/g)].map(match => match[1]));
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="description" content="O Dr. Lúcio Moreira é psiquiatra em Belo Horizonte e Nova Lima, oferecendo atendimento acolhedor. Agende sua consulta e cuide da sua saúde mental!" />
+    <title>Dr. Lúcio Moreira | Psiquiatra em BH e Nova Lima</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/monograma.svg" />
+    <link rel="preload" href="/assets/montserrat-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/gotu-regular.ttf" as="font" type="font/ttf" crossorigin />
+  </head>
+  <body id="inicio">
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+    <SiteHeader active="home" />
+    <main id="conteudo">
+      <section class="home-hero" aria-labelledby="hero-title">
+        <div class="hero-picture" data-parallax="hero"><Image src={banner} width={1920} height={1080} widths={[768, 1280, 1920]} sizes="100vw" alt="Dr. Lúcio Moreira, de jaleco branco e camisa azul." format="webp" quality={85} loading="eager" fetchpriority="high" /></div>
+        <div class="home-container hero-layout"><div class="hero-copy">
+          <h1 id="hero-title">Lúcio Moreira</h1>
+          <p class="hero-specialty"><span>Psiquiatra em Belo</span>{' '}<span>Horizonte, Nova Lima e</span>{' '}<span>Atendimento Online</span></p>
+          <div class="hero-message"><p class="hero-motto"><strong>Cuidar da mente é um<br class="desktop-break" /> ato de coragem.</strong></p><p>Aqui, cada paciente é ouvido, compreendido e tratado com empatia e conhecimento técnico.</p></div>
+          <div class="hero-actions"><a class="home-button" href="#contato">Agende uma consulta <Icon name="arrow" /></a><a class="hero-secondary" href="#consulta">Como funciona a consulta <span aria-hidden="true">↓</span></a></div>
+        </div></div>
+      </section>
+      <section id="consulta" class="home-consultation home-container" aria-labelledby="consultation-title">
+        <div class="consultation-panel" data-reveal>
+          <div class="consultation-intro"><h2 id="consultation-title">Como funciona<br /> a consulta?</h2><p>A consulta com o Dr. Lúcio <strong>geralmente dura em torno de uma hora</strong>, para conversar sobre suas queixas e compreender sua história, sua saúde e sua rotina.</p><a class="consultation-link" href="#medico">Conheça o médico <Icon name="arrow" /></a></div>
+          <div class="consultation-topics">
+            <div><h3>Suas queixas e sua história</h3><p>A conversa começa pelo que motivou a consulta e considera <strong>acontecimentos atuais e aspectos da sua trajetória</strong>, para compreender como essas questões se relacionam com sua vida.</p></div>
+            <div><h3>Outros tratamentos e medicamentos</h3><p>Também são considerados <strong>medicamentos em uso e tratamentos com outras especialidades</strong>, como parte da avaliação do que você está vivendo.</p></div>
+            <div><h3>Hábitos, sono e rotina</h3><p>A conversa inclui <strong>sono, atividade física e hábitos do dia a dia</strong>, para entender melhor o contexto de cada pessoa.</p></div>
+          </div>
+          <div class="consultation-practical"><span><Icon name="video" /><span>Atendimento <strong>presencial e online</strong></span></span><span><Icon name="pin" /><span>Consultório em <strong>Nova Lima · Vila da Serra</strong></span></span></div>
+        </div>
+      </section>
+      <section id="medico" class="home-doctor home-container" aria-labelledby="doctor-title">
+        <figure class="home-portrait" data-reveal><img src="/assets/dr-lucio-800.webp" srcset="/assets/dr-lucio-480.webp 480w, /assets/dr-lucio-800.webp 800w, /assets/dr-lucio-1200.webp 1200w" sizes="(max-width: 760px) 100vw, 440px" width="800" height="1077" alt="Dr. Lúcio Moreira sorrindo, sentado à mesa." loading="lazy" decoding="async" /></figure>
+        <div class="home-biography" data-reveal>
+          <div class="doctor-heading"><h2 id="doctor-title">Dr. Lúcio Moreira</h2><p class="doctor-specialty">Psiquiatria</p><p class="doctor-registration">CRM-MG: 82117 <span aria-hidden="true">|</span> RQE: 57394</p></div>
+          <div class="biography-text"><p>Com <strong>mais de cinco anos de atuação</strong>, o Dr. Lúcio Moreira já atendeu centenas de pacientes em <strong>hospitais, clínicas e ambulatórios</strong>, sempre com um olhar atento às necessidades individuais.</p></div>
+          <div class="doctor-experience"><h3>Experiência em diferentes contextos</h3><p>Sua trajetória inclui atuações em <strong>instituições públicas e privadas</strong>, além de experiência em <strong>psiquiatria forense e perícia psiquiátrica</strong>.</p></div>
+          <ul class="doctor-facts">
+              <li><strong>Residência Médica em Psiquiatria</strong><span>Concluiu, em 2023, a Residência Médica em Psiquiatria pelo Instituto de Previdência dos Servidores do Estado de Minas Gerais (IPSEMG).</span></li>
+              <li><strong>Atuação como residente externo</strong><span>Ampliou seus conhecimentos como residente externo no Instituto de Psiquiatria do Hospital das Clínicas da Faculdade de Medicina da Universidade de São Paulo (IPq HC-FMUSP).</span></li>
+              <li><strong>Atualização científica contínua</strong><span>Participa regularmente de congressos, simpósios e jornadas de psiquiatria. Apresentou um trabalho científico na Jornada Mineira de Psiquiatria 2022, como parte de sua trajetória de atualização e desenvolvimento acadêmico.</span></li>
+          </ul>
+          <a class="home-button" href="#contato">Agende uma consulta <Icon name="arrow" /></a>
+        </div>
+      </section>
+      <section id="diferenciais" class="home-differences" aria-labelledby="differences-title"><div class="home-container">
+        <div class="section-heading" data-reveal><p class="section-kicker">Propósito na Medicina</p><h2 id="differences-title">Conheça os Diferenciais</h2></div>
+        <div class="differences-grid">{home.differences.map((difference, index) => <article data-reveal><span class="difference-symbol"><Icon name={(['activity', 'conversation', 'science'] as const)[index]} /></span><h3>{difference.title}</h3><p set:html={markdownBold(difference.text)} /></article>)}</div>
+        <a class="home-button" href="#contato">Agende uma consulta <Icon name="arrow" /></a>
+      </div></section>
+      <section id="areas" class="home-areas" aria-labelledby="areas-title"><div class="home-container areas-panel" data-reveal>
+        <div class="section-heading"><p class="section-kicker">Psiquiatra</p><h2 id="areas-title">Áreas de Atuação</h2></div>
+        <div class="areas-grid">{areaPreviews.map((area, index) => <article class:list={['area-item', `area-${index}`, { 'area-active': index === 0 }]} aria-label={home.areas[index]}>
+          <div class="area-copy"><span class="area-symbol" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6 23V12a6 6 0 0 1 12 0v8a6 6 0 0 0 12 0"/><path d="M2 20a6 6 0 0 0 12 0v-8a6 6 0 0 1 12 0v11"/></svg></span><h3>{area.title}</h3>
+            <p class="area-description">{area.text}</p>
+            {index === 0 ? <a href="/enfermidades/depressao/">Conheça a página sobre depressão <span class="area-arrow"><Icon name="arrow" /></span></a> : <span class="area-pending">Página em preparação</span>}
+          </div>
+        </article>)}</div>
+      </div></section>
+      <section id="depoimentos" class="home-reviews" aria-labelledby="reviews-title">
+        <div class="reviews-picture" data-parallax="reviews" aria-hidden="true"><Image src={reviewPhoto} width={1600} height={1043} widths={[800, 1600]} sizes="100vw" alt="" format="webp" quality={80} loading="lazy" /></div>
+        <div class="home-container reviews-content">
+          <div class="section-heading"><h2 id="reviews-title">Depoimentos</h2><p class="reviews-subtitle">Palavras gentis de pacientes satisfeitos</p></div>
+          <div class="reviews-slider" role="region" aria-roledescription="carrossel" aria-label="Depoimentos capturados no site anterior" tabindex="0">{home.reviews.map((review, index) => <figure class="review-slide" role="group" aria-roledescription="depoimento" aria-label={`${index + 1} de ${home.reviews.length}`}><blockquote><p>{review.text}</p></blockquote><figcaption>{review.author}</figcaption></figure>)}</div>
+          <div class="review-controls"><button type="button" data-review-direction="-1" aria-label="Depoimento anterior"><span aria-hidden="true">←</span></button><span class="review-position" aria-live="polite" aria-atomic="true">1 / {home.reviews.length}</span><button type="button" data-review-direction="1" aria-label="Próximo depoimento"><span aria-hidden="true">→</span></button></div>
+        </div>
+      </section>
+      <section id="contato" class="home-contact" aria-labelledby="contact-title"><div class="home-container">
+        <div class="section-heading" data-reveal><h2 id="contact-title">Preencha o formulário abaixo<br /> e Agende uma Consulta</h2><p class="contact-specialty">Psiquiatra Online</p><p class="contact-caption">Nossa equipe de atendimento entrará em contato em breve.</p></div>
+        <p id="form-status" class="preview-note">Prévia local: formulário demonstrativo, sem envio. O canal de contato será confirmado.</p>
+        <form class="home-form" aria-describedby="form-status"><fieldset disabled>
+          <legend class="sr-only">Solicitação de atendimento — demonstração inativa</legend>
+          <div class="form-pair"><label>Nome<input type="text" autocomplete="off" /></label><label>E-mail<input type="email" autocomplete="off" /></label></div>
+          <label>Telefone<input type="tel" autocomplete="off" /></label>
+          <label>Você busca atendimento<select><option value=""></option><option>Online</option><option>Presencial</option></select></label>
+          <label>Sobre tratamento psiquiátrico, você:<select><option value=""></option><option>Já realizou no passado</option><option>Está em tratamento atualmente</option><option>Nunca realizou tratamento</option></select></label>
+          <button class="home-button button-outline form-button" type="button">Fale pelo Whatsapp</button>
+        </fieldset></form>
+      </div></section>
+    </main>
+    <footer class="home-footer"><div class="home-container">
+      <div class="footer-grid">
+        <a class="footer-brand" href="/" aria-label="Dr. Lúcio Moreira — Home"><img src="/assets/monograma.svg" width="76" height="76" alt="" /><span>Dr. Lúcio Moreira</span><em>Psiquiatra</em></a>
+        <div class="footer-contact"><h2>Contato</h2><address><span>Rua Ministro Orozimbo Nonato, 442, Sala 810,</span><span>Vila da Serra, Nova Lima - MG</span></address><p>Telefone: {home.phones.Telefone}<br />WhatsApp: {home.phones.WhatsApp}</p><small>Dados da referência, aguardando confirmação.</small></div>
+        <nav class="footer-navigation" aria-label="Mapa de Site"><h2>Mapa de Site</h2><a href="/">Home</a><a href="#areas">Áreas de Atuação</a><a href="/enfermidades/depressao/">Depressão</a></nav>
+      </div>
+      <div class="footer-bottom"><p>Responsável Técnico:<br />Lúcio Lourenço Moreira | CRM-MG: 82117 | RQE: 57394</p><p>© 2025. Todos os direitos reservados.</p></div>
+    </div></footer>
+    <script>
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const blocks = document.querySelectorAll<HTMLElement>('[data-reveal]');
+      if (!reducedMotion.matches && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(entries => {
+          for (const entry of entries) if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+        }, { threshold: 0.08 });
+        blocks.forEach(block => { block.classList.add('will-reveal'); observer.observe(block); });
+        reducedMotion.addEventListener('change', event => { if (event.matches) { observer.disconnect(); blocks.forEach(block => block.classList.remove('will-reveal')); } });
+      }
+      const layers = [...document.querySelectorAll<HTMLElement>('[data-parallax]')];
+      let scheduled = false;
+      function updateParallax() {
+        for (const layer of layers) {
+          if (reducedMotion.matches) { layer.style.transform = ''; layer.style.opacity = ''; continue; }
+          const bounds = layer.parentElement!.getBoundingClientRect();
+          if (bounds.bottom < 0 || bounds.top > window.innerHeight) continue;
+          const hero = layer.dataset.parallax === 'hero';
+          const offset = hero ? Math.max(0, -bounds.top) * 0.16 : (window.innerHeight / 2 - bounds.top - bounds.height / 2) * 0.1;
+          layer.style.transform = `translate3d(0, ${Math.max(-55, Math.min(90, offset))}px, 0)`;
+          if (hero) layer.style.opacity = `${1 - Math.min(0.45, Math.max(0, -bounds.top) / bounds.height * 0.45)}`;
+        }
+        scheduled = false;
+      }
+      function scheduleParallax() { if (!scheduled) { scheduled = true; requestAnimationFrame(updateParallax); } }
+      window.addEventListener('scroll', scheduleParallax, { passive: true });
+      window.addEventListener('resize', scheduleParallax, { passive: true });
+      reducedMotion.addEventListener('change', scheduleParallax);
+      updateParallax();
+      const slider = document.querySelector<HTMLElement>('.reviews-slider')!;
+      const position = document.querySelector<HTMLElement>('.review-position')!;
+      const count = slider.children.length;
+      function moveReview(direction: number) {
+        const current = Math.round(slider.scrollLeft / slider.clientWidth);
+        slider.scrollTo({ left: ((current + direction + count) % count) * slider.clientWidth, behavior: reducedMotion.matches ? 'instant' : 'smooth' });
+      }
+      document.querySelectorAll<HTMLButtonElement>('[data-review-direction]').forEach(button => button.addEventListener('click', () => moveReview(Number(button.dataset.reviewDirection))));
+      slider.addEventListener('scroll', () => { position.textContent = `${Math.round(slider.scrollLeft / slider.clientWidth) + 1} / ${count}`; }, { passive: true });
+      slider.addEventListener('keydown', event => { if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') { event.preventDefault(); moveReview(event.key === 'ArrowRight' ? 1 : -1); } });
+    </script>
+  </body>
+</html>

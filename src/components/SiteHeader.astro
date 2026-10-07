@@ -1,0 +1,126 @@
+---
+import home from '../content/home.json';
+interface Props { active: 'home' | 'depressao'; }
+const { active } = Astro.props;
+---
+<header class="shared-header">
+  <div class="shared-header-row">
+    <a class="shared-brand" href="/" aria-label="Dr. Lúcio Moreira — Home">
+      <img src="/assets/logo-horizontal.svg" width="338" height="60" alt="Dr. Lúcio Moreira, Psiquiatra" />
+    </a>
+    <nav class="shared-desktop-nav" aria-label="Navegação principal">
+      <a href="/" aria-current={active === 'home' ? 'page' : undefined}>Home</a>
+      <span class="shared-separator" aria-hidden="true">·</span>
+      <a href="/#medico">Sobre</a>
+      <span class="shared-separator" aria-hidden="true">·</span>
+      <details class:list={['shared-areas', { 'shared-current-area': active === 'depressao' }]}>
+        <summary>Áreas de Atuação <span class="shared-chevron" aria-hidden="true"></span></summary>
+        <ul class="shared-area-list">
+          {home.areas.map((area, index) => <li>{index === 0 ? <a href="/enfermidades/depressao/" aria-current={active === 'depressao' ? 'page' : undefined}>{area}</a> : <span aria-disabled="true">{area}<small>Em breve</small></span>}</li>)}
+        </ul>
+      </details>
+      <span class="shared-separator" aria-hidden="true">·</span>
+      <span class="shared-unavailable" aria-disabled="true" title="Página ainda não disponível">FAQ</span>
+      <span class="shared-separator" aria-hidden="true">·</span>
+      <a href="/#contato">Contato</a>
+    </nav>
+    <a class="shared-schedule" href="#contato"><span class="shared-desktop-label">Agende uma consulta</span><span class="shared-mobile-label">Agendar</span></a>
+    <details class="shared-mobile-menu">
+      <summary aria-label="Menu de navegação"><span class="shared-menu-icon" aria-hidden="true"><i></i><i></i><i></i></span></summary>
+      <nav class="shared-mobile-panel" aria-label="Navegação principal no celular">
+        <a href="/" aria-current={active === 'home' ? 'page' : undefined}>Home</a>
+        <a href="/#medico">Sobre</a>
+        <details class:list={['shared-areas', { 'shared-current-area': active === 'depressao' }]}>
+          <summary>Áreas de Atuação <span class="shared-chevron" aria-hidden="true"></span></summary>
+          <ul class="shared-area-list">
+            {home.areas.map((area, index) => <li>{index === 0 ? <a href="/enfermidades/depressao/" aria-current={active === 'depressao' ? 'page' : undefined}>{area}</a> : <span aria-disabled="true">{area}<small>Em breve</small></span>}</li>)}
+          </ul>
+        </details>
+        <span class="shared-unavailable" aria-disabled="true">FAQ <small>Em breve</small></span>
+        <a href="/#contato">Contato</a>
+      </nav>
+    </details>
+  </div>
+</header>
+<style>
+  :global(:root){--shared-header-height:112px}
+  :global(body:has(>.shared-header)){padding-top:var(--shared-header-height)}
+  :global(html:has(.shared-header)){scroll-padding-top:calc(var(--shared-header-height) + 16px)}
+  :global(.skip-link){position:fixed;z-index:60}
+  .shared-header{position:fixed;inset:0 0 auto;z-index:40;height:var(--shared-header-height);background:#fff;border-radius:0 0 56px 56px;box-shadow:0 3px 18px #213d530c;font-family:Montserrat,Arial,sans-serif;color:#657e91;line-height:1.5}
+  .shared-header-row{width:calc(100% - 96px);max-width:1920px;margin:auto;height:100%;display:flex;align-items:center;justify-content:space-between;gap:30px}
+  .shared-brand{flex-shrink:0;text-decoration:none}
+  .shared-brand img{display:block;width:clamp(240px,17vw,310px);height:auto}
+  .shared-desktop-nav{display:flex;align-items:center;gap:18px;font-size:16px;font-weight:400;white-space:nowrap}
+  .shared-desktop-nav>a{padding:7px 0;text-decoration:none}
+  a[aria-current="page"]{font-weight:650;color:#48667e;border-bottom:1px solid #a2b5c4}
+  .shared-desktop-nav>a:hover{color:#294e69}
+  .shared-separator{color:#a2b5c4;font-size:18px}
+  .shared-unavailable{cursor:default;color:#7e8e9b}
+  .shared-areas{position:relative}
+  .shared-areas summary{list-style:none;display:flex;align-items:center;gap:12px;padding:20px 0;cursor:pointer;font-size:inherit;font-weight:inherit}
+  summary::-webkit-details-marker{display:none}
+  .shared-chevron{width:7px;height:7px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg) translateY(-2px)}
+  .shared-areas[open] .shared-chevron{transform:rotate(225deg)}
+  .shared-current-area>summary{color:#48667e;font-weight:600;text-decoration:underline;text-underline-offset:9px;text-decoration-color:#a2b5c4}
+  .shared-area-list{display:none;position:absolute;top:100%;left:-20px;width:min(610px,calc(100vw - 80px));padding:0;margin:0;list-style:none;white-space:normal;background:#fff;border:1px solid #e1e8ed;border-radius:0 0 18px 18px;box-shadow:0 15px 28px #213d5314;overflow:hidden}
+  .shared-areas[open]>.shared-area-list{display:block}
+  .shared-area-list li+li{border-top:1px solid #e1e8ed}
+  .shared-area-list a,.shared-area-list li>span{display:block;padding:17px 20px;font-size:15px;line-height:1.6;text-decoration:none;color:#526d82}
+  .shared-area-list a:hover{background:#edf4f8;color:#213d53}
+  .shared-area-list li>span{color:#64798a}
+  .shared-area-list small,.shared-unavailable small{font-size:10px;margin-left:10px;color:#6c8090;white-space:nowrap}
+  .shared-schedule{display:inline-flex;justify-content:center;align-items:center;flex-shrink:0;min-width:235px;min-height:52px;padding:13px 24px;border-radius:100px;background:#a2b5c4;color:#213d53;text-decoration:none;font-size:14px;font-weight:500;transition:background .2s}
+  .shared-schedule:hover{background:#b7cbd9;text-decoration:none}
+  .shared-mobile-label,.shared-mobile-menu{display:none}
+  @media(hover:hover){.shared-desktop-nav .shared-areas:hover:not(.hover-dismissed)::details-content{content-visibility:visible}.shared-desktop-nav .shared-areas:hover:not(.hover-dismissed)>.shared-area-list{display:block}.shared-desktop-nav .shared-areas:hover:not(.hover-dismissed) .shared-chevron{transform:rotate(225deg)}}
+  @media(min-width:1051px) and (max-width:1350px){.shared-header-row{width:calc(100% - 64px);gap:20px}.shared-brand img{width:235px}.shared-desktop-nav{gap:12px;font-size:14px}.shared-schedule{min-width:200px;padding-inline:20px;font-size:13px}.shared-area-list{left:auto;right:-170px}}
+  @media(max-width:1050px){
+    :global(:root){--shared-header-height:80px}
+    .shared-header{border-radius:0 0 28px 28px}
+    .shared-header-row{width:calc(100% - 40px);display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:14px}
+    .shared-brand img{width:clamp(150px,48vw,290px);max-width:100%}
+    .shared-desktop-nav{display:none}
+    .shared-mobile-menu{display:block}
+    .shared-mobile-menu>summary{list-style:none;cursor:pointer;display:flex;width:42px;height:44px;align-items:center;justify-content:center;color:#48667e}
+    .shared-menu-icon{display:flex;flex-direction:column;gap:5px;width:21px}
+    .shared-menu-icon i{display:block;height:1px;background:currentColor;width:100%}
+    .shared-mobile-panel{position:fixed;left:20px;right:20px;top:calc(var(--shared-header-height) + 8px);max-height:calc(100dvh - var(--shared-header-height) - 32px);overflow:auto;padding:12px 20px;border:1px solid #e1e8ed;border-radius:18px;box-shadow:0 16px 35px #213d531c;background:#fff;display:flex;flex-direction:column;align-items:stretch;gap:0;font-size:14px}
+    .shared-mobile-panel>a,.shared-mobile-panel>.shared-unavailable,.shared-mobile-panel>.shared-areas>summary{display:flex;justify-content:space-between;align-items:center;min-height:46px;padding:12px 0;border-bottom:1px solid #e8edf2;text-decoration:none}
+    .shared-mobile-panel>a:last-child{border-bottom:0}
+    .shared-mobile-panel .shared-area-list{position:static;width:auto;border:0;border-radius:0;box-shadow:none;padding-left:12px}
+    .shared-mobile-panel .shared-area-list a,.shared-mobile-panel .shared-area-list li>span{padding:12px 0;font-size:12px}
+    .shared-schedule{min-width:0;min-height:42px;padding:11px 20px;font-size:12px}
+  }
+  @media(max-width:600px){:global(:root){--shared-header-height:72px}.shared-header-row{width:calc(100% - 32px);gap:8px}.shared-brand img{width:clamp(148px,48vw,230px)}.shared-schedule{padding:10px 15px;min-height:39px;font-size:11px}.shared-desktop-label{display:none}.shared-mobile-label{display:inline}.shared-mobile-menu>summary{width:36px}.shared-mobile-panel{left:16px;right:16px}}
+  @media(prefers-reduced-motion:reduce){.shared-schedule{transition:none}}
+</style>
+<script>
+  const header = document.querySelector<HTMLElement>('.shared-header')!;
+  const areas = [...header.querySelectorAll<HTMLDetailsElement>('.shared-areas')];
+  const mobile = header.querySelector<HTMLDetailsElement>('.shared-mobile-menu')!;
+  for (const menu of areas) {
+    let hoverOpened = false;
+    menu.addEventListener('mouseenter', () => {
+      menu.classList.remove('hover-dismissed');
+      if (menu.closest('.shared-desktop-nav') && matchMedia('(hover: hover)').matches && !menu.open) { hoverOpened = true; menu.open = true; }
+    });
+    menu.addEventListener('mouseleave', () => {
+      menu.classList.remove('hover-dismissed');
+      if (hoverOpened && !menu.contains(document.activeElement)) { menu.open = false; hoverOpened = false; }
+    });
+    menu.addEventListener('focusout', () => requestAnimationFrame(() => {
+      if (hoverOpened && !menu.matches(':hover') && !menu.contains(document.activeElement)) { menu.open = false; hoverOpened = false; }
+    }));
+  }
+  function closeMenus() { areas.forEach(menu => { menu.open = false; menu.classList.add('hover-dismissed'); }); mobile.open = false; }
+  document.addEventListener('click', event => { if (!header.contains(event.target as Node)) closeMenus(); });
+  header.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenus));
+  document.addEventListener('keydown', event => {
+    if (event.key !== 'Escape') return;
+    const focused = document.activeElement;
+    if (mobile.open && mobile.contains(focused)) mobile.querySelector('summary')!.focus();
+    else areas.find(menu => menu.contains(focused))?.querySelector('summary')?.focus();
+    closeMenus();
+  });
+</script>

@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.astro/
+tmp/
+validacao/
+historico/
+analises/
+.env
+.env.*
+!.env.example
+*.log
+.vercel/
+src/content/originais/home-referencia.html
+src/assets/composicao-editorial-v1.png
+src/assets/areas-editorial-v1.png

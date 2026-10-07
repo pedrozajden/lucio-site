@@ -1,0 +1,49 @@
+{
+  "heroTitle": "Avaliação psiquiátrica da depressão",
+  "careIntro": "O acompanhamento psiquiátrico tem como foco a individualização do cuidado e a compreensão profunda das necessidades emocionais e clínicas de cada pessoa.",
+  "careSteps": [
+    {
+      "title": "Avaliação psiquiátrica",
+      "text": "Durante as consultas, são avaliados os sintomas predominantes, os fatores desencadeantes e o impacto do quadro depressivo na rotina e nas relações do paciente."
+    },
+    {
+      "title": "Plano terapêutico personalizado",
+      "text": "Com base na avaliação, é elaborado um plano terapêutico personalizado, que pode incluir medicamentos e orientações sobre hábitos de sono, organização da rotina e estratégias de enfrentamento emocional."
+    },
+    {
+      "title": "Confiança e empatia no acompanhamento",
+      "text": "O acompanhamento se apoia em uma relação terapêutica baseada na confiança e na empatia, para que o paciente se sinta ouvido, acolhido e compreendido."
+    }
+  ],
+  "profile": [
+    {
+      "title": "Graduação em Medicina",
+      "text": "Centro Universitário de Belo Horizonte (UniBH).",
+      "detail": "2019"
+    },
+    {
+      "title": "Residência Médica em Psiquiatria",
+      "text": "Instituto de Previdência dos Servidores do Estado de Minas Gerais (IPSEMG).",
+      "detail": "2023"
+    },
+    {
+      "title": "Atuação como residente externo",
+      "text": "Instituto de Psiquiatria do Hospital das Clínicas da Faculdade de Medicina da Universidade de São Paulo (IPq HC-FMUSP)."
+    }
+  ],
+  "experience": "Sua experiência inclui consultas ambulatoriais, atendimento de urgências psiquiátricas e cuidado hospitalar a pacientes em estado grave.",
+  "experienceDetails": [
+    {"title": "Psiquiatra assistente", "text": "Atuou no Instituto Assistencial André Luiz e na Clínica Novos Rumos."},
+    {"title": "Ambulatórios municipais", "text": "Trabalho em ambulatórios dos municípios de Raposos e Nova Lima."},
+    {"title": "Dependência química", "text": "Atuação no tratamento da dependência química no Centro de Atenção Psicossocial Álcool e Drogas (CAPS AD) de Nova Lima-MG."}
+  ],
+  "emergency": "Em casos graves, ideias de morte ou pensamentos suicidas exigem atenção médica imediata.",
+  "treatmentNote": "Na consulta com o Dr. Lúcio, é realizada uma avaliação para o diagnóstico psiquiátrico e a elaboração de um plano terapêutico individualizado. Ele também pode orientar tratamentos complementares, conforme as necessidades de cada paciente.",
+  "treatmentScope": "As informações abaixo descrevem abordagens gerais de tratamento.",
+  "medication": [
+    "Os antidepressivos atuam sobre os neurotransmissores cerebrais, como serotonina, noradrenalina e dopamina.",
+    "Entre as classes mais prescritas estão os inibidores seletivos da recaptação de serotonina (ISRS) e os inibidores da recaptação de serotonina e noradrenalina (IRSN).",
+    "O acompanhamento médico regular é indispensável para ajustar doses, avaliar a resposta e monitorar possíveis efeitos adversos."
+  ],
+  "psychotherapy": "A psicoterapia tem papel essencial no tratamento, especialmente a Terapia Cognitivo-Comportamental (TCC), que ajuda o paciente a identificar padrões de pensamento negativos e substituí-los por formas mais realistas e adaptativas."
+}

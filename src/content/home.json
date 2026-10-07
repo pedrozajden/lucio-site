@@ -1,0 +1,97 @@
+{
+  "source": "planejamento/texto-base/home.md; HTML index.html da referência",
+  "biography": [
+    "Dr. Lúcio Moreira é um experiente médico psiquiatra, formado pelo Instituto de Previdência dos Servidores do Estado de Minas Gerais (IPSEMG), onde se destacou em diversas áreas da psiquiatria. Com mais de cinco anos de atuação, ele já atendeu centenas de pacientes em hospitais, clínicas e ambulatórios, sempre com um olhar atento às necessidades individuais.",
+    "Sua formação inclui uma residência externa no Instituto de Psiquiatria do Hospital das Clínicas da Faculdade de Medicina da Universidade de São Paulo (IPq HC-FMUSP), além de atuações em instituições públicas e privadas. Dr. Lúcio também possui experiência em psiquiatria forense e perícia psiquiátrica, o que o torna um profissional completo e versátil.",
+    "Comprometido com a atualização contínua, participa regularmente de congressos e simpósios, e apresentou um trabalho científico na Jornada Mineira de Psiquiatria 2022. Sua expertise abrange o tratamento de transtornos mentais e dependência química, sempre com um enfoque humanizado e ético no cuidado à saúde mental."
+  ],
+  "differences": [
+    {
+      "title": "Ampla experiência clínica:",
+      "text": "Mais de **5 anos de atuação e centenas de pacientes** atendidos em diferentes contextos — de consultórios e ambulatórios a hospitais, CAPs e unidades prisionais."
+    },
+    {
+      "title": "Atuação em múltiplos contextos:",
+      "text": "**Experiência consolidada em serviços públicos**, privados e judiciais, incluindo vivência em perícia psiquiátrica e psiquiatria forense."
+    },
+    {
+      "title": "Atualização científica constante:",
+      "text": "Participação contínua em **congressos e jornadas de psiquiatria**, com trabalhos apresentados em eventos como a Jornada Mineira de Psiquiatria 2022."
+    }
+  ],
+  "areas": [
+    "Depressão",
+    "Transtorno de Ansiedade Generalizada (TAG)",
+    "Transtorno de Déficit de Atenção e Hiperatividade (TDAH)",
+    "Transtorno Afetivo Bipolar",
+    "Transtorno de Personalidade Borderline",
+    "Esquizofrenia"
+  ],
+  "reviews": [
+    {
+      "text": "Dr. Lúcio é muito atencioso, tem empatia, escuta as queixas e propõe um tratamento factível com a rotina do paciente. Explica todas as dúvidas com conhecimento e de forma fácil para o paciente entender. Foi pontual na consulta; me senti escutado e acolhido. Recomendo muito e estou confiante no sucesso do tratamento proposto.",
+      "author": "Paciente",
+      "source": "HTML `index.html`, carrossel `1987657260`, slide `17`"
+    },
+    {
+      "text": "O melhor psiquiatra do universo! Inclusive, parei porque me mudei para longe, mas quero voltar a consultar com ele. Muito direto e eficaz no tratamento. Não me entupiu de remédio; pelo contrário, deixou claro que seria por um período de tempo, mas eu me mudei. Cheguei até o Dr. Lúcio muito, muito mal com TAG e pânico. Em pouco tempo, fiquei ótima e voltei a ser a pessoa alegre, corajosa e normal que sempre fui. Gratidão d+!",
+      "author": "Paciente",
+      "source": "HTML `index.html`, carrossel `1987657260`, slide `18`"
+    },
+    {
+      "text": "O Dr. Lúcio é muito atencioso e educado. Demonstra um grande conhecimento técnico na área da psiquiatria. O tratamento proposto surtiu os efeitos esperados e foi muito assertivo na prescrição dos medicamentos. Recomendo seu atendimento a quem possa precisar.",
+      "author": "Paciente",
+      "source": "HTML `index.html`, carrossel `1987657260`, slide `19`"
+    },
+    {
+      "text": "Dr. Lúcio é atencioso e cuidadoso, me escuta e me deixa muito confortável durante a consulta. Estou muito satisfeita com meu tratamento.",
+      "author": "Paciente",
+      "source": "HTML `index.html`, carrossel `1987657260`, slide `20`"
+    },
+    {
+      "text": "Minha experiência com o atendimento do Dr. Lúcio é sempre muito boa. Um médico que sabe o que faz, muito atencioso, com atendimento humanizado e eficaz!",
+      "author": "Paciente",
+      "source": "HTML `index.html`, carrossel `1987657260`, slide `21`"
+    },
+    {
+      "text": "Profissional excelente, tem um atendimento humanizado e atencioso!",
+      "author": "Paciente",
+      "source": "HTML `index.html`, carrossel `1987657260`, slide `22`"
+    },
+    {
+      "text": "Ótimo médico, sempre atento às queixas do paciente e da família. Uma excelente conduta terapêutica.",
+      "author": "Paciente",
+      "source": "HTML `index.html`, carrossel `1987657260`, slide `23`"
+    },
+    {
+      "text": "Excelente médico! Muito atencioso e empático. Recomendo.",
+      "author": "Paciente",
+      "source": "HTML `index.html`, carrossel `1987657260`, slide `24`"
+    },
+    {
+      "text": "Excelente médico. Explicou tudo nos mínimos detalhes. Atencioso.",
+      "author": "Paciente",
+      "source": "HTML `index.html`, carrossel `1987657260`, slide `25`"
+    },
+    {
+      "text": "Ótimo médico, muito atencioso, pontual, simpático e compreensivo.",
+      "author": "Paciente",
+      "source": "HTML `index.html`, carrossel `1987657260`, slide `26`"
+    },
+    {
+      "text": "Muito atencioso, sempre observando minha evolução no tratamento.",
+      "author": "Paciente",
+      "source": "HTML `index.html`, carrossel `1987657260`, slide `27`"
+    },
+    {
+      "text": "Excelente médico, lugar de fácil acesso, atencioso.",
+      "author": "Paciente",
+      "source": "HTML `index.html`, carrossel `1987657260`, slide `28`"
+    }
+  ],
+  "address": "Rua Ministro Orozimbo Nonato, 442, Sala 810, Vila da Serra, Nova Lima - MG",
+  "phones": {
+    "Telefone": "(31) 98998-0356",
+    "WhatsApp": "(31) 9541-0374"
+  }
+}

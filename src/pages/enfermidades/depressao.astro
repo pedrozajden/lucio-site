@@ -1,0 +1,199 @@
+---
+import original from '../../content/depressao.json';
+import content from '../../content/redesign.json';
+import { Image } from 'astro:assets';
+import heroPhoto from '../../assets/dr-lucio-jaleco.jpg';
+import Icon from '../../components/Icon.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import { emphasize } from '../../utils/emphasis';
+import '../../styles/global.css';
+
+const address = 'Rua Ministro Orozimbo Nonato, 442, Sala 810, Vila da Serra, Nova Lima - MG';
+const addressParts = address.split(', ');
+const practicalAddressLines = [addressParts.slice(0, 3).join(', ') + ',', addressParts.slice(3).join(', ')];
+const symptoms = [...original.sintomasDiagnostico[1].matchAll(/<li>(.*?)<\/li>/gs)].slice(0, 7).map(match => match[1]);
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="description" content="Avaliação psiquiátrica da depressão com Dr. Lúcio Moreira. Atendimento presencial e online. Conheça o médico, o atendimento e as abordagens de tratamento." />
+    <title>Avaliação psiquiátrica da depressão | Dr. Lúcio Moreira</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/monograma.svg" />
+    <link rel="preload" href="/assets/montserrat-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/belanosima-regular.ttf" as="font" type="font/ttf" crossorigin />
+  </head>
+  <body id="inicio">
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+    <SiteHeader active="depressao" />
+
+    <main id="conteudo">
+      <section class="hero container" aria-labelledby="titulo">
+        <div class="hero-content">
+          <h1 id="titulo">Avaliação psiquiátrica <span>da depressão</span></h1>
+          <div class="hero-doctor">
+            <p class="doctor-name">Dr. Lúcio Moreira</p>
+            <p>Médico psiquiatra</p>
+            <p class="registration"><span class="registration-record">CRM-MG: 82117</span> <span class="registration-separator" aria-hidden="true">·</span> <span class="registration-record">RQE: 57394</span></p>
+          </div>
+          <p class="hero-modalities">Atendimento presencial e online</p>
+          <div class="hero-actions">
+            <a class="button button-light" href="#contato"><span>Agende uma consulta</span><Icon name="arrow" /></a>
+          </div>
+        </div>
+        <figure class="hero-photo">
+          <div class="hero-photo-window">
+            <Image src={heroPhoto} width={1200} height={800} widths={[480, 800, 1200]} sizes="(max-width: 760px) 170px, (max-width: 1100px) 42vw, 490px" alt="Dr. Lúcio Moreira, de jaleco, sentado à mesa e sorrindo." format="webp" quality={86} loading="eager" fetchpriority="high" decoding="async" />
+          </div>
+          <figcaption><span>Dr. Lúcio Moreira</span><span>Médico psiquiatra</span></figcaption>
+        </figure>
+      </section>
+
+      <section class="practical container" aria-label="Localização e modalidades de atendimento">
+        <div class="practical-item">
+          <div class="practical-heading"><span class="icon-box"><Icon name="video" /></span><p class="practical-title">Presencial e online</p></div>
+          <p class="small">Psiquiatra em Belo Horizonte e Nova Lima</p>
+        </div>
+        <div class="practical-item location-item">
+          <div class="practical-heading"><span class="icon-box"><Icon name="pin" /></span><p class="practical-title">Consultório em Nova Lima</p></div>
+          <address><span>{practicalAddressLines[0]}</span>{' '}<span>{practicalAddressLines[1]}</span></address>
+        </div>
+      </section>
+
+      <section id="depressao" class="definition-band" aria-labelledby="depressao-titulo">
+        <div class="container definition-grid">
+          <div><h2 id="depressao-titulo">O que é<br /> a depressão?</h2></div>
+          <div class="prose definition-text" data-original="oQueE.0"><Fragment set:html={original.oQueE[0]} /></div>
+        </div>
+      </section>
+
+      <section id="atendimento" class="section care-section" aria-labelledby="atendimento-titulo">
+        <div class="container">
+          <div class="care-grid">
+          <div class="section-intro">
+            <h2 id="atendimento-titulo">Cuidado individualizado,<br /> com escuta e acompanhamento.</h2>
+            <p class="lead" data-copy="careIntro" set:html={emphasize(content.careIntro, ['individualização do cuidado', 'necessidades emocionais e clínicas'])} />
+            <a class="button button-dark" href="#contato">Agende uma consulta <Icon name="arrow" /></a>
+          </div>
+          <ul class="care-steps" aria-label="Aspectos do acompanhamento psiquiátrico">
+            {content.careSteps.map((step, index) => <li>
+              <div><h3>{step.title}</h3><p data-copy={'careSteps.' + index} set:html={emphasize(step.text, ['sintomas predominantes', 'impacto do quadro depressivo', 'plano terapêutico personalizado', 'confiança e na empatia'])} /></div>
+            </li>)}
+          </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="sintomas" class="section symptoms-section" aria-labelledby="sintomas-titulo">
+        <div class="container">
+          <div class="section-heading">
+            <h2 id="sintomas-titulo">Sintomas e diagnóstico</h2>
+          </div>
+          <div class="symptoms-grid">
+            <div class="symptoms-content">
+              <h3>Sintomas mais comuns</h3>
+              <div class="prose symptoms-intro" data-original="sintomasDiagnostico.0"><Fragment set:html={original.sintomasDiagnostico[0]} /></div>
+              <ul class="symptom-list" aria-label="Sintomas mais comuns da depressão" data-original="symptoms">
+                {symptoms.map(symptom => <li set:html={symptom} />)}
+              </ul>
+              <aside class="emergency-note" aria-label="Orientação sobre atenção médica imediata">
+                <Icon name="alert" />
+                <p data-copy="emergency">Em casos graves, ideias de morte ou pensamentos suicidas exigem <strong>atenção médica imediata.</strong></p>
+              </aside>
+            </div>
+            <aside id="diagnostico" class="diagnosis" aria-labelledby="diagnostico-titulo">
+              <div class="diagnosis-heading"><span class="diagnosis-icon"><Icon name="conversation" /></span><h3 id="diagnostico-titulo">O diagnóstico é clínico</h3></div>
+              <div class="prose" data-original="diagnosis">{original.sintomasDiagnostico.slice(2).map(block => <Fragment set:html={block.replace('diagnóstico precoce', '<strong>diagnóstico precoce</strong>')} />)}</div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section id="medico" class="section doctor-section" aria-labelledby="medico-titulo">
+        <div class="container doctor-grid">
+          <div class="doctor-heading">
+            <h2 id="medico-titulo">Dr. Lúcio Moreira</h2>
+            <p class="doctor-profession">Médico psiquiatra</p>
+          </div>
+          <figure class="portrait">
+            <div class="portrait-window"><img src="/assets/dr-lucio-800.webp" srcset="/assets/dr-lucio-480.webp 480w, /assets/dr-lucio-800.webp 800w, /assets/dr-lucio-1200.webp 1200w" sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 40vw, 470px" width="800" height="1077" alt="Dr. Lúcio Moreira sentado e sorrindo, usando camisa." loading="lazy" decoding="async" /></div>
+            <figcaption><span>Dr. Lúcio Moreira</span><span>CRM-MG: 82117 · RQE: 57394</span></figcaption>
+          </figure>
+          <div class="doctor-profile">
+            <div class="experience-block">
+              <h3>Experiência clínica</h3>
+              <p class="experience-intro" data-copy="experience" set:html={emphasize(content.experience, ['consultas ambulatoriais', 'urgências psiquiátricas', 'cuidado hospitalar'])} />
+              <ul class="experience-details">
+                {content.experienceDetails.map((item, index) => <li data-experience={index}>
+                  <p class="experience-label">{item.title}</p>
+                  <p set:html={emphasize(item.text, ['Instituto Assistencial André Luiz', 'Clínica Novos Rumos', 'Raposos e Nova Lima', 'dependência química', 'CAPS AD'])} />
+                </li>)}
+              </ul>
+            </div>
+            <div class="formation-block">
+            <h3>Formação e trajetória acadêmica</h3>
+            <ul class="formation-list" aria-label="Formação do médico">
+              {content.profile.map((item,index) => <li data-profile={index}>
+                <div class="formation-heading"><h3>{item.title}</h3>{item.detail && <span>{item.detail}</span>}</div>
+                <p>{item.text}</p>
+              </li>)}
+            </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tratamento" class="section treatment-section" aria-labelledby="tratamento-titulo">
+        <div class="container">
+          <div class="treatment-heading">
+            <h2 id="tratamento-titulo">Abordagens de tratamento</h2>
+            <div class="prose" data-original="tratamento.0"><Fragment set:html={original.tratamento[0]} /></div>
+          </div>
+          <aside class="treatment-note" aria-labelledby="consulta-titulo">
+            <div><h3 id="consulta-titulo">Na consulta com o Dr. Lúcio</h3>
+              <p data-copy="treatmentNote" set:html={emphasize(content.treatmentNote, ['diagnóstico psiquiátrico', 'plano terapêutico individualizado', 'pode orientar tratamentos complementares'])} />
+              <p class="treatment-scope" data-copy="treatmentScope">{content.treatmentScope}</p>
+            </div>
+          </aside>
+          <div class="treatment-list">
+            <article class="treatment-row">
+              <div class="treatment-label"><h3>Tratamento medicamentoso</h3></div>
+              <div class="prose medication" data-copy="medication">{content.medication.map(paragraph => <p set:html={emphasize(paragraph, ['antidepressivos', 'ISRS', 'IRSN', 'acompanhamento médico regular', 'possíveis efeitos adversos'])} />)}</div>
+            </article>
+            <article class="treatment-row">
+              <div class="treatment-label"><h3>Tratamento psicoterápico</h3></div>
+              <div class="prose" data-copy="psychotherapy"><p set:html={emphasize(content.psychotherapy, ['Terapia Cognitivo-Comportamental (TCC)', 'padrões de pensamento negativos'])} /></div>
+            </article>
+            <article class="treatment-row">
+              <div class="treatment-label"><h3>Tratamentos complementares</h3></div>
+              <div class="prose" data-original="tratamento.6"><Fragment set:html={original.tratamento[6]} /></div>
+            </article>
+          </div>
+          <div class="treatment-bottom"><p>Atendimento psiquiátrico com Dr. Lúcio Moreira</p><a class="text-link" href="#contato">Agende uma consulta <Icon name="arrow" /></a></div>
+        </div>
+      </section>
+
+      <section id="contato" class="contact-section" aria-labelledby="contato-titulo" tabindex="-1">
+        <div class="container contact-grid">
+          <div class="contact-intro"><h2 id="contato-titulo">Agende uma consulta</h2><p>Atendimento psiquiátrico<br /> com Dr. Lúcio Moreira</p><span class="contact-line" aria-hidden="true"></span><p class="registration">CRM-MG: 82117 · RQE: 57394</p></div>
+          <div class="contact-card">
+            <div class="contact-card-heading"><h3>Consultório em Nova Lima</h3></div>
+            <address>{address}</address>
+            <div class="contact-status"><span class="status-dot" aria-hidden="true"></span><p>Informações de contato em atualização.</p></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <img src="/assets/logo-horizontal.svg" width="338" height="60" alt="Dr. Lúcio Moreira" loading="lazy" />
+        <p>Responsável Técnico: Lúcio Lourenço Moreira<br /><span>CRM-MG: 82117 · RQE: 57394</span></p>
+        <a href="#inicio">Voltar ao início <span aria-hidden="true">↑</span></a>
+      </div>
+    </footer>
+  </body>
+</html>
