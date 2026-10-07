@@ -10,6 +10,7 @@ analises/
 !.env.example
 *.log
 .vercel/
+.wrangler/
 src/content/originais/home-referencia.html
 src/assets/composicao-editorial-v1.png
 src/assets/areas-editorial-v1.png

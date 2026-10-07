@@ -6,6 +6,8 @@ Repositório: https://github.com/pedrozajden/lucio-site. Somente a implementaç�
 
 Configuração para a conexão existente na Cloudflare: branch `main`, diretório raiz do repositório, comando `pnpm build` e diretório de saída `dist`. Node 24 e pnpm 11.19.0 são as versões indicadas nos arquivos do projeto. Formulário e rastreamento continuam desativados na prévia web.
 
+Para Cloudflare **Workers Builds** (o projeto atual), use build `pnpm build` e deploy `pnpm exec wrangler deploy`. O arquivo `wrangler.jsonc` publica apenas os arquivos estáticos de `dist`, sem código de servidor. O comando `pnpm run deploy` pode ser usado para compilar e publicar em uma única etapa. A dependência `workerd` tem seu script de instalação permitido explicitamente em `pnpm-workspace.yaml`.
+
 ```sh
 pnpm install
 pnpm dev
