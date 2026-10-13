@@ -58,3 +58,7 @@ Solicitado pelo usuário: aparência mais profissional, ordem pensada para quem 
 ## Abertura escura e índice — 13/10/2026
 
 Somente composição; nenhuma redação clínica nova. Abertura volta ao fundo escuro a pedido do usuário, com a foto de jaleco (recorte de `home-banner.png` em `src/assets/dr-lucio-jaleco-retrato.jpg`) emoldurada em arco e as credenciais na base do bloco. Novos rótulos de navegação: índice “Nesta página” (Sinais, O médico, O que é, Tratamento, Acompanhamento, Agendar). Monograma da marca como marca d'água discreta. A fala do médico em primeira pessoa e o selo “Conteúdo revisado por…” foram avaliados e ficam fora por ora (o selo depende da revisão médica). CVV/SAMU e frase de acolhimento não incluídos, por decisão do usuário.
+
+## Atendimento online em evidência — 13/10/2026
+
+A pedido do usuário, contato e rodapé deixam de sugerir atendimento só no consultório. Cartão de contato: “Consulta online — Atendimento a distância, onde você estiver.” e “Consultório em Nova Lima” com o endereço. Rodapé: título “Consultório” → “Atendimento”, com “Online · onde você estiver” e “Presencial · Consultório em Nova Lima”. Origem: modalidade presencial e online já informada no site (“Psiquiatra Online”, “Atendimento Online”). “A distância, onde você estiver” é redação nova; não especifica plataforma, cobertura geográfica ou regras da consulta online, que precisam de confirmação antes de qualquer detalhamento.

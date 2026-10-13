@@ -192,8 +192,10 @@ const credentials = content.credentials as { icon: 'id' | 'cap' | 'building' | '
             <p>Atendimento psiquiátrico com Dr. Lúcio Moreira, presencial e online.</p>
           </div>
           <div class="cond-contact-card" data-reveal>
-            <p class="cond-contact-card-title">Consultório em Nova Lima</p>
-            <address>{address}</address>
+            <ul class="cond-modes">
+              <li><span class="cond-mode-icon"><Icon name="video" /></span><span><span class="cond-mode-title">Consulta online</span>Atendimento a distância, onde você estiver.</span></li>
+              <li><span class="cond-mode-icon"><Icon name="pin" /></span><span><span class="cond-mode-title">Consultório em Nova Lima</span><address>{address}</address></span></li>
+            </ul>
             <div class="cond-contact-status"><span class="cond-status-dot" aria-hidden="true"></span><p>Informações de contato em atualização.</p></div>
           </div>
         </div>
@@ -204,7 +206,7 @@ const credentials = content.credentials as { icon: 'id' | 'cap' | 'building' | '
       <div class="cond-container">
         <div class="cond-footer-grid">
           <a class="cond-footer-brand" href="/" aria-label="Dr. Lúcio Moreira — Home"><img src="/assets/monograma.svg" width="68" height="68" alt="" loading="lazy" /><span>Dr. Lúcio Moreira</span><em>Psiquiatra</em></a>
-          <div class="cond-footer-contact"><p class="cond-footer-title">Consultório</p><address><span>{addressLines[0]}</span><span>{addressLines[1]}</span></address><p>Atendimento presencial e online</p></div>
+          <div class="cond-footer-contact"><p class="cond-footer-title">Atendimento</p><p class="cond-footer-mode"><Icon name="video" /><span><strong>Online</strong> · onde você estiver</span></p><p class="cond-footer-mode"><Icon name="pin" /><span><strong>Presencial</strong> · Consultório em Nova Lima</span></p><address><span>{addressLines[0]}</span><span>{addressLines[1]}</span></address></div>
           <nav class="cond-footer-nav" aria-label="Mapa do site"><p class="cond-footer-title">Mapa do site</p><a href="/">Home</a><a href="/#areas">Áreas de Atuação</a><a href="#inicio">Depressão</a></nav>
         </div>
         <div class="cond-footer-bottom"><p>Responsável Técnico: Lúcio Lourenço Moreira <span aria-hidden="true">|</span> CRM-MG: 82117 <span aria-hidden="true">|</span> RQE: 57394</p><a href="#inicio">Voltar ao início <span aria-hidden="true">↑</span></a></div>
@@ -255,8 +257,19 @@ const credentials = content.credentials as { icon: 'id' | 'cap' | 'building' | '
         tocBar.classList.toggle('is-stuck', stuck);
         if (!stuck || travel < -24) tocBar.classList.remove('is-hidden');
         else if (travel > 8) tocBar.classList.add('is-hidden');
+        scheduleIdleHide();
+      }
+      // Com a tela parada, o índice grudado some sozinho; volta quando a pessoa rola para cima.
+      let idleTimer = 0;
+      function scheduleIdleHide() {
+        clearTimeout(idleTimer);
+        idleTimer = window.setTimeout(() => {
+          if (tocBar.classList.contains('is-stuck') && !tocBar.matches(':hover, :focus-within')) tocBar.classList.add('is-hidden');
+        }, 2500);
       }
       tocBar.addEventListener('focusin', () => tocBar.classList.remove('is-hidden'));
+      tocBar.addEventListener('mouseleave', scheduleIdleHide);
+      tocBar.addEventListener('focusout', scheduleIdleHide);
       let pending = false;
       window.addEventListener('scroll', () => { if (!pending) { pending = true; requestAnimationFrame(() => { markCurrent(); updateTocBar(); pending = false; }); } }, { passive: true });
       markCurrent();
