@@ -6,6 +6,7 @@ import content from '../content/redesign.json';
 import heroPhoto from '../assets/dr-lucio-jaleco-retrato.jpg';
 import Icon from '../components/Icon.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import Duvidas from '../components/Duvidas.astro';
 import { conditionPages, scheduleUrl, type ConditionKey } from '../content/condicoes';
 import '../styles/condicao.css';
 
@@ -25,6 +26,8 @@ const { active, title, description, breadcrumb, titleMain, titleAccent, heroLead
 const address = 'Rua Ministro Orozimbo Nonato, 442, Sala 810, Vila da Serra, Nova Lima - MG';
 const addressParts = address.split(', ');
 const addressLines = [addressParts.slice(0, 3).join(', ') + ',', addressParts.slice(3).join(', ')];
+// O índice ganha "Dúvidas" antes do último item (Agendar).
+const tocSections: [string, string][] = [...sections.slice(0, -1), ['duvidas', 'Dúvidas'], ...sections.slice(-1)];
 const credentials = content.credentials as { icon: 'id' | 'cap' | 'building' | 'video'; label: string; value: string }[];
 ---
 <!doctype html>
@@ -76,11 +79,13 @@ const credentials = content.credentials as { icon: 'id' | 'cap' | 'building' | '
       <nav class="cond-toc" aria-label="Nesta página">
         <span class="cond-toc-label">Nesta página</span>
         <div class="cond-toc-links">
-          {sections.map(([id, label]) => <a href={'#' + id} data-toc={id}>{label}</a>)}
+          {tocSections.map(([id, label]) => <a href={'#' + id} data-toc={id}>{label}</a>)}
         </div>
       </nav>
 
       <slot />
+
+      <Duvidas />
 
       <section id="contato" class="cond-contact" aria-labelledby="contato-titulo" tabindex="-1">
         <div class="cond-container cond-contact-grid">

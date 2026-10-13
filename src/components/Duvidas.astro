@@ -1,0 +1,48 @@
+---
+// Dúvidas frequentes (práticas, não clínicas), em sanfona. Usado na Home e no fim das páginas de condição.
+import faq from '../content/faq.json';
+---
+<section id="duvidas" class="faq" aria-labelledby="duvidas-titulo">
+  <div class="faq-inner">
+    <div class="faq-heading">
+      <h2 id="duvidas-titulo">Dúvidas frequentes</h2>
+      <p>Informações práticas sobre consultas, atendimento online e agendamento.</p>
+    </div>
+    <div class="faq-list">
+      {faq.map((item, index) => <details class="faq-item" data-faq={index}>
+        <summary><span>{item.question}</span><span class="faq-toggle" aria-hidden="true"></span></summary>
+        <div class="faq-answer">{item.answer.map(paragraph => <p>{paragraph}</p>)}</div>
+      </details>)}
+    </div>
+  </div>
+</section>
+<style>
+  .faq{padding:56px 0 88px;scroll-margin-top:calc(var(--shared-header-height,112px) + 72px)}
+  .faq-inner{display:grid;grid-template-columns:.75fr 1.25fr;gap:64px;align-items:start;width:min(1200px,calc(100% - 80px));margin-inline:auto}
+  .faq-heading h2{font-family:Gotu,Georgia,serif;font-weight:400;font-size:clamp(30px,2.6vw,40px);line-height:1.35;color:#243c50;margin:0 0 14px}
+  .faq-heading p{margin:0;font-size:16px;line-height:1.7;color:#5f7586}
+  .faq-list{border-top:1px solid #dce6ed}
+  .faq-item{border-bottom:1px solid #dce6ed}
+  .faq-item summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 4px;cursor:pointer;font-family:Montserrat,Arial,sans-serif;font-size:17px;font-weight:600;line-height:1.5;color:#243c50}
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary:hover{color:#386d92}
+  .faq-item summary:focus-visible{outline:3px solid #567d9b;outline-offset:4px;border-radius:8px}
+  .faq-toggle{position:relative;flex-shrink:0;width:36px;height:36px;border-radius:50%;background:#edf3f7;transition:background .2s}
+  .faq-toggle::before,.faq-toggle::after{content:"";position:absolute;left:50%;top:50%;width:13px;height:1.5px;background:#386d92;transform:translate(-50%,-50%);transition:transform .3s cubic-bezier(.22,.61,.36,1)}
+  .faq-toggle::after{transform:translate(-50%,-50%) rotate(90deg)}
+  .faq-item[open] .faq-toggle::after{transform:translate(-50%,-50%) rotate(0deg)}
+  .faq-item summary:hover .faq-toggle{background:#dce8f1}
+  .faq-answer{padding:0 56px 24px 4px;font-family:Montserrat,Arial,sans-serif;font-size:16px;line-height:1.75;color:#3d5366}
+  .faq-answer p{margin:0}
+  .faq-answer p+p{margin-top:12px}
+  @media(prefers-reduced-motion:no-preference){.faq-item[open] .faq-answer{animation:faq-open .4s cubic-bezier(.22,.61,.36,1)}}
+  @keyframes faq-open{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+  @media(max-width:1100px){.faq-inner{grid-template-columns:1fr;gap:28px;width:calc(100% - 56px)}}
+  @media(max-width:760px){
+    .faq{padding:60px 0}
+    .faq-inner{width:calc(100% - 40px)}
+    .faq-heading h2{font-size:29px}
+    .faq-item summary{padding:18px 2px;font-size:16px;gap:16px}
+    .faq-answer{padding:0 8px 20px 2px;font-size:15px}
+  }
+</style>

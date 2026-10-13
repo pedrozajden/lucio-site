@@ -194,6 +194,27 @@ p{text-wrap:pretty}
 .cond-diagnosis .cond-round-icon{background:#ffffff1a;color:#cfe0ec}
 .cond-diagnosis .cond-prose p+p{padding-top:16px;border-top:1px solid #ffffff22}
 
+/* Aprofundamento das fases (bipolar) */
+.cond-phases{display:block;margin-top:48px;border:1px solid var(--c-line);border-radius:24px;background:#fff;box-shadow:0 8px 22px #213d530a}
+.cond-phases[open]{padding-bottom:26px}
+.cond-phases-summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 28px;cursor:pointer}
+.cond-phases-summary::-webkit-details-marker{display:none}
+.cond-phases-summary>span:first-child{display:flex;flex-direction:column}
+.cond-phases-title{font-family:var(--c-heading);font-size:22px;line-height:1.4;color:var(--c-ink)}
+.cond-phases-hint{font-size:14px;color:var(--c-soft)}
+.cond-phases-toggle{position:relative;flex-shrink:0;width:40px;height:40px;border-radius:50%;background:var(--c-pale);transition:background .2s}
+.cond-phases-toggle::before,.cond-phases-toggle::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:1.5px;background:var(--c-accent);transform:translate(-50%,-50%);transition:transform .3s var(--c-ease)}
+.cond-phases-toggle::after{transform:translate(-50%,-50%) rotate(90deg)}
+.cond-phases[open] .cond-phases-toggle::after{transform:translate(-50%,-50%) rotate(0deg)}
+.cond-phases-summary:hover .cond-phases-toggle{background:#dce8f1}
+.cond-phases .cond-phases-grid,.cond-phases .cond-phases-note{margin-inline:28px}
+.cond-phases-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.cond-phase{padding:24px 26px;border-radius:22px;background:var(--c-paper);border:1px solid var(--c-line);font-size:15px;line-height:1.65}
+.cond-phase-name{display:inline-block;margin-bottom:10px;padding:3px 12px;border-radius:100px;background:var(--c-pale);font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--c-accent)}
+.cond-phase .cond-prose ul{margin-top:8px;gap:6px}
+.cond-phases-note{margin-top:16px;font-size:15px;color:var(--c-muted)}
+.cond-phases[open] .cond-phases-grid{animation:cond-rise .45s var(--c-ease)}
+
 /* Tratamento */
 .cond-treatment{background:linear-gradient(180deg,#fff,var(--c-pale) 40%,var(--c-paper));border-radius:48px}
 .cond-section-heading{max-width:820px;margin-bottom:44px}
@@ -350,6 +371,12 @@ p{text-wrap:pretty}
   .cond-care-panel{padding:30px 22px 0;border-radius:26px}
   .cond-care-practical{flex-direction:column;align-items:flex-start;gap:10px;font-size:14px}
   .cond-button{width:100%}
+  .cond-phases{margin-top:32px;border-radius:20px}
+  .cond-phases-summary{padding:18px 20px}
+  .cond-phases-title{font-size:19px}
+  .cond-phases .cond-phases-grid,.cond-phases .cond-phases-note{margin-inline:16px}
+  .cond-phases-grid{grid-template-columns:1fr}
+  .cond-phase{padding:20px}
   .cond-signs-cta{flex-direction:column;align-items:stretch;gap:18px;margin-top:36px;padding:24px 20px;border-radius:20px}
   .cond-signs-cta p{font-size:19px}
   .cond-whatsapp{right:16px;bottom:16px;height:56px;min-width:56px;padding:0 13px}

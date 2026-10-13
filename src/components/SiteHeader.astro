@@ -23,9 +23,7 @@ const onCondition = active !== 'home';
         </ul>
       </details>
       <span class="shared-separator" aria-hidden="true">·</span>
-      <span class="shared-unavailable" aria-disabled="true" title="Página ainda não disponível">FAQ</span>
-      <span class="shared-separator" aria-hidden="true">·</span>
-      <a href="/#contato">Contato</a>
+      <a href="#duvidas">FAQ</a>
     </nav>
     <a class="shared-schedule" href={scheduleHref} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}><span class="shared-desktop-label">Agende uma consulta</span><span class="shared-mobile-label">Agendar</span></a>
     <details class="shared-mobile-menu">
@@ -39,8 +37,7 @@ const onCondition = active !== 'home';
             {home.areas.map((area, index) => { const page = pageForArea(index); return <li>{page ? <a href={page.href} aria-current={active === page.key ? 'page' : undefined}>{area}</a> : <span aria-disabled="true">{area}<small>Em breve</small></span>}</li>; })}
           </ul>
         </details>
-        <span class="shared-unavailable" aria-disabled="true">FAQ <small>Em breve</small></span>
-        <a href="/#contato">Contato</a>
+        <a href="#duvidas">FAQ</a>
       </nav>
     </details>
   </div>

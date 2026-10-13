@@ -1,0 +1,34 @@
+[
+  {
+    "question": "O que devo levar para a minha primeira consulta?",
+    "answer": [
+      "Se você já fez tratamento psiquiátrico, leve o histórico: nomes dos medicamentos utilizados, períodos de uso e doses prescritas. Isso ajuda a compreender quais abordagens já foram testadas e como seu organismo respondeu a cada uma.",
+      "Exames de sangue recentes também auxiliam na avaliação global da sua saúde e evitam a repetição de exames desnecessários. Vale ainda anotar seus sintomas, mesmo os que pareçam pequenos ou sem relação direta, e preparar uma lista de dúvidas para a consulta."
+    ]
+  },
+  {
+    "question": "As consultas podem ser feitas pelo meu convênio ou plano de saúde?",
+    "answer": [
+      "O Dr. Lúcio Moreira realiza consultas apenas de forma particular. Muitos planos de saúde, porém, oferecem a possibilidade de reembolso: são fornecidos nota fiscal e os relatórios necessários para que você solicite o reembolso diretamente ao seu plano."
+    ]
+  },
+  {
+    "question": "São realizadas consultas online?",
+    "answer": [
+      "Sim. O atendimento online é uma opção para quem busca praticidade ou não consegue se deslocar até o consultório, seja pela rotina ou pela distância.",
+      "As receitas são emitidas em formato digital. Quando há prescrição de medicamentos de controle especial, a receita física é enviada para o seu endereço."
+    ]
+  },
+  {
+    "question": "Quais são os dias e horários de atendimento?",
+    "answer": [
+      "A secretária atende para agendamentos de segunda a sexta-feira, das 8h às 18h. As consultas com o Dr. Lúcio Moreira acontecem às segundas, quartas e sextas-feiras, das 8h às 18h."
+    ]
+  },
+  {
+    "question": "Há retorno incluso no valor da consulta?",
+    "answer": [
+      "Não. Na psiquiatria, cada encontro é uma nova consulta completa, que envolve reavaliação do quadro, evolução dos sintomas, revisão de medicações, ajustes terapêuticos e orientações. Por isso, não se utiliza o termo “consulta de retorno”."
+    ]
+  }
+]

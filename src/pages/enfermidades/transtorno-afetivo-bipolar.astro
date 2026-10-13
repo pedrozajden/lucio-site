@@ -7,12 +7,11 @@ import Medico from '../../components/condicao/Medico.astro';
 import Acompanhamento from '../../components/condicao/Acompanhamento.astro';
 import ChamadaSinais from '../../components/condicao/ChamadaSinais.astro';
 import Icon from '../../components/Icon.astro';
-import { listItems } from '../../utils/emphasis';
 
 const sections: [string, string][] = [['sintomas', 'Sinais'], ['medico', 'O médico'], ['bipolar', 'O que é'], ['tratamento', 'Tratamento'], ['atendimento', 'Acompanhamento'], ['contato', 'Agendar']];
 const phases = [
-  { lead: 2, list: 3, label: 'Sinais das fases maníacas ou hipomaníacas' },
-  { lead: 5, list: 6, label: 'Sinais das fases depressivas' },
+  { lead: 2, list: 3, name: 'Mania ou hipomania' },
+  { lead: 5, list: 6, name: 'Depressão' },
 ];
 ---
 <CondicaoLayout
@@ -33,16 +32,9 @@ const phases = [
         <div class="cond-prose" data-original="sintomasDiagnostico.0"><Fragment set:html={original.sintomasDiagnostico[0]} /></div>
       </div>
       <div class="cond-signs-body" data-reveal>
-        {phases.map(phase => <div class="cond-symptom-group">
-          <div class="cond-symptom-group-title" data-original={'sintomasDiagnostico.' + phase.lead}><Fragment set:html={original.sintomasDiagnostico[phase.lead]} /></div>
-          <ul class="cond-symptoms" aria-label={phase.label} data-original={'sintomasDiagnostico.' + phase.list}>
-            {listItems(original.sintomasDiagnostico[phase.list]).map(item => <li set:html={item} />)}
-          </ul>
-        </div>)}
-        <aside class="cond-highlight" aria-label="Sintomas mistos">
-          <span class="cond-round-icon"><Icon name="activity" /></span>
-          <div class="cond-prose" data-original="sintomasDiagnostico.8"><Fragment set:html={original.sintomasDiagnostico[8]} /></div>
-        </aside>
+        <ul class="cond-symptoms" aria-label="Sinais do transtorno bipolar" data-copy="signs">
+          {content.signs.map(sign => <li>{sign}</li>)}
+        </ul>
       </div>
     </div>
     <ChamadaSinais />
@@ -61,6 +53,16 @@ const phases = [
         <div class="cond-prose" data-original="sintomasDiagnostico.10"><Fragment set:html={original.sintomasDiagnostico[10]} /></div>
       </aside>
     </div>
+    <details class="cond-container cond-phases" data-reveal>
+      <summary class="cond-phases-summary"><span><span class="cond-phases-title">Entenda as fases do transtorno</span><span class="cond-phases-hint">Mania ou hipomania, depressão e sintomas mistos</span></span><span class="cond-phases-toggle" aria-hidden="true"></span></summary>
+      <div class="cond-phases-grid">
+        {phases.map(phase => <div class="cond-phase">
+          <p class="cond-phase-name">{phase.name}</p>
+          <div class="cond-prose" data-original={'sintomasDiagnostico.' + phase.lead + '+' + phase.list}><Fragment set:html={original.sintomasDiagnostico[phase.lead]} /><Fragment set:html={original.sintomasDiagnostico[phase.list]} /></div>
+        </div>)}
+      </div>
+      <p class="cond-phases-note" data-original="sintomasDiagnostico.8" set:html={original.sintomasDiagnostico[8].replace(/^<p>|<\/p>$/g, '')} />
+    </details>
   </section>
 
   <section id="tratamento" class="cond-section cond-treatment" aria-labelledby="tratamento-titulo">

@@ -1,5 +1,13 @@
 {
   "heroLead": "Oscilações intensas de humor e energia, com fases de euforia, irritabilidade ou impulsividade alternadas com períodos de tristeza profunda, podem ser sinais de transtorno bipolar. A avaliação psiquiátrica ajuda a compreender o quadro e a escolher o tratamento adequado.",
+  "signs": [
+    "Fases de muita energia, euforia ou irritabilidade",
+    "Menor necessidade de sono, com fala e pensamento acelerados",
+    "Impulsividade ou comportamentos de risco",
+    "Períodos de tristeza profunda e sensação de vazio",
+    "Cansaço, perda de interesse e alterações no sono e no apetite",
+    "Mudanças de humor que afetam a rotina e os relacionamentos"
+  ],
   "careSteps": [
     {
       "title": "Avaliação psiquiátrica",

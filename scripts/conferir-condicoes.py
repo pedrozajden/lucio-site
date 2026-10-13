@@ -68,6 +68,17 @@ for name, (slug, h1) in PAGES.items():
             assert target.xpath(f'//*[@id="{fragment}"]'), f'{name}: âncora inexistente {url}'
     report[name] = {'trechosLiterais': len(literal), 'textosRegistrados': len(copied), 'botoesAgendamento': len(ctas)}
 
+# Dúvidas frequentes: mesmas perguntas e respostas registradas em faq.json, em todas as páginas de condição e na Home.
+faq = json.loads((SITE/'src/content/faq.json').read_text('utf-8'))
+for file in [SITE/'dist/index.html'] + [SITE/f'dist/enfermidades/{slug}/index.html' for slug, _ in PAGES.values()] + [SITE/'dist/enfermidades/depressao/index.html']:
+    doc = html.fromstring(file.read_text('utf-8'))
+    items = doc.xpath('//section[@id="duvidas"]//details')
+    assert len(items) == len(faq), f'{file}: FAQ ausente'
+    for node, item in zip(items, faq):
+        assert bare(node.xpath('./summary')[0].text_content()) == bare(item['question'])
+        assert bare(node.xpath('.//div[contains(@class,"faq-answer")]')[0].text_content()) == bare(''.join(item['answer']))
+    assert 'mesma qualidade' not in doc.text_content()
+
 # Restrições específicas pedidas pelo usuário.
 tdah = (SITE/'dist/enfermidades/transtorno-de-deficit-de-atencao-e-hiperatividade-tdah/index.html').read_text('utf-8').lower()
 assert 'crianças' not in tdah and 'adolescentes' not in tdah, 'TDAH: menção a crianças ou adolescentes'

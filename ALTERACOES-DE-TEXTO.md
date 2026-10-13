@@ -119,3 +119,20 @@ Quatro páginas novas no template das condições, nos mesmos endereços do site
 
 ### Navegação
 Todas as seis áreas da Home, do menu “Áreas de Atuação” e do mapa do site passam a ter página. Rótulos do mapa do site: “TDAH”, “Transtorno bipolar”, “Transtorno borderline”, “Esquizofrenia”. Títulos de abertura longos (como o de Borderline) usam corpo menor para caber em menos linhas.
+
+## Transtorno Bipolar — sinais em linguagem do paciente — 13/10/2026
+
+A pedido do usuário (divisão por fases técnica demais e página longa), a seção de sinais passa a ter uma lista única em linguagem do paciente (`signs` em `src/content/bipolar.json`), redação nova derivada de ID028 e ID027:
+“Fases de muita energia, euforia ou irritabilidade”; “Menor necessidade de sono, com fala e pensamento acelerados”; “Impulsividade ou comportamentos de risco”; “Períodos de tristeza profunda e sensação de vazio”; “Cansaço, perda de interesse e alterações no sono e no apetite”; “Mudanças de humor que afetam a rotina e os relacionamentos”.
+As listas originais das fases (com os subtítulos “Nas fases maníacas ou hipomaníacas, é comum observar:” e “Já nas fases depressivas, predominam:”) e o parágrafo de sintomas mistos continuam literais, agora no bloco expansível “Entenda as fases do transtorno” (rótulos “Mania ou hipomania” e “Depressão”), após o diagnóstico. Nenhum sintoma original foi omitido da página.
+
+## Dúvidas frequentes no fim das páginas — 13/10/2026
+
+A pedido do usuário, o FAQ deixa de ser página separada e entra como seção “Dúvidas frequentes” (sanfona) antes do contato em todas as páginas de condição e na Home. O item “FAQ” do menu passa a levar a `#duvidas`. Fonte: `faq.html` do site antigo (`planejamento/evidencias/faq-respostas.json`); o usuário enviou prints de `drluciomoreira.com.br/faq` em 13/10/2026 mostrando as mesmas respostas publicadas, tomados como confirmação de vigência. Redação em `src/content/faq.json`. Revisão pendente.
+
+- **Perguntas:** numeração retirada; “através do meu convênio/plano” → “pelo meu convênio ou plano de saúde”; “Quais os dias…” → “Quais são os dias…”.
+- **Primeira consulta:** condensada, mantendo histórico (medicamentos, períodos e doses), exames de sangue recentes, anotação de sintomas e lista de dúvidas. Omitidas as frases finais de benefício (“atendimento cuidadoso, eficaz e direcionado…”).
+- **Convênio:** mantidos atendimento apenas particular, reembolso, nota fiscal e relatórios. Omitidas “Assim, você pode ter acesso ao atendimento de qualidade…” e “estamos à disposição para ajudar!”.
+- **Consulta online:** **retirada a afirmação “com a mesma qualidade das consultas presenciais”** (equivalência não afirmada no site novo, mesmo critério da Home). Mantidos o público da modalidade, receitas digitais e envio da receita física de medicamentos de controle especial. Omitida a frase de convite final.
+- **Horários:** secretária de segunda a sexta, 8h–18h; consultas às segundas, quartas e sextas, 8h–18h. Omitida a frase de convite final.
+- **Retorno:** mantidos o “Não”, a ideia de nova consulta completa e seus componentes; condensadas as frases sobre processo contínuo.

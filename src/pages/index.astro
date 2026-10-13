@@ -5,6 +5,7 @@ import banner from '../assets/home-banner.png';
 import reviewPhoto from '../assets/home-depoimentos.jpg';
 import Icon from '../components/Icon.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import Duvidas from '../components/Duvidas.astro';
 import { conditionPages, pageForArea } from '../content/condicoes';
 import { emphasize } from '../utils/emphasis';
 import '../styles/home.css';
@@ -101,6 +102,7 @@ const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...
           <div class="review-controls"><button type="button" data-review-direction="-1" aria-label="Depoimento anterior"><span aria-hidden="true">←</span></button><span class="review-position" aria-live="polite" aria-atomic="true">1 / {home.reviews.length}</span><button type="button" data-review-direction="1" aria-label="Próximo depoimento"><span aria-hidden="true">→</span></button></div>
         </div>
       </section>
+      <Duvidas />
       <section id="contato" class="home-contact" aria-labelledby="contact-title"><div class="home-container">
         <div class="section-heading" data-reveal><h2 id="contact-title">Preencha o formulário abaixo<br /> e Agende uma Consulta</h2><p class="contact-specialty">Psiquiatra Online</p><p class="contact-caption">Nossa equipe de atendimento entrará em contato em breve.</p></div>
         <p id="form-status" class="preview-note">Prévia local: formulário demonstrativo, sem envio. O canal de contato será confirmado.</p>
