@@ -1,0 +1,33 @@
+---
+// Agendamento: modalidades e botão para o link de agendamento. Usado na Home e nas páginas de condição.
+import Icon from '../Icon.astro';
+import { scheduleUrl } from '../../content/condicoes';
+import { address } from '../../content/contato';
+import '../../styles/fechamento.css';
+
+// Informações práticas já confirmadas (FAQ e transcrição do médico), para reduzir dúvidas no momento de agendar.
+const assurances = [
+  'Consulta que geralmente dura em torno de uma hora',
+  'Presencial em Nova Lima ou online',
+  'Receitas emitidas em formato digital',
+  'Atendimento particular, com nota fiscal e relatório para reembolso do plano',
+];
+---
+<section id="contato" class="cond-contact" aria-labelledby="contato-titulo" tabindex="-1">
+  <div class="cond-container cond-contact-grid">
+    <div class="cond-contact-intro">
+      <h2 id="contato-titulo">Agende uma consulta</h2>
+      <p>Atendimento psiquiátrico com Dr. Lúcio Moreira, presencial e online.</p>
+      <ul class="cond-assurances" aria-label="Informações sobre a consulta">
+        {assurances.map(item => <li><span class="cond-assurance-icon"><Icon name="check" /></span>{item}</li>)}
+      </ul>
+    </div>
+    <div class="cond-contact-card" data-reveal>
+      <ul class="cond-modes">
+        <li><span class="cond-mode-icon"><Icon name="video" /></span><span><span class="cond-mode-title">Consulta online</span>Atendimento a distância, onde você estiver.</span></li>
+        <li><span class="cond-mode-icon"><Icon name="pin" /></span><span><span class="cond-mode-title">Consultório em Nova Lima</span><address>{address}</address></span></li>
+      </ul>
+      <a class="cond-contact-button" href={scheduleUrl} target="_blank" rel="noopener">Agende uma consulta <Icon name="arrow" /></a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,131 @@
+/* Home — refinamento de autoridade e leitura (13/10/2026): nome na fonte do logo, credenciais na abertura,
+   diferenciais incorporados à biografia, texto levemente maior e foto própria no celular. */
+
+/* Abertura */
+.hero-picture picture{display:contents}
+.hero-copy h1{font-family:Gotu,Georgia,serif;font-weight:400;letter-spacing:-.01em;font-size:clamp(48px,3.7vw,68px);line-height:1.2;color:#3f5163}
+.hero-motto,.hero-motto strong{font-family:Gotu,Georgia,serif;font-style:normal;font-weight:400}
+.hero-motto{font-size:clamp(22px,1.6vw,28px);line-height:1.35;color:#5a7a92}
+
+/* Credenciais logo após a abertura */
+.home-credentials{position:relative;z-index:3;margin-top:-58px}
+.home-credentials ul{display:grid;grid-template-columns:1.25fr 1fr 1fr 1fr;margin:0;padding:10px;list-style:none;background:#fff;border:1px solid #dce6ed;border-radius:28px;box-shadow:0 18px 40px #213d5312}
+.home-credentials li{display:flex;align-items:center;gap:14px;padding:20px}
+.home-credentials li+li{border-left:1px solid #dce6ed}
+.credential-icon{display:grid;place-items:center;flex-shrink:0;width:46px;height:46px;border-radius:50%;background:#edf3f7;color:#386d92}
+.credential-icon svg{width:23px;height:23px}
+.credential-text{display:flex;flex-direction:column;line-height:1.45}
+.credential-label{font-size:12px;color:#7f95a6;letter-spacing:.02em}
+.credential-value{font-size:15px;font-weight:600;color:#243c50;white-space:nowrap}
+.credential-part{white-space:nowrap}
+
+/* Leitura: texto levemente maior */
+.consultation-intro>p{font-size:17px}
+.consultation-topics h3{font-size:17px}
+.consultation-topics p{font-size:15px;color:#4a6274}
+.biography-text p{font-size:16px}
+.doctor-specialty{font-size:17px}
+.doctor-registration{font-size:13px}
+.doctor-facts li{font-size:15px}
+.area-description{font-size:14px}
+
+/* Diferenciais incorporados à biografia */
+.doctor-highlights{display:grid;gap:12px;margin:26px 0 0;padding:0;list-style:none}
+.doctor-highlights li{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;border-radius:18px;background:linear-gradient(120deg,#eef4f8,#f7f9fb);border:1px solid #dce6ed;font-size:15px;line-height:1.7;color:#4a6274}
+.highlight-title{display:block;margin-bottom:2px;font-size:16px;font-weight:600;color:#2d4e65}
+.doctor-highlights strong{font-weight:600;color:#2d4e65}
+.highlight-icon{display:grid;place-items:center;flex-shrink:0;width:42px;height:42px;border-radius:50%;background:#fff;color:#386d92}
+.highlight-icon svg{width:21px;height:21px}
+
+@media(max-width:1100px){
+  .home-credentials ul{grid-template-columns:1fr 1fr}
+  .home-credentials li:nth-child(3){border-left:0}
+  .home-credentials li:nth-child(n+3){border-top:1px solid #dce6ed}
+  .consultation-topics p{font-size:14px}
+}
+
+@media(max-width:760px){
+  /* Foto do celular: retrato próprio, centralizado */
+  .home-hero .hero-picture{height:min(98vw,420px)}
+  .home-hero .hero-picture img{object-position:50% 22%}
+  .hero-copy h1{font-size:36px;line-height:1.25}
+  .hero-motto{font-size:20px}
+  .home-credentials{margin-top:6px}
+  .home-credentials ul{padding:6px 14px;border-radius:24px}
+  .home-credentials li{flex-direction:column;align-items:flex-start;gap:8px;padding:14px 8px}
+  .credential-icon{width:36px;height:36px}
+  .credential-icon svg{width:19px;height:19px}
+  .credential-value{white-space:normal;font-size:14px}
+  .credential-sep{display:none}
+  .credential-part{display:block}
+  .consultation-intro>p{font-size:15px}
+  .consultation-topics p{font-size:14px}
+  .biography-text p{font-size:15px}
+  .doctor-highlights li{padding:16px;gap:12px;font-size:14px}
+}
+
+/* Abertura alinhada à esquerda, com hierarquia mais limpa */
+.hero-copy{text-align:left}
+.hero-copy h1{margin-bottom:14px}
+.hero-specialty{max-width:540px;margin:0;font-family:Montserrat,Arial,sans-serif;font-size:19px;font-weight:500;line-height:1.6;color:#45606f}
+.hero-message{max-width:520px;margin:26px 0 0;padding-top:24px;text-align:left}
+.hero-motto{margin-bottom:10px}
+.hero-specialty>span{display:block;white-space:normal}
+.hero-specialty-mode{color:#5f7586;font-weight:400}
+.hero-message>p+p{max-width:none;margin:0;font-size:18px;line-height:1.65;color:#45606f}
+.hero-actions{flex-direction:row;justify-content:flex-start;align-items:center;flex-wrap:wrap;gap:16px 28px}
+.hero-actions .home-button{margin-top:0}
+.hero-copy .hero-actions{margin-top:30px}
+.hero-secondary{font-size:14px}
+
+/* Contraste dos rótulos pequenos */
+.credential-label{color:#5f7586}
+
+/* Áreas de atuação: degradê suave e destaque ao passar o mouse */
+.area-item.area-active{background:linear-gradient(150deg,#fbfdfe 0%,#f1f6f9 55%,#e8f0f5 100%);border-color:#dbe6ed;transition:transform .35s cubic-bezier(.22,.61,.36,1),box-shadow .35s,border-color .35s,background .35s}
+.area-item .area-description{font-size:15px;color:#4a6274}
+@media(hover:hover){
+  .area-item.area-active:hover{transform:translateY(-6px) scale(1.03);background:linear-gradient(150deg,#f4f9fc 0%,#e6f0f7 55%,#d9e8f2 100%);border-color:#a7c0d1;box-shadow:0 22px 40px #284a6224;z-index:1}
+}
+
+/* Depoimentos: três em destaque sobre fundo escuro, demais em "ver mais" */
+.home-reviews.home-reviews-cards{position:relative;overflow:hidden;padding:88px 0 80px;background:radial-gradient(circle at 85% 0%,#3a6078 0%,transparent 45%),linear-gradient(140deg,#2b4c65 0%,#203b51 55%,#1a3145 100%);border-radius:48px;color:#dce7ef}
+.home-reviews-cards .section-heading{text-align:center;margin-bottom:40px;border:0;padding:0}
+.home-reviews-cards h2{color:#fff}
+.home-reviews-cards .reviews-subtitle{margin-top:8px;font-size:16px;color:#b9cddb}
+.review-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:0;padding:0;list-style:none}
+.review-cards li{display:flex}
+.review-cards figure{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:18px;width:100%;margin:0;padding:34px 28px 26px;border-radius:24px;background:#fff;color:#3d5366;box-shadow:0 18px 40px #0b1a2733}
+.review-cards figure::before{content:"“";position:absolute;top:6px;left:24px;font-family:Gotu,Georgia,serif;font-size:64px;line-height:1;color:#a2b5c4}
+.review-cards blockquote{margin:0;padding-top:18px}
+.review-cards blockquote p{margin:0;font-size:16px;line-height:1.7}
+.review-cards figcaption{padding-top:14px;border-top:1px solid #dce6ed;font-size:13px;font-weight:600;color:#5f7586}
+.reviews-more{margin-top:26px}
+.reviews-more>summary{list-style:none;display:flex;align-items:center;justify-content:center;gap:12px;width:max-content;margin:0 auto;padding:12px 26px;border:1px solid #ffffff40;border-radius:100px;color:#fff;font-size:15px;font-weight:500;cursor:pointer;transition:background .2s}
+.reviews-more>summary::-webkit-details-marker{display:none}
+.reviews-more>summary:hover{background:#ffffff14}
+.reviews-more-open,.reviews-more[open] .reviews-more-closed{display:none}
+.reviews-more[open] .reviews-more-open{display:inline}
+.reviews-more-toggle{position:relative;width:12px;height:12px}
+.reviews-more-toggle::before,.reviews-more-toggle::after{content:"";position:absolute;left:0;top:50%;width:12px;height:1.5px;background:currentColor}
+.reviews-more-toggle::after{transform:rotate(90deg);transition:transform .3s}
+.reviews-more[open] .reviews-more-toggle::after{transform:rotate(0)}
+.reviews-more[open]>summary{margin-bottom:26px}
+.reviews-more .review-cards figure{padding:28px 24px 22px}
+.reviews-more .review-cards blockquote p{font-size:15px}
+
+@media(max-width:1100px){.review-cards{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){
+  .hero-copy{text-align:left}
+  .hero-specialty{font-size:16px}
+  .hero-specialty>span{display:inline}
+  .hero-specialty-mode::before{content:"· "}
+  .hero-message{margin-top:18px;padding-top:18px}
+  .hero-message>p+p{font-size:15px}
+  .hero-actions{flex-direction:column;align-items:stretch;gap:12px}
+  .hero-actions .home-button{justify-content:center}
+  .hero-secondary{justify-content:center}
+  .home-reviews.home-reviews-cards{padding:56px 0;border-radius:30px}
+  .review-cards{grid-template-columns:1fr;gap:14px}
+  .review-cards figure{padding:30px 22px 22px}
+}

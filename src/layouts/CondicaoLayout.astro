@@ -7,7 +7,10 @@ import heroPhoto from '../assets/dr-lucio-jaleco-retrato.jpg';
 import Icon from '../components/Icon.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import Duvidas from '../components/Duvidas.astro';
-import { conditionPages, scheduleUrl, type ConditionKey } from '../content/condicoes';
+import Agendar from '../components/fechamento/Agendar.astro';
+import Rodape from '../components/fechamento/Rodape.astro';
+import WhatsAppFlutuante from '../components/fechamento/WhatsAppFlutuante.astro';
+import { scheduleUrl, type ConditionKey } from '../content/condicoes';
 import '../styles/condicao.css';
 
 interface Props {
@@ -23,9 +26,6 @@ interface Props {
 }
 const { active, title, description, breadcrumb, titleMain, titleAccent, heroLead, sections, variant = 'a' } = Astro.props;
 
-const address = 'Rua Ministro Orozimbo Nonato, 442, Sala 810, Vila da Serra, Nova Lima - MG';
-const addressParts = address.split(', ');
-const addressLines = [addressParts.slice(0, 3).join(', ') + ',', addressParts.slice(3).join(', ')];
 // O índice ganha "Dúvidas" antes do último item (Agendar).
 const tocSections: [string, string][] = [...sections.slice(0, -1), ['duvidas', 'Dúvidas'], ...sections.slice(-1)];
 const credentials = content.credentials as { icon: 'id' | 'cap' | 'building' | 'video'; label: string; value: string }[];
@@ -87,38 +87,12 @@ const credentials = content.credentials as { icon: 'id' | 'cap' | 'building' | '
 
       <Duvidas />
 
-      <section id="contato" class="cond-contact" aria-labelledby="contato-titulo" tabindex="-1">
-        <div class="cond-container cond-contact-grid">
-          <div class="cond-contact-intro">
-            <h2 id="contato-titulo">Agende uma consulta</h2>
-            <p>Atendimento psiquiátrico com Dr. Lúcio Moreira, presencial e online.</p>
-          </div>
-          <div class="cond-contact-card" data-reveal>
-            <ul class="cond-modes">
-              <li><span class="cond-mode-icon"><Icon name="video" /></span><span><span class="cond-mode-title">Consulta online</span>Atendimento a distância, onde você estiver.</span></li>
-              <li><span class="cond-mode-icon"><Icon name="pin" /></span><span><span class="cond-mode-title">Consultório em Nova Lima</span><address>{address}</address></span></li>
-            </ul>
-            <a class="cond-button cond-contact-button" href={scheduleUrl} target="_blank" rel="noopener">Agende uma consulta <Icon name="arrow" /></a>
-          </div>
-        </div>
-      </section>
+      <Agendar />
     </main>
 
-    <footer class="cond-footer">
-      <div class="cond-container">
-        <div class="cond-footer-grid">
-          <a class="cond-footer-brand" href="/" aria-label="Dr. Lúcio Moreira — Home"><img src="/assets/monograma.svg" width="68" height="68" alt="" loading="lazy" /><span>Dr. Lúcio Moreira</span><em>Psiquiatra</em></a>
-          <div class="cond-footer-contact"><p class="cond-footer-title">Atendimento</p><p class="cond-footer-mode"><Icon name="video" /><span><strong>Online</strong> · onde você estiver</span></p><p class="cond-footer-mode"><Icon name="pin" /><span><strong>Presencial</strong> · Consultório em Nova Lima</span></p><address><span>{addressLines[0]}</span><span>{addressLines[1]}</span></address></div>
-          <nav class="cond-footer-nav" aria-label="Mapa do site"><p class="cond-footer-title">Mapa do site</p><a href="/">Home</a><a href="/#areas">Áreas de Atuação</a>{conditionPages.map(page => <a href={page.key === active ? '#inicio' : page.href} aria-current={page.key === active ? 'page' : undefined}>{page.label}</a>)}</nav>
-        </div>
-        <div class="cond-footer-bottom"><p>Responsável Técnico: Lúcio Lourenço Moreira <span aria-hidden="true">|</span> CRM-MG: 82117 <span aria-hidden="true">|</span> RQE: 57394</p><a href="#inicio">Voltar ao início <span aria-hidden="true">↑</span></a></div>
-      </div>
-    </footer>
+    <Rodape active={active} />
 
-    <a class="cond-whatsapp" href={scheduleUrl} target="_blank" rel="noopener" aria-label="Agendar consulta pelo WhatsApp">
-      <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.04 3C8.86 3 3.03 8.82 3.03 16c0 2.3.6 4.53 1.74 6.5L3 29l6.68-1.75A12.95 12.95 0 0 0 16.04 29C23.2 29 29 23.18 29 16S23.2 3 16.04 3Zm0 23.74c-1.95 0-3.86-.52-5.53-1.51l-.4-.24-3.97 1.04 1.06-3.86-.26-.4A10.7 10.7 0 0 1 5.3 16c0-5.93 4.82-10.75 10.75-10.75 5.92 0 10.73 4.82 10.73 10.75 0 5.92-4.81 10.74-10.73 10.74Zm5.89-8.04c-.32-.16-1.91-.94-2.2-1.05-.3-.11-.51-.16-.73.16-.21.32-.83 1.05-1.02 1.26-.19.22-.37.24-.7.08-.32-.16-1.36-.5-2.59-1.6-.96-.85-1.6-1.9-1.79-2.22-.19-.32-.02-.5.14-.66.15-.14.32-.37.48-.56.16-.19.21-.32.32-.54.1-.21.05-.4-.03-.56-.08-.16-.72-1.74-.99-2.38-.26-.62-.53-.54-.73-.55h-.62c-.21 0-.56.08-.86.4-.29.32-1.12 1.1-1.12 2.68s1.15 3.11 1.31 3.32c.16.22 2.26 3.45 5.48 4.84.77.33 1.37.53 1.83.68.77.24 1.47.21 2.02.13.62-.09 1.91-.78 2.18-1.53.27-.75.27-1.4.19-1.53-.08-.14-.29-.22-.62-.38Z"/></svg>
-      <span class="cond-whatsapp-label">Agendar pelo WhatsApp</span>
-    </a>
+    <WhatsAppFlutuante />
     <script>
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
       const blocks = document.querySelectorAll<HTMLElement>('[data-reveal]');

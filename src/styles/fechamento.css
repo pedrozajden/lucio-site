@@ -1,0 +1,82 @@
+/* Fechamento comum (agendamento, rodapé e WhatsApp flutuante) da Home e das páginas de condição. Independe de condicao.css. */
+.cond-contact,.cond-footer,.cond-whatsapp{
+  --c-ink:#243c50;--c-text:#3d5366;--c-muted:#5f7586;--c-soft:#62788a;--c-blue:#a2b5c4;--c-accent:#386d92;--c-deep:#22405a;
+  --c-pale:#edf3f7;--c-line:#dce6ed;--c-night:linear-gradient(140deg,#2b4c65 0%,#203b51 55%,#1a3145 100%);
+  --c-heading:Gotu,Georgia,serif;--c-ease:cubic-bezier(.22,.61,.36,1);
+  font-family:Montserrat,Arial,sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased
+}
+.cond-contact :where(h2,p,ul,address),.cond-footer :where(p,address){margin:0;font-style:normal}
+.cond-contact ul{padding:0;list-style:none}
+.cond-contact h2{font-family:var(--c-heading);font-weight:400;letter-spacing:-.01em}
+.cond-contact svg,.cond-footer svg,.cond-whatsapp svg{display:block;flex-shrink:0}
+.cond-contact .cond-container,.cond-footer .cond-container{width:min(1200px,calc(100% - 80px));margin-inline:auto}
+.cond-mode-icon{flex-shrink:0}
+.cond-contact-button{display:inline-flex;align-items:center;justify-content:center;gap:16px;min-height:54px;padding:14px 30px;border-radius:100px;background:var(--c-deep);color:#fff;font-size:15px;font-weight:550;text-decoration:none;box-shadow:0 6px 18px #213d5314;transition:background .2s,transform .2s var(--c-ease),box-shadow .2s}
+.cond-contact-button svg{width:18px;height:18px;transition:transform .2s var(--c-ease)}
+.cond-contact-button:hover{background:#18324a;transform:translateY(-2px);box-shadow:0 10px 24px #213d5320}
+.cond-contact-button:hover svg{transform:translateX(3px)}
+.cond-footer a{color:inherit}
+.cond-contact{position:relative;isolation:isolate;overflow:hidden;padding:96px 0;background:radial-gradient(circle at 85% 0%,#36597380,transparent 55%),var(--c-night);color:#d9e5ee;border-radius:48px 48px 0 0}
+.cond-contact::before{content:"";position:absolute;z-index:-1;right:-10%;top:-30%;width:min(900px,80vw);aspect-ratio:71.86/54.8;background:url('/assets/monograma.svg') no-repeat center/contain;opacity:.03;filter:brightness(3)}
+.cond-contact:focus{outline:none}
+.cond-contact-grid{display:grid;grid-template-columns:1fr 460px;gap:64px;align-items:center}
+.cond-contact h2{color:#fff;font-size:clamp(36px,3.4vw,52px);line-height:1.2;margin-bottom:16px}
+.cond-contact-intro p{font-size:18px;max-width:440px}
+.cond-contact-card{padding:34px;border-radius:26px;background:#fff;color:var(--c-text);box-shadow:0 22px 44px #0e1f2e40}
+.cond-contact-card-title{font-family:var(--c-heading);font-size:22px;color:var(--c-ink);margin-bottom:10px}
+.cond-contact-card address{font-size:15px;line-height:1.7}
+.cond-modes li{display:flex;gap:16px;align-items:flex-start;font-size:15px;line-height:1.65}
+.cond-modes li+li{margin-top:18px;padding-top:18px;border-top:1px solid var(--c-line)}
+.cond-mode-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--c-pale);color:var(--c-accent)}
+.cond-mode-icon svg{width:21px;height:21px}
+.cond-mode-title{display:block;font-family:var(--c-heading);font-size:20px;line-height:1.4;color:var(--c-ink);margin-bottom:2px}
+.cond-contact-status{display:flex;align-items:center;gap:12px;margin-top:22px;padding-top:20px;border-top:1px solid var(--c-line);font-size:14px;color:var(--c-muted)}
+.cond-contact-button{width:100%;margin-top:24px}
+.cond-status-dot{width:9px;height:9px;border-radius:50%;background:var(--c-accent);box-shadow:0 0 0 4px #386d9226}
+.cond-footer{background:#f7f8fa;padding:64px 0 28px;color:#52697c}
+.cond-footer-grid{display:grid;grid-template-columns:1fr 1.2fr .8fr;gap:56px;align-items:start;text-align:center;max-width:1070px;margin:0 auto 40px}
+.cond-footer-brand{display:flex;flex-direction:column;align-items:center;text-decoration:none;color:var(--c-ink);line-height:1.5}
+.cond-footer-brand img{width:64px;height:64px;margin-bottom:8px}
+.cond-footer-brand>span{font-family:var(--c-heading);font-size:24px;white-space:nowrap}
+.cond-footer-brand em{font-size:14px}
+.cond-footer-title{font-size:14px;font-weight:600;color:var(--c-ink);margin-bottom:12px}
+.cond-footer-contact address,.cond-footer-contact p,.cond-footer-nav a{font-size:13px;line-height:1.75}
+.cond-footer-contact address span{display:block}
+.cond-footer-mode{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:4px}
+.cond-footer-mode svg{width:16px;height:16px;color:var(--c-accent)}
+.cond-footer-mode strong{font-weight:600}
+.cond-footer-contact address{margin-top:8px;color:var(--c-soft)}
+.cond-footer-nav{display:flex;flex-direction:column;align-items:center}
+.cond-footer-nav a{text-decoration:none}
+.cond-footer-nav a:hover{text-decoration:underline}
+.cond-footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:24px;padding-top:20px;border-top:1px solid #bdcedb;font-size:12px}
+.cond-footer-bottom a{text-decoration:none}
+.cond-whatsapp{position:fixed;right:max(24px,env(safe-area-inset-right));bottom:max(24px,env(safe-area-inset-bottom));z-index:35;display:flex;align-items:center;gap:0;height:60px;min-width:60px;padding:0 15px;border-radius:100px;background:#25d366;color:#fff;text-decoration:none;box-shadow:0 10px 26px #0b3d2338,0 2px 6px #0b3d2322;transition:gap .35s var(--c-ease),padding .35s var(--c-ease),background .2s,transform .2s var(--c-ease)}
+.cond-whatsapp svg{width:30px;height:30px}
+.cond-whatsapp-label{max-width:0;overflow:hidden;white-space:nowrap;font-size:15px;font-weight:600;transition:max-width .4s var(--c-ease)}
+.cond-whatsapp:hover,.cond-whatsapp:focus-visible{gap:10px;padding:0 22px 0 16px;background:#1ebe5b;transform:translateY(-2px)}
+.cond-whatsapp:hover .cond-whatsapp-label,.cond-whatsapp:focus-visible .cond-whatsapp-label{max-width:220px}
+.cond-whatsapp:focus-visible{outline-color:#1a7f43}
+@media(prefers-reduced-motion:no-preference){.cond-whatsapp{animation:cond-pop .6s var(--c-ease) 1.2s backwards}}
+@keyframes cond-pop{from{opacity:0;transform:translateY(16px) scale(.9)}to{opacity:1;transform:none}}
+
+@media(max-width:1100px){.cond-contact .cond-container,.cond-footer .cond-container{width:calc(100% - 56px)}.cond-contact-grid{grid-template-columns:1fr;gap:36px}}
+@media(max-width:760px){
+  .cond-contact .cond-container,.cond-footer .cond-container{width:calc(100% - 40px)}
+  .cond-contact h2{font-size:29px}
+  .cond-whatsapp{right:16px;bottom:16px;height:56px;min-width:56px;padding:0 13px}
+  .cond-whatsapp svg{width:30px;height:30px}
+  .cond-contact{padding:64px 0;border-radius:30px 30px 0 0}
+  .cond-contact-card{padding:26px 22px}
+  .cond-footer{padding:44px 0 24px}
+  .cond-footer-grid{grid-template-columns:1fr;gap:28px;margin-bottom:30px}
+  .cond-footer-bottom{flex-direction:column;text-align:center;gap:12px;font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){.cond-whatsapp,.cond-contact-button,.cond-contact-button svg{animation:none!important;transition:none!important}}
+
+/* Informações práticas ao lado do botão de agendar */
+.cond-assurances{display:grid;gap:12px;margin-top:28px;padding:0;list-style:none}
+.cond-assurances li{display:flex;align-items:flex-start;gap:12px;font-size:16px;line-height:1.55;color:#e1ebf2}
+.cond-assurance-icon{display:grid;place-items:center;flex-shrink:0;width:26px;height:26px;border-radius:50%;background:#ffffff1f;color:#cfe3f0}
+.cond-assurance-icon svg{width:15px;height:15px;stroke-width:2}
+@media(max-width:760px){.cond-assurances{margin-top:22px;gap:10px}.cond-assurances li{font-size:15px}}

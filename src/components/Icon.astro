@@ -1,10 +1,11 @@
 ---
-interface Props { name: 'pin' | 'video' | 'conversation' | 'medicine' | 'activity' | 'arrow' | 'alert' | 'science' | 'id' | 'cap' | 'building' | 'clock'; }
+interface Props { name: 'pin' | 'video' | 'conversation' | 'medicine' | 'activity' | 'arrow' | 'alert' | 'science' | 'id' | 'cap' | 'building' | 'clock' | 'check'; }
 const { name } = Astro.props;
 const paths = {
   id: '<rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="11" r="2"/><path d="M5.8 16c.6-1.4 1.8-2 3.2-2s2.6.6 3.2 2M14.5 10H18M14.5 13.5H17"/>',
   cap: '<path d="m2 9.5 10-5 10 5-10 5Z"/><path d="M6 11.5V16c0 1.4 2.7 3 6 3s6-1.6 6-3v-4.5M22 9.5V15"/>',
   building: '<path d="M4 21V7l8-4 8 4v14"/><path d="M2 21h20M10 21v-4h4v4M8.5 9.5h1M14.5 9.5h1M8.5 13.5h1M14.5 13.5h1"/>',
+  check: '<path d="m5 12.5 4.5 4.5L19 7.5"/>',
   clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
   pin: '<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',
   video: '<rect x="3" y="5" width="12" height="14" rx="3"/><path d="m15 9 6-3v12l-6-3"/>',
