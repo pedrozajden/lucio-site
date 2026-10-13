@@ -88,19 +88,6 @@
   .area-item.area-active:hover{transform:translateY(-6px) scale(1.03);background:linear-gradient(150deg,#f4f9fc 0%,#e6f0f7 55%,#d9e8f2 100%);border-color:#a7c0d1;box-shadow:0 22px 40px #284a6224;z-index:1}
 }
 
-/* Depoimentos: três em destaque sobre fundo escuro, demais em "ver mais" */
-.home-reviews.home-reviews-cards{position:relative;overflow:hidden;padding:88px 0 80px;background:radial-gradient(circle at 85% 0%,#3a6078 0%,transparent 45%),linear-gradient(140deg,#2b4c65 0%,#203b51 55%,#1a3145 100%);border-radius:48px;color:#dce7ef}
-.home-reviews-cards .section-heading{text-align:center;margin-bottom:40px;border:0;padding:0}
-.home-reviews-cards h2{color:#fff}
-.home-reviews-cards .reviews-subtitle{margin-top:8px;font-size:16px;color:#b9cddb}
-.review-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:0;padding:0;list-style:none}
-.review-cards li{display:flex}
-.review-cards figure{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:18px;width:100%;margin:0;padding:34px 28px 26px;border-radius:24px;background:#fff;color:#3d5366;box-shadow:0 18px 40px #0b1a2733}
-.review-cards figure::before{content:"“";position:absolute;top:6px;left:24px;font-family:Gotu,Georgia,serif;font-size:64px;line-height:1;color:#a2b5c4}
-.review-cards blockquote{margin:0;padding-top:18px}
-.review-cards blockquote p{margin:0;font-size:16px;line-height:1.7}
-.review-cards figcaption{padding-top:14px;border-top:1px solid #dce6ed;font-size:13px;font-weight:600;color:#5f7586}
-
 @media(max-width:760px){
   .hero-copy{text-align:left}
   .hero-specialty{font-size:16px}
@@ -111,8 +98,6 @@
   .hero-actions{flex-direction:column;align-items:stretch;gap:12px}
   .hero-actions .home-button{justify-content:center}
   .hero-secondary{justify-content:center}
-  .home-reviews.home-reviews-cards{padding:56px 0;border-radius:30px}
-  .review-cards figure{padding:30px 22px 22px}
 }
 
 /* Foto do médico: visível ao chegar e fixa no centro da tela durante a seção */
@@ -129,33 +114,10 @@
 .area-item .area-description{grid-column:1/-1;grid-row:2;align-self:start;margin:16px 0 18px}
 .area-item .area-copy>a,.area-item .area-pending{grid-column:1/-1;grid-row:3;margin-top:0}
 
-/* Depoimentos em carrossel com setas laterais */
-.reviews-carousel{position:relative}
-.review-track{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 44px) / 3);grid-template-columns:none;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 2px 18px;outline-offset:6px}
-.review-track::-webkit-scrollbar{display:none}
-.review-track{align-items:start;overflow-y:hidden;transition:height .35s cubic-bezier(.22,.61,.36,1)}
-.review-track li{scroll-snap-align:start}
-.review-track figure{min-height:max(210px,var(--row-h,0px))}
-.reviews-arrow{position:absolute;top:calc(50% - 32px);display:grid;place-items:center;width:48px;height:48px;padding:0;border:1px solid #ffffff4d;border-radius:50%;background:#ffffff14;color:#fff;cursor:pointer;transition:background .2s,transform .2s}
-.reviews-arrow svg{width:20px;height:20px}
-.reviews-arrow:hover{background:#ffffff2e}
-.reviews-arrow:focus-visible{outline:3px solid #cfe0ec;outline-offset:3px}
-.reviews-prev{left:-72px}
-.reviews-prev svg{transform:rotate(180deg)}
-.reviews-next{right:-72px}
-
-@media(max-width:1400px){.reviews-prev{left:-60px}.reviews-next{right:-60px}}
-@media(max-width:1260px){.reviews-carousel{padding-inline:60px}.reviews-prev{left:0}.reviews-next{right:0}}
 @media(max-width:1100px){
-  .review-track{grid-auto-columns:calc((100% - 22px) / 2)}
   .area-item.area-active h3{font-size:22px}
 }
 @media(max-width:760px){
-  .reviews-carousel{padding-inline:0;padding-bottom:64px}
-  .review-track{grid-auto-columns:86%;gap:14px}
-  .reviews-arrow{top:auto;bottom:0;width:44px;height:44px}
-  .reviews-prev{left:calc(50% - 54px)}
-  .reviews-next{right:calc(50% - 54px)}
   .area-item .area-copy{padding:20px 20px 16px;column-gap:14px}
   .area-item.area-active h3{font-size:21px}
   .area-item .area-description{margin:12px 0 14px}
@@ -210,3 +172,19 @@
 .consult-path li.is-lit h3{color:#1f4f74}
 @media(max-width:760px){.home-consult::before{width:80vw;right:-20%;top:auto;bottom:4%;opacity:.06}.consult-path::after{left:6px;top:14px}}
 @media(prefers-reduced-motion:reduce){.consult-path::after,.consult-path li::before,.consult-path h3{transition:none}}
+
+/* Depoimentos: setas laterais finas, como no site antigo */
+.reviews-stage{position:relative}
+.review-arrow{position:absolute;top:50%;z-index:2;display:grid;place-items:center;width:52px;height:52px;margin-top:-30px;padding:0;border:0;border-radius:50%;background:transparent;color:#fff;opacity:.75;cursor:pointer;transition:opacity .2s,background .2s,transform .2s}
+.review-arrow:hover{opacity:1;background:#ffffff14}
+.review-arrow:focus-visible{opacity:1;outline:2px solid #cfe0ec;outline-offset:2px}
+.review-arrow-prev{left:-8px}
+.review-arrow-next{right:-8px}
+.review-arrow-next svg{transform:scaleX(-1)}
+@media(max-width:760px){
+  .reviews-stage .review-slide{padding-inline:34px}
+  .review-arrow{width:40px;height:40px;margin-top:-24px}
+  .review-arrow svg{width:24px;height:24px}
+  .review-arrow-prev{left:-14px}
+  .review-arrow-next{right:-14px}
+}

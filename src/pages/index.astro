@@ -1,6 +1,7 @@
 ---
 import { Image, getImage } from 'astro:assets';
 import mobilePhoto from '../assets/dr-lucio-jaleco-mobile.jpg';
+import reviewPhoto from '../assets/home-depoimentos.jpg';
 import shared from '../content/redesign.json';
 import home from '../content/home.json';
 import banner from '../assets/home-banner.png';
@@ -38,10 +39,6 @@ const mobileSmall = await getImage({ src: mobilePhoto, width: 600, format: 'webp
 const mobileLarge = await getImage({ src: mobilePhoto, width: 1000, format: 'webp', quality: 82 });
 const credentials = shared.credentials as { icon: 'id' | 'cap' | 'building' | 'video'; label: string; value: string }[];
 const differenceIcons = ['activity', 'conversation', 'science'] as const;
-// Depoimentos: os três mais sóbrios abrem o carrossel (sem promessa de resultado); os demais vêm em seguida.
-const featuredOrder = [3, 6, 8];
-const featuredReviews = featuredOrder.map(index => home.reviews[index]);
-const carouselReviews = [...featuredReviews, ...home.reviews.filter((_, index) => !featuredOrder.includes(index))];
 const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...text.matchAll(/\*\*(.*?)\*\*/g)].map(match => match[1]));
 ---
 <!doctype html>
@@ -108,13 +105,14 @@ const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...
           </div>
         </article>)}</div>
       </div></section>
-      <section id="depoimentos" class="home-reviews home-reviews-cards" aria-labelledby="reviews-title">
-        <div class="home-container">
-          <div class="section-heading" data-reveal><h2 id="reviews-title">Depoimentos</h2><p class="reviews-subtitle">Palavras gentis de pacientes</p></div>
-          <div class="reviews-carousel">
-            <button type="button" class="reviews-arrow reviews-prev" data-review-step="-1" aria-label="Depoimentos anteriores"><Icon name="arrow" /></button>
-            <ul class="review-cards review-track" tabindex="0" aria-label="Depoimentos de pacientes">{carouselReviews.map((review, index) => <li aria-label={`Depoimento ${index + 1} de ${carouselReviews.length}`}><figure><blockquote><p>{review.text}</p></blockquote><figcaption>{review.author}</figcaption></figure></li>)}</ul>
-            <button type="button" class="reviews-arrow reviews-next" data-review-step="1" aria-label="Próximos depoimentos"><Icon name="arrow" /></button>
+      <section id="depoimentos" class="home-reviews" aria-labelledby="reviews-title">
+        <div class="reviews-picture" data-parallax="reviews" aria-hidden="true"><Image src={reviewPhoto} width={1600} height={1043} widths={[800, 1600]} sizes="100vw" alt="" format="webp" quality={80} loading="lazy" /></div>
+        <div class="home-container reviews-content">
+          <div class="section-heading"><h2 id="reviews-title">Depoimentos</h2><p class="reviews-subtitle">Palavras gentis de pacientes satisfeitos</p></div>
+          <div class="reviews-stage">
+            <button type="button" class="review-arrow review-arrow-prev" data-review-direction="-1" aria-label="Depoimento anterior"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+            <div class="reviews-slider" role="region" aria-roledescription="carrossel" aria-label="Depoimentos capturados no site anterior" tabindex="0">{home.reviews.map((review, index) => <figure class="review-slide" role="group" aria-roledescription="depoimento" aria-label={`${index + 1} de ${home.reviews.length}`}><blockquote><p>{review.text}</p></blockquote><figcaption>{review.author}</figcaption></figure>)}</div>
+            <button type="button" class="review-arrow review-arrow-next" data-review-direction="1" aria-label="Próximo depoimento"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
           </div>
         </div>
       </section>
@@ -172,40 +170,30 @@ const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...
         addEventListener('resize', updatePath, { passive: true });
         updatePath();
       }
-      // Carrossel de depoimentos: setas avançam um cartão; ao chegar ao fim, volta ao início.
-      const track = document.querySelector<HTMLElement>('.review-track');
-      if (track) {
-        const step = (direction: number) => {
-          const card = track.querySelector<HTMLElement>('li');
-          if (!card) return;
-          const distance = card.offsetWidth + parseFloat(getComputedStyle(track).columnGap || '0');
-          const max = track.scrollWidth - track.clientWidth - 2;
-          const behavior = reducedMotion.matches ? 'instant' : 'smooth';
-          if (direction > 0 && track.scrollLeft >= max) track.scrollTo({ left: 0, behavior });
-          else if (direction < 0 && track.scrollLeft <= 2) track.scrollTo({ left: track.scrollWidth, behavior });
-          else track.scrollBy({ left: direction * distance, behavior });
-        };
-        document.querySelectorAll<HTMLButtonElement>('[data-review-step]').forEach(button => button.addEventListener('click', () => step(Number(button.dataset.reviewStep))));
-        // A altura acompanha os cartões visíveis (evita espaço vazio quando um depoimento longo está fora de vista).
-        const cards = [...track.querySelectorAll<HTMLElement>('li')];
-        let fitting = 0;
-        const fit = () => {
-          cancelAnimationFrame(fitting);
-          fitting = requestAnimationFrame(() => {
-            const view = track.getBoundingClientRect();
-            const visible = cards.filter(card => { const box = card.getBoundingClientRect(); return box.right > view.left + 20 && box.left < view.right - 20; });
-            track.style.removeProperty('--row-h');
-            const tallest = Math.max(...visible.map(card => card.firstElementChild!.getBoundingClientRect().height));
-            track.style.setProperty('--row-h', `${Math.ceil(tallest)}px`);
-            track.style.height = `${Math.ceil(tallest) + 26}px`;
-          });
-        };
-        track.addEventListener('scroll', fit, { passive: true });
-        addEventListener('resize', fit, { passive: true });
-        addEventListener('load', fit);
-        fit();
-        track.addEventListener('keydown', event => { if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') { event.preventDefault(); step(event.key === 'ArrowRight' ? 1 : -1); } });
+      const slider = document.querySelector<HTMLElement>('.reviews-slider')!;
+      const count = slider.children.length;
+      function moveReview(direction: number) {
+        const current = Math.round(slider.scrollLeft / slider.clientWidth);
+        slider.scrollTo({ left: ((current + direction + count) % count) * slider.clientWidth, behavior: reducedMotion.matches ? 'instant' : 'smooth' });
       }
+      document.querySelectorAll<HTMLButtonElement>('[data-review-direction]').forEach(button => button.addEventListener('click', () => moveReview(Number(button.dataset.reviewDirection))));
+      // Avança sozinho a cada 5 s; pausa com o mouse ou o foco sobre os depoimentos e reinicia após uso das setas.
+      const reviewsArea = slider.closest<HTMLElement>('.home-reviews')!;
+      let autoplay = 0;
+      let paused = false;
+      const startAutoplay = () => {
+        clearInterval(autoplay);
+        if (reducedMotion.matches) return;
+        autoplay = window.setInterval(() => { if (!paused && !document.hidden) moveReview(1); }, 5000);
+      };
+      reviewsArea.addEventListener('mouseenter', () => { paused = true; });
+      reviewsArea.addEventListener('mouseleave', () => { paused = false; startAutoplay(); });
+      reviewsArea.addEventListener('focusin', () => { paused = true; });
+      reviewsArea.addEventListener('focusout', () => { if (!reviewsArea.matches(':hover')) { paused = false; startAutoplay(); } });
+      slider.addEventListener('touchstart', startAutoplay, { passive: true });
+      document.querySelectorAll<HTMLButtonElement>('[data-review-direction]').forEach(button => button.addEventListener('click', startAutoplay));
+      startAutoplay();
+      slider.addEventListener('keydown', event => { if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') { event.preventDefault(); moveReview(event.key === 'ArrowRight' ? 1 : -1); } });
     </script>
   </body>
 </html>

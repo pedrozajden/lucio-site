@@ -157,3 +157,6 @@ Sem mudança de redação. Foto do médico visível ao chegar e fixa no centro d
 
 ### “Como funciona a consulta?” em percurso — 13/10/2026
 Mesma redação, sem os negritos internos; destaque visual apenas em “em torno de uma hora”. Retirada a faixa “Atendimento presencial e online · Consultório em Nova Lima · Vila da Serra”, repetida nas credenciais e no agendamento. Os três assuntos aparecem como percurso, na ordem da fala do médico. Também: cartões de áreas com a mesma altura e saturação um pouco maior nas fotos do Dr. Lúcio (sem alteração de texto).
+
+### Depoimentos de volta ao estilo anterior — 13/10/2026
+A pedido do usuário, os depoimentos voltam ao formato anterior (um por vez sobre a foto, ordem e subtítulo originais “Palavras gentis de pacientes satisfeitos”), agora com setas laterais, sem contador e com avanço automático a cada 5 segundos (pausa com o mouse ou o foco). Os cartões e o carrossel de três colunas foram retirados.
