@@ -5,6 +5,7 @@ import banner from '../assets/home-banner.png';
 import reviewPhoto from '../assets/home-depoimentos.jpg';
 import Icon from '../components/Icon.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import { conditionPages, pageForArea } from '../content/condicoes';
 import { emphasize } from '../utils/emphasis';
 import '../styles/home.css';
 import '../styles/home-refinements.css';
@@ -76,10 +77,10 @@ const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...
       </div></section>
       <section id="areas" class="home-areas" aria-labelledby="areas-title"><div class="home-container areas-panel" data-reveal>
         <div class="section-heading"><p class="section-kicker">Psiquiatra</p><h2 id="areas-title">Áreas de Atuação</h2></div>
-        <div class="areas-grid">{areaPreviews.map((area, index) => <article class:list={['area-item', `area-${index}`, { 'area-active': index === 0 }]} aria-label={home.areas[index]}>
+        <div class="areas-grid">{areaPreviews.map((area, index) => <article class:list={['area-item', `area-${index}`, { 'area-active': pageForArea(index) }]} aria-label={home.areas[index]}>
           <div class="area-copy"><span class="area-symbol" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6 23V12a6 6 0 0 1 12 0v8a6 6 0 0 0 12 0"/><path d="M2 20a6 6 0 0 0 12 0v-8a6 6 0 0 1 12 0v11"/></svg></span><h3>{area.title}</h3>
             <p class="area-description">{area.text}</p>
-            {index === 0 ? <a href="/enfermidades/depressao/">Conheça a página sobre depressão <span class="area-arrow"><Icon name="arrow" /></span></a> : <span class="area-pending">Página em preparação</span>}
+            {pageForArea(index) ? <a href={pageForArea(index)!.href}>{pageForArea(index)!.cta} <span class="area-arrow"><Icon name="arrow" /></span></a> : <span class="area-pending">Página em preparação</span>}
           </div>
         </article>)}</div>
       </div></section>
@@ -108,7 +109,7 @@ const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...
       <div class="footer-grid">
         <a class="footer-brand" href="/" aria-label="Dr. Lúcio Moreira — Home"><img src="/assets/monograma.svg" width="76" height="76" alt="" /><span>Dr. Lúcio Moreira</span><em>Psiquiatra</em></a>
         <div class="footer-contact"><h2>Contato</h2><address><span>Rua Ministro Orozimbo Nonato, 442, Sala 810,</span><span>Vila da Serra, Nova Lima - MG</span></address><p>Telefone: {home.phones.Telefone}<br />WhatsApp: {home.phones.WhatsApp}</p><small>Dados da referência, aguardando confirmação.</small></div>
-        <nav class="footer-navigation" aria-label="Mapa de Site"><h2>Mapa de Site</h2><a href="/">Home</a><a href="#areas">Áreas de Atuação</a><a href="/enfermidades/depressao/">Depressão</a></nav>
+        <nav class="footer-navigation" aria-label="Mapa de Site"><h2>Mapa de Site</h2><a href="/">Home</a><a href="#areas">Áreas de Atuação</a>{conditionPages.map(page => <a href={page.href}>{page.label}</a>)}</nav>
       </div>
       <div class="footer-bottom"><p>Responsável Técnico:<br />Lúcio Lourenço Moreira | CRM-MG: 82117 | RQE: 57394</p><p>© 2025. Todos os direitos reservados.</p></div>
     </div></footer>

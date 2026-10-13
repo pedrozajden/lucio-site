@@ -1,0 +1,22 @@
+{
+  "heroLead": "Preocupação intensa e difícil de controlar, tensão constante, alterações no sono e dificuldade de concentração podem ser sinais de ansiedade generalizada. A avaliação psiquiátrica ajuda a compreender o quadro e a direcionar o tratamento.",
+  "medication": [
+    "Os antidepressivos, especialmente os inibidores seletivos da recaptação de serotonina (ISRS) e os inibidores da recaptação de serotonina e noradrenalina (IRSN), são frequentemente utilizados para regular a atividade dos neurotransmissores e reduzir a ansiedade.",
+    "Em alguns casos, podem ser associados ansiolíticos de curta duração, sempre sob acompanhamento médico rigoroso."
+  ],
+  "psychotherapy": "A Terapia Cognitivo-Comportamental (TCC) é considerada uma das intervenções mais eficazes no TAG. Ela auxilia o paciente a identificar pensamentos distorcidos, reconhecer gatilhos emocionais e desenvolver respostas mais equilibradas às situações do cotidiano.",
+  "careSteps": [
+    {
+      "title": "Avaliação psiquiátrica",
+      "text": "Durante as consultas, são avaliados a frequência, a intensidade e o contexto dos sintomas, para compreender como a ansiedade interfere na rotina, nas relações e na autopercepção do paciente."
+    },
+    {
+      "title": "Plano terapêutico personalizado",
+      "text": "Com base nessa compreensão, é elaborado um plano terapêutico personalizado, que pode incluir medicamentos e orientações práticas para o manejo da ansiedade no dia a dia, como estratégias de relaxamento, organização de tarefas e técnicas de respiração."
+    },
+    {
+      "title": "Acolhimento e vínculo terapêutico",
+      "text": "O acompanhamento se baseia em acolhimento, escuta ativa e vínculo terapêutico, criando um ambiente seguro para o paciente expressar suas angústias."
+    }
+  ]
+}

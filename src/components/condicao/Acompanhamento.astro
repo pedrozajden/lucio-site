@@ -1,0 +1,32 @@
+---
+// Como é o acompanhamento: introdução e duração comuns; os três aspectos vêm de cada condição.
+import content from '../../content/redesign.json';
+import Icon from '../Icon.astro';
+import { emphasize } from '../../utils/emphasis';
+import { scheduleUrl } from '../../content/condicoes';
+
+interface Props { steps: { title: string; text: string }[]; }
+const { steps } = Astro.props;
+---
+<section id="atendimento" class="cond-section cond-care" aria-labelledby="atendimento-titulo">
+  <div class="cond-container">
+    <div class="cond-care-panel" data-reveal>
+      <div class="cond-care-intro">
+        <h2 id="atendimento-titulo">Como é o acompanhamento com o Dr. Lúcio</h2>
+        <p class="cond-care-lead" data-copy="treatmentNote" set:html={emphasize(content.treatmentNote, ['diagnóstico psiquiátrico', 'plano terapêutico individualizado'])} />
+        <p class="cond-care-duration"><Icon name="clock" /><span data-copy="consultDuration">{content.consultDuration}</span></p>
+        <a class="cond-button" href={scheduleUrl} target="_blank" rel="noopener">Agende uma consulta <Icon name="arrow" /></a>
+      </div>
+      <ul class="cond-care-steps" aria-label="Aspectos do acompanhamento psiquiátrico">
+        {steps.map((step, index) => <li>
+          <h3>{step.title}</h3>
+          <p data-copy={'careSteps.' + index}>{step.text}</p>
+        </li>)}
+      </ul>
+      <div class="cond-care-practical">
+        <span><Icon name="video" /><span>Atendimento <strong>presencial e online</strong></span></span>
+        <span><Icon name="pin" /><span>Consultório em <strong>Nova Lima · Vila da Serra</strong></span></span>
+      </div>
+    </div>
+  </div>
+</section>

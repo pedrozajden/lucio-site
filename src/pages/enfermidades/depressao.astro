@@ -1,279 +1,86 @@
 ---
 import original from '../../content/depressao.json';
 import content from '../../content/redesign.json';
-import { Image } from 'astro:assets';
-import heroPhoto from '../../assets/dr-lucio-jaleco-retrato.jpg';
+import CondicaoLayout from '../../layouts/CondicaoLayout.astro';
+import Medico from '../../components/condicao/Medico.astro';
+import Acompanhamento from '../../components/condicao/Acompanhamento.astro';
+import ChamadaSinais from '../../components/condicao/ChamadaSinais.astro';
 import Icon from '../../components/Icon.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
 import { emphasize } from '../../utils/emphasis';
-import '../../styles/condicao.css';
 
-const address = 'Rua Ministro Orozimbo Nonato, 442, Sala 810, Vila da Serra, Nova Lima - MG';
-const addressParts = address.split(', ');
-const addressLines = [addressParts.slice(0, 3).join(', ') + ',', addressParts.slice(3).join(', ')];
 const symptoms = [...original.sintomasDiagnostico[1].matchAll(/<li>(.*?)<\/li>/gs)].slice(0, 7).map(match => match[1]);
-const sections = [['sintomas', 'Sinais'], ['medico', 'O médico'], ['depressao', 'O que é'], ['tratamento', 'Tratamento'], ['atendimento', 'Acompanhamento'], ['contato', 'Agendar']];
-const credentials = content.credentials as { icon: 'id' | 'cap' | 'building' | 'video'; label: string; value: string }[];
+const sections: [string, string][] = [['sintomas', 'Sinais'], ['medico', 'O médico'], ['depressao', 'O que é'], ['tratamento', 'Tratamento'], ['atendimento', 'Acompanhamento'], ['contato', 'Agendar']];
 ---
-<!doctype html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex, nofollow" />
-    <meta name="description" content="Avaliação psiquiátrica da depressão com Dr. Lúcio Moreira. Atendimento presencial e online. Conheça o médico, o atendimento e as abordagens de tratamento." />
-    <title>Avaliação psiquiátrica da depressão | Dr. Lúcio Moreira</title>
-    <link rel="icon" type="image/svg+xml" href="/assets/monograma.svg" />
-    <link rel="preload" href="/assets/montserrat-regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/assets/gotu-regular.ttf" as="font" type="font/ttf" crossorigin />
-  </head>
-  <body id="inicio">
-    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
-    <SiteHeader active="depressao" />
-
-    <main id="conteudo">
-      <section class="cond-hero" aria-labelledby="titulo">
-        <div class="cond-container cond-hero-grid">
-          <div class="cond-hero-copy">
-            <nav class="cond-breadcrumb" aria-label="Você está em">
-              <a href="/">Início</a><span aria-hidden="true">›</span><a href="/#areas">Áreas de atuação</a><span aria-hidden="true">›</span><span aria-current="page">Depressão</span>
-            </nav>
-            <h1 id="titulo">Avaliação psiquiátrica <span>da depressão</span></h1>
-            <p class="cond-hero-lead" data-copy="heroLead">{content.heroLead}</p>
-            <p class="cond-hero-doctor"><strong>Dr. Lúcio Moreira</strong> <span aria-hidden="true">·</span> Médico psiquiatra</p>
-            <div class="cond-hero-actions">
-              <a class="cond-button cond-button-light" href="#contato">Agende uma consulta <Icon name="arrow" /></a>
-              <a class="cond-secondary" href="#medico">Conheça o Dr. Lúcio <span aria-hidden="true">↓</span></a>
-            </div>
-          </div>
-          <figure class="cond-hero-figure">
-            <div class="cond-hero-frame">
-              <Image src={heroPhoto} width={920} height={1060} widths={[460, 690, 920]} sizes="(max-width: 760px) 300px, 440px" alt="Dr. Lúcio Moreira, de jaleco branco e camisa azul, com os braços cruzados sobre a mesa." format="webp" quality={86} loading="eager" fetchpriority="high" />
-            </div>
-            <figcaption class="cond-hero-badge"><span class="cond-hero-badge-icon"><Icon name="cap" /></span><span><span class="cond-hero-badge-name">Dr. Lúcio Moreira</span>Médico psiquiatra</span></figcaption>
-          </figure>
-        </div>
-        <ul class="cond-container cond-credentials" aria-label="Registro, formação e atendimento">
-          {credentials.map(item => <li>
-            <span class="cond-credential-icon"><Icon name={item.icon} /></span>
-            <span class="cond-credential-text"><span class="cond-credential-label">{item.label}</span><span class="cond-credential-value">{item.value.split(' · ').map((part, index) => <>{index > 0 && <span class="cond-credential-sep" aria-hidden="true"> · </span>}<span class="cond-credential-part">{part}</span></>)}</span></span>
-          </li>)}
-        </ul>
-      </section>
-
-      <nav class="cond-toc" aria-label="Nesta página">
-        <span class="cond-toc-label">Nesta página</span>
-        <div class="cond-toc-links">
-          {sections.map(([id, label]) => <a href={'#' + id} data-toc={id}>{label}</a>)}
-        </div>
-      </nav>
-
-      <section id="sintomas" class="cond-section cond-signs" aria-labelledby="sintomas-titulo">
-        <div class="cond-container cond-signs-grid">
-          <div class="cond-signs-intro" data-reveal>
-            <h2 id="sintomas-titulo">Sinais que merecem atenção</h2>
-            <div class="cond-prose" data-original="sintomasDiagnostico.0"><Fragment set:html={original.sintomasDiagnostico[0]} /></div>
-          </div>
-          <div class="cond-signs-body" data-reveal>
-            <ul class="cond-symptoms" aria-label="Sintomas mais comuns da depressão" data-original="symptoms">
-              {symptoms.map(symptom => <li set:html={symptom} />)}
-            </ul>
-            <aside class="cond-emergency" aria-label="Orientação sobre atenção médica imediata">
-              <Icon name="alert" />
-              <p data-copy="emergency">Em casos graves, ideias de morte ou pensamentos suicidas exigem <strong>atenção médica imediata.</strong></p>
-            </aside>
-          </div>
-        </div>
-      </section>
-
-      <section id="medico" class="cond-section cond-doctor" aria-labelledby="medico-titulo">
-        <div class="cond-container cond-doctor-grid">
-          <figure class="cond-portrait" data-reveal>
-            <img src="/assets/dr-lucio-800.webp" srcset="/assets/dr-lucio-480.webp 480w, /assets/dr-lucio-800.webp 800w, /assets/dr-lucio-1200.webp 1200w" sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 40vw, 440px" width="800" height="1077" alt="Dr. Lúcio Moreira sentado e sorrindo, usando camisa." loading="lazy" decoding="async" />
-          </figure>
-          <div class="cond-doctor-profile" data-reveal>
-            <p class="cond-kicker">Quem vai acompanhar você</p>
-            <h2 id="medico-titulo">Dr. Lúcio Moreira</h2>
-            <p class="cond-doctor-role">Médico psiquiatra <span aria-hidden="true">·</span> CRM-MG 82117 <span aria-hidden="true">·</span> RQE 57394</p>
-            <p class="cond-doctor-lead" data-copy="doctorLead" set:html={emphasize(content.doctorLead, ['mais de cinco anos de atuação'])} />
-            <div class="cond-doctor-columns">
-              <div class="experience-block">
-                <h3>Experiência clínica</h3>
-                <p class="cond-experience-intro" data-copy="experience">{content.experience}</p>
-                <ul class="cond-experience">
-                  {content.experienceDetails.map((item, index) => <li data-experience={index}>
-                    <p class="cond-experience-label">{item.title}</p>
-                    <p>{item.text}</p>
-                  </li>)}
-                </ul>
-              </div>
-              <div class="formation-block">
-                <h3>Formação</h3>
-                <ol class="cond-timeline" aria-label="Formação do médico">
-                  {content.profile.map((item, index) => <li data-profile={index}>
-                    <div class="cond-timeline-heading"><p class="cond-timeline-title">{item.title}</p>{item.detail && <span>{item.detail}</span>}</div>
-                    <p>{item.text}</p>
-                  </li>)}
-                </ol>
-              </div>
-            </div>
-            <a class="cond-text-link" href="#contato">Agende uma consulta <Icon name="arrow" /></a>
-          </div>
-        </div>
-      </section>
-
-      <section id="depressao" class="cond-section cond-understand" aria-labelledby="depressao-titulo">
-        <div class="cond-container cond-understand-grid">
-          <div class="cond-definition" data-reveal>
-            <h2 id="depressao-titulo">O que é a depressão?</h2>
-            <div class="cond-prose cond-prose-large" data-original="oQueE.0"><Fragment set:html={original.oQueE[0]} /></div>
-          </div>
-          <aside id="diagnostico" class="cond-diagnosis" data-reveal aria-labelledby="diagnostico-titulo">
-            <div class="cond-diagnosis-heading"><span class="cond-round-icon"><Icon name="conversation" /></span><h3 id="diagnostico-titulo">O diagnóstico é clínico</h3></div>
-            <div class="cond-prose" data-original="diagnosis">{original.sintomasDiagnostico.slice(2).map(block => <Fragment set:html={block} />)}</div>
-          </aside>
-        </div>
-      </section>
-
-      <section id="tratamento" class="cond-section cond-treatment" aria-labelledby="tratamento-titulo">
-        <div class="cond-container">
-          <div class="cond-section-heading" data-reveal>
-            <h2 id="tratamento-titulo">Abordagens de tratamento</h2>
-            <div class="cond-prose" data-original="tratamento.0"><Fragment set:html={original.tratamento[0]} /></div>
-            <p class="cond-scope" data-copy="treatmentScope">{content.treatmentScope}</p>
-          </div>
-          <div class="cond-treatment-grid">
-            <article class="cond-treatment-card" data-reveal>
-              <span class="cond-round-icon"><Icon name="medicine" /></span>
-              <h3>Tratamento medicamentoso</h3>
-              <div class="cond-prose" data-copy="medication">{content.medication.map(paragraph => <p set:html={emphasize(paragraph, ['acompanhamento médico regular'])} />)}</div>
-            </article>
-            <article class="cond-treatment-card" data-reveal>
-              <span class="cond-round-icon"><Icon name="conversation" /></span>
-              <h3>Tratamento psicoterápico</h3>
-              <div class="cond-prose" data-copy="psychotherapy"><p set:html={emphasize(content.psychotherapy, ['Terapia Cognitivo-Comportamental (TCC)'])} /></div>
-            </article>
-            <article class="cond-treatment-card" data-reveal>
-              <span class="cond-round-icon"><Icon name="activity" /></span>
-              <h3>Tratamentos complementares</h3>
-              <div class="cond-prose" data-original="tratamento.6"><Fragment set:html={original.tratamento[6]} /></div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="atendimento" class="cond-section cond-care" aria-labelledby="atendimento-titulo">
-        <div class="cond-container">
-          <div class="cond-care-panel" data-reveal>
-            <div class="cond-care-intro">
-              <h2 id="atendimento-titulo">Como é o acompanhamento com o Dr. Lúcio</h2>
-              <p class="cond-care-lead" data-copy="treatmentNote" set:html={emphasize(content.treatmentNote, ['diagnóstico psiquiátrico', 'plano terapêutico individualizado'])} />
-              <p class="cond-care-duration"><Icon name="clock" /><span data-copy="consultDuration">{content.consultDuration}</span></p>
-              <a class="cond-button" href="#contato">Agende uma consulta <Icon name="arrow" /></a>
-            </div>
-            <ul class="cond-care-steps" aria-label="Aspectos do acompanhamento psiquiátrico">
-              {content.careSteps.map((step, index) => <li>
-                <h3>{step.title}</h3>
-                <p data-copy={'careSteps.' + index}>{step.text}</p>
-              </li>)}
-            </ul>
-            <div class="cond-care-practical">
-              <span><Icon name="video" /><span>Atendimento <strong>presencial e online</strong></span></span>
-              <span><Icon name="pin" /><span>Consultório em <strong>Nova Lima · Vila da Serra</strong></span></span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="contato" class="cond-contact" aria-labelledby="contato-titulo" tabindex="-1">
-        <div class="cond-container cond-contact-grid">
-          <div class="cond-contact-intro">
-            <h2 id="contato-titulo">Agende uma consulta</h2>
-            <p>Atendimento psiquiátrico com Dr. Lúcio Moreira, presencial e online.</p>
-          </div>
-          <div class="cond-contact-card" data-reveal>
-            <ul class="cond-modes">
-              <li><span class="cond-mode-icon"><Icon name="video" /></span><span><span class="cond-mode-title">Consulta online</span>Atendimento a distância, onde você estiver.</span></li>
-              <li><span class="cond-mode-icon"><Icon name="pin" /></span><span><span class="cond-mode-title">Consultório em Nova Lima</span><address>{address}</address></span></li>
-            </ul>
-            <div class="cond-contact-status"><span class="cond-status-dot" aria-hidden="true"></span><p>Informações de contato em atualização.</p></div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="cond-footer">
-      <div class="cond-container">
-        <div class="cond-footer-grid">
-          <a class="cond-footer-brand" href="/" aria-label="Dr. Lúcio Moreira — Home"><img src="/assets/monograma.svg" width="68" height="68" alt="" loading="lazy" /><span>Dr. Lúcio Moreira</span><em>Psiquiatra</em></a>
-          <div class="cond-footer-contact"><p class="cond-footer-title">Atendimento</p><p class="cond-footer-mode"><Icon name="video" /><span><strong>Online</strong> · onde você estiver</span></p><p class="cond-footer-mode"><Icon name="pin" /><span><strong>Presencial</strong> · Consultório em Nova Lima</span></p><address><span>{addressLines[0]}</span><span>{addressLines[1]}</span></address></div>
-          <nav class="cond-footer-nav" aria-label="Mapa do site"><p class="cond-footer-title">Mapa do site</p><a href="/">Home</a><a href="/#areas">Áreas de Atuação</a><a href="#inicio">Depressão</a></nav>
-        </div>
-        <div class="cond-footer-bottom"><p>Responsável Técnico: Lúcio Lourenço Moreira <span aria-hidden="true">|</span> CRM-MG: 82117 <span aria-hidden="true">|</span> RQE: 57394</p><a href="#inicio">Voltar ao início <span aria-hidden="true">↑</span></a></div>
+<CondicaoLayout
+  active="depressao"
+  title="Avaliação psiquiátrica da depressão | Dr. Lúcio Moreira"
+  description="Avaliação psiquiátrica da depressão com Dr. Lúcio Moreira. Atendimento presencial e online. Conheça o médico, o atendimento e as abordagens de tratamento."
+  breadcrumb="Depressão"
+  titleMain="Avaliação psiquiátrica"
+  titleAccent="da depressão"
+  heroLead={content.heroLead}
+  sections={sections}
+>
+  <section id="sintomas" class="cond-section cond-signs" aria-labelledby="sintomas-titulo">
+    <div class="cond-container cond-signs-grid">
+      <div class="cond-signs-intro" data-reveal>
+        <h2 id="sintomas-titulo">Sinais que merecem atenção</h2>
+        <div class="cond-prose" data-original="sintomasDiagnostico.0"><Fragment set:html={original.sintomasDiagnostico[0]} /></div>
       </div>
-    </footer>
-    <script>
-      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-      const blocks = document.querySelectorAll<HTMLElement>('[data-reveal]');
-      if (!reducedMotion.matches && 'IntersectionObserver' in window) {
-        const revealer = new IntersectionObserver(entries => {
-          for (const entry of entries) if (entry.isIntersecting) { entry.target.classList.add('is-visible'); revealer.unobserve(entry.target); }
-        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-        blocks.forEach(block => { block.classList.add('will-reveal'); revealer.observe(block); });
-      }
-      // Índice: destaca a seção em leitura e mantém o link visível na faixa rolável do celular.
-      const toc = document.querySelector<HTMLElement>('.cond-toc-links')!;
-      const links = new Map([...toc.querySelectorAll<HTMLAnchorElement>('[data-toc]')].map(link => [link.dataset.toc!, link]));
-      const targets = [...links.keys()].map(id => document.getElementById(id)!).filter(Boolean);
-      let currentId = '';
-      function markCurrent() {
-        const line = window.innerHeight * 0.35;
-        let current = targets[0];
-        for (const target of targets) if (target.getBoundingClientRect().top <= line) current = target;
-        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) current = targets[targets.length - 1];
-        if (current.id === currentId) return;
-        currentId = current.id;
-        for (const [id, link] of links) {
-          const active = id === currentId;
-          link.classList.toggle('is-current', active);
-          if (active) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
-        }
-        const link = links.get(currentId)!;
-        if (toc.scrollWidth > toc.clientWidth) toc.scrollTo({ left: link.offsetLeft - 16, behavior: reducedMotion.matches ? 'instant' : 'smooth' });
-      }
-      // Índice no fluxo abaixo da abertura; depois de passar por ele, some ao descer e volta compacto ao subir.
-      const tocBar = toc.closest<HTMLElement>('.cond-toc')!;
-      const anchor = document.createElement('div');
-      anchor.setAttribute('aria-hidden', 'true');
-      tocBar.before(anchor);
-      let lastY = window.scrollY;
-      let travel = 0;
-      function updateTocBar() {
-        const y = window.scrollY;
-        const stuck = anchor.getBoundingClientRect().top < parseFloat(getComputedStyle(tocBar).top);
-        const delta = y - lastY;
-        travel = Math.sign(delta) === Math.sign(travel) ? travel + delta : delta;
-        lastY = y;
-        tocBar.classList.toggle('is-stuck', stuck);
-        if (!stuck || travel < -24) tocBar.classList.remove('is-hidden');
-        else if (travel > 8) tocBar.classList.add('is-hidden');
-        scheduleIdleHide();
-      }
-      // Com a tela parada, o índice grudado some sozinho; volta quando a pessoa rola para cima.
-      let idleTimer = 0;
-      function scheduleIdleHide() {
-        clearTimeout(idleTimer);
-        idleTimer = window.setTimeout(() => {
-          if (tocBar.classList.contains('is-stuck') && !tocBar.matches(':hover, :focus-within')) tocBar.classList.add('is-hidden');
-        }, 2500);
-      }
-      tocBar.addEventListener('focusin', () => tocBar.classList.remove('is-hidden'));
-      tocBar.addEventListener('mouseleave', scheduleIdleHide);
-      tocBar.addEventListener('focusout', scheduleIdleHide);
-      let pending = false;
-      window.addEventListener('scroll', () => { if (!pending) { pending = true; requestAnimationFrame(() => { markCurrent(); updateTocBar(); pending = false; }); } }, { passive: true });
-      markCurrent();
-      updateTocBar();
-    </script>
-  </body>
-</html>
+      <div class="cond-signs-body" data-reveal>
+        <ul class="cond-symptoms" aria-label="Sintomas mais comuns da depressão" data-original="symptoms">
+          {symptoms.map(symptom => <li set:html={symptom} />)}
+        </ul>
+        <aside class="cond-emergency" aria-label="Orientação sobre atenção médica imediata">
+          <Icon name="alert" />
+          <p data-copy="emergency">Em casos graves, ideias de morte ou pensamentos suicidas exigem <strong>atenção médica imediata.</strong></p>
+        </aside>
+      </div>
+    </div>
+    <ChamadaSinais />
+  </section>
+
+  <Medico />
+
+  <section id="depressao" class="cond-section cond-understand" aria-labelledby="depressao-titulo">
+    <div class="cond-container cond-understand-grid">
+      <div class="cond-definition" data-reveal>
+        <h2 id="depressao-titulo">O que é a depressão?</h2>
+        <div class="cond-prose cond-prose-large" data-original="oQueE.0"><Fragment set:html={original.oQueE[0]} /></div>
+      </div>
+      <aside id="diagnostico" class="cond-diagnosis" data-reveal aria-labelledby="diagnostico-titulo">
+        <div class="cond-diagnosis-heading"><span class="cond-round-icon"><Icon name="conversation" /></span><h3 id="diagnostico-titulo">O diagnóstico é clínico</h3></div>
+        <div class="cond-prose" data-original="diagnosis">{original.sintomasDiagnostico.slice(2).map(block => <Fragment set:html={block} />)}</div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="tratamento" class="cond-section cond-treatment" aria-labelledby="tratamento-titulo">
+    <div class="cond-container">
+      <div class="cond-section-heading" data-reveal>
+        <h2 id="tratamento-titulo">Abordagens de tratamento</h2>
+        <div class="cond-prose" data-original="tratamento.0"><Fragment set:html={original.tratamento[0]} /></div>
+        <p class="cond-scope" data-copy="treatmentScope">{content.treatmentScope}</p>
+      </div>
+      <div class="cond-treatment-grid">
+        <article class="cond-treatment-card" data-reveal>
+          <span class="cond-round-icon"><Icon name="medicine" /></span>
+          <h3>Tratamento medicamentoso</h3>
+          <div class="cond-prose" data-copy="medication">{content.medication.map(paragraph => <p set:html={emphasize(paragraph, ['acompanhamento médico regular'])} />)}</div>
+        </article>
+        <article class="cond-treatment-card" data-reveal>
+          <span class="cond-round-icon"><Icon name="conversation" /></span>
+          <h3>Tratamento psicoterápico</h3>
+          <div class="cond-prose" data-copy="psychotherapy"><p set:html={emphasize(content.psychotherapy, ['Terapia Cognitivo-Comportamental (TCC)'])} /></div>
+        </article>
+        <article class="cond-treatment-card" data-reveal>
+          <span class="cond-round-icon"><Icon name="activity" /></span>
+          <h3>Tratamentos complementares</h3>
+          <div class="cond-prose" data-original="tratamento.6"><Fragment set:html={original.tratamento[6]} /></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <Acompanhamento steps={content.careSteps} />
+</CondicaoLayout>

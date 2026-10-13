@@ -1,0 +1,42 @@
+---
+// Apresentação do médico, igual em todas as páginas de condição.
+import content from '../../content/redesign.json';
+import Icon from '../Icon.astro';
+import { emphasize } from '../../utils/emphasis';
+import { scheduleUrl } from '../../content/condicoes';
+---
+<section id="medico" class="cond-section cond-doctor" aria-labelledby="medico-titulo">
+  <div class="cond-container cond-doctor-grid">
+    <figure class="cond-portrait" data-reveal>
+      <img src="/assets/dr-lucio-800.webp" srcset="/assets/dr-lucio-480.webp 480w, /assets/dr-lucio-800.webp 800w, /assets/dr-lucio-1200.webp 1200w" sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 40vw, 440px" width="800" height="1077" alt="Dr. Lúcio Moreira sentado e sorrindo, usando camisa." loading="lazy" decoding="async" />
+    </figure>
+    <div class="cond-doctor-profile" data-reveal>
+      <p class="cond-kicker">Quem vai acompanhar você</p>
+      <h2 id="medico-titulo">Dr. Lúcio Moreira</h2>
+      <p class="cond-doctor-role">Médico psiquiatra <span aria-hidden="true">·</span> CRM-MG 82117 <span aria-hidden="true">·</span> RQE 57394</p>
+      <p class="cond-doctor-lead" data-copy="doctorLead" set:html={emphasize(content.doctorLead, ['mais de cinco anos de atuação'])} />
+      <div class="cond-doctor-columns">
+        <div class="experience-block">
+          <h3>Experiência clínica</h3>
+          <p class="cond-experience-intro" data-copy="experience">{content.experience}</p>
+          <ul class="cond-experience">
+            {content.experienceDetails.map((item, index) => <li data-experience={index}>
+              <p class="cond-experience-label">{item.title}</p>
+              <p>{item.text}</p>
+            </li>)}
+          </ul>
+        </div>
+        <div class="formation-block">
+          <h3>Formação</h3>
+          <ol class="cond-timeline" aria-label="Formação do médico">
+            {content.profile.map((item, index) => <li data-profile={index}>
+              <div class="cond-timeline-heading"><p class="cond-timeline-title">{item.title}</p>{item.detail && <span>{item.detail}</span>}</div>
+              <p>{item.text}</p>
+            </li>)}
+          </ol>
+        </div>
+      </div>
+      <a class="cond-button cond-button-outline" href={scheduleUrl} target="_blank" rel="noopener">Agende uma consulta <Icon name="arrow" /></a>
+    </div>
+  </div>
+</section>

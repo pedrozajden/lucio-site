@@ -66,19 +66,23 @@ assert len(page.xpath('//main//img')) == 2
 assert not any('composicao-editorial' in src for src in page.xpath('//img/@src'))
 assert len(page.xpath('//*[contains(@class,"cond-credentials")]//li')) == len(copy['credentials'])
 assert page.xpath('//meta[@name="robots"]/@content') == ['noindex, nofollow']
-assert all(url.startswith('#') or url in ['/', '/#areas'] for url in page.xpath('//main//a/@href'))  # Trilha de navegação.
+SCHEDULE = 'https://api.cqc.onpromedia.com.br/t/2F04D22F'  # Link de agendamento informado pelo usuário em 13/10/2026.
+assert all(url.startswith('#') or url in ['/', '/#areas', SCHEDULE] for url in page.xpath('//main//a/@href'))  # Trilha de navegação e agendamento.
 for url in page.xpath('//a/@href'):
+    if url == SCHEDULE: continue
     path, _, fragment = url.partition('#')
     if not path:
         target_page = page
     else:
-        assert path in ['/', '/enfermidades/depressao/'], f'Destino não implementado: {url}'
+        assert path in ['/', '/enfermidades/depressao/', '/enfermidades/transtorno-de-ansiedade-generalizada-tag/'], f'Destino não implementado: {url}'
         target_path = SITE/'dist'/path.strip('/')/'index.html'
         target_page = html.fromstring(target_path.read_text('utf-8'))
     if fragment:
         assert target_page.xpath(f'//*[@id="{fragment}"]'), f'Âncora inexistente: {url}'
 ctas = page.xpath('//a[contains(string(.),"Agende uma consulta")]')
-assert len(ctas) == 4 and all(x.get('href') == '#contato' for x in ctas)
+assert len(ctas) == 5 and all(x.get('href') == SCHEDULE and x.get('rel') == 'noopener' for x in ctas)
+assert [a.get('href') for a in page.xpath('//a[contains(@class,"cond-whatsapp")] | //a[contains(string(.),"Agende uma avaliação")]')] == [SCHEDULE, SCHEDULE]
+assert not [u for u in page.xpath('//a/@href') if u.startswith('http') and u != SCHEDULE]
 assert not any(term in html.tostring(page,encoding='unicode') for term in ['wa.me','tintim.link','98998-0356','9541-0374'])
 
 manifest = json.loads((ROOT/'planejamento/evidencias/manifesto-referencias.json').read_text('utf-8'))
@@ -98,7 +102,7 @@ report = {
     'botoesContato':len(ctas),
     'scriptsLocaisDeNavegacao':len(page.xpath('//script')),
     'formulariosIframes':0,
-    'linksExternos':0,
+    'linksExternos':'somente o link de agendamento informado pelo usuário',
     'referenciasInalteradas':len(manifest),
     'revisaoMedicaDosResumos':'pendente; alterações e omissões registradas separadamente'
 }

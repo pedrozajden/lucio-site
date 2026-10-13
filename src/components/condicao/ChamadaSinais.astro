@@ -1,0 +1,12 @@
+---
+// Chamada discreta para agendar, logo após a lista de sinais.
+import content from '../../content/redesign.json';
+import Icon from '../Icon.astro';
+import { scheduleUrl } from '../../content/condicoes';
+---
+<div class="cond-container">
+  <div class="cond-signs-cta" data-reveal>
+    <p data-copy="signsCta">{content.signsCta}</p>
+    <a class="cond-button" href={scheduleUrl} target="_blank" rel="noopener">Agende uma avaliação <Icon name="arrow" /></a>
+  </div>
+</div>

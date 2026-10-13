@@ -1,7 +1,10 @@
 ---
 import home from '../content/home.json';
-interface Props { active: 'home' | 'depressao'; }
-const { active } = Astro.props;
+import { pageForArea, type ConditionKey } from '../content/condicoes';
+interface Props { active: 'home' | ConditionKey; scheduleHref?: string; }
+const { active, scheduleHref = '#contato' } = Astro.props;
+const external = scheduleHref.startsWith('http');
+const onCondition = active !== 'home';
 ---
 <header class="shared-header">
   <div class="shared-header-row">
@@ -13,10 +16,10 @@ const { active } = Astro.props;
       <span class="shared-separator" aria-hidden="true">·</span>
       <a href="/#medico">Sobre</a>
       <span class="shared-separator" aria-hidden="true">·</span>
-      <details class:list={['shared-areas', { 'shared-current-area': active === 'depressao' }]}>
+      <details class:list={['shared-areas', { 'shared-current-area': onCondition }]}>
         <summary>Áreas de Atuação <span class="shared-chevron" aria-hidden="true"></span></summary>
         <ul class="shared-area-list">
-          {home.areas.map((area, index) => <li>{index === 0 ? <a href="/enfermidades/depressao/" aria-current={active === 'depressao' ? 'page' : undefined}>{area}</a> : <span aria-disabled="true">{area}<small>Em breve</small></span>}</li>)}
+          {home.areas.map((area, index) => { const page = pageForArea(index); return <li>{page ? <a href={page.href} aria-current={active === page.key ? 'page' : undefined}>{area}</a> : <span aria-disabled="true">{area}<small>Em breve</small></span>}</li>; })}
         </ul>
       </details>
       <span class="shared-separator" aria-hidden="true">·</span>
@@ -24,16 +27,16 @@ const { active } = Astro.props;
       <span class="shared-separator" aria-hidden="true">·</span>
       <a href="/#contato">Contato</a>
     </nav>
-    <a class="shared-schedule" href="#contato"><span class="shared-desktop-label">Agende uma consulta</span><span class="shared-mobile-label">Agendar</span></a>
+    <a class="shared-schedule" href={scheduleHref} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}><span class="shared-desktop-label">Agende uma consulta</span><span class="shared-mobile-label">Agendar</span></a>
     <details class="shared-mobile-menu">
       <summary aria-label="Menu de navegação"><span class="shared-menu-icon" aria-hidden="true"><i></i><i></i><i></i></span></summary>
       <nav class="shared-mobile-panel" aria-label="Navegação principal no celular">
         <a href="/" aria-current={active === 'home' ? 'page' : undefined}>Home</a>
         <a href="/#medico">Sobre</a>
-        <details class:list={['shared-areas', { 'shared-current-area': active === 'depressao' }]}>
+        <details class:list={['shared-areas', { 'shared-current-area': onCondition }]}>
           <summary>Áreas de Atuação <span class="shared-chevron" aria-hidden="true"></span></summary>
           <ul class="shared-area-list">
-            {home.areas.map((area, index) => <li>{index === 0 ? <a href="/enfermidades/depressao/" aria-current={active === 'depressao' ? 'page' : undefined}>{area}</a> : <span aria-disabled="true">{area}<small>Em breve</small></span>}</li>)}
+            {home.areas.map((area, index) => { const page = pageForArea(index); return <li>{page ? <a href={page.href} aria-current={active === page.key ? 'page' : undefined}>{area}</a> : <span aria-disabled="true">{area}<small>Em breve</small></span>}</li>; })}
           </ul>
         </details>
         <span class="shared-unavailable" aria-disabled="true">FAQ <small>Em breve</small></span>
