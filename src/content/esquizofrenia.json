@@ -1,0 +1,17 @@
+{
+  "heroLead": "Alterações na forma de pensar, sentir e perceber a realidade, como ouvir vozes, crenças persistentes de perseguição ou retraimento social, podem estar relacionadas à esquizofrenia. A avaliação psiquiátrica ajuda a compreender o quadro e a iniciar o tratamento o quanto antes.",
+  "careSteps": [
+    {
+      "title": "Avaliação psiquiátrica",
+      "text": "Durante as consultas, são avaliados a evolução dos sintomas, a resposta ao tratamento e os fatores que podem influenciar recaídas, como estresse, interrupção de medicamentos ou irregularidade no sono."
+    },
+    {
+      "title": "Plano terapêutico individualizado",
+      "text": "Com base nessa avaliação, é elaborado um plano terapêutico individualizado, que pode incluir o uso de antipsicóticos de manutenção, ajustes de dose e orientações sobre hábitos de vida saudáveis, como regularidade do sono, alimentação equilibrada e suporte familiar."
+    },
+    {
+      "title": "Família e acompanhamento próximo",
+      "text": "A adesão ao tratamento é um dos pilares da estabilidade clínica. Por isso, o envolvimento da família e o acompanhamento próximo são fundamentais para detectar precocemente sinais de recaída e intervir a tempo."
+    }
+  ]
+}

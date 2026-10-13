@@ -8,3 +8,6 @@ export function emphasize(text: string, phrases: string[] = []): string {
   const pattern = phrases.map(phrase => escapeRegex(escapeHtml(phrase))).join('|');
   return escaped.replace(new RegExp(pattern, 'g'), match => `<strong>${match}</strong>`);
 }
+
+// Itens de uma lista HTML original, preservando a marcação interna de cada <li>.
+export const listItems = (fragment: string) => [...fragment.matchAll(/<li>(.*?)<\/li>/gs)].map(match => match[1]);

@@ -50,7 +50,7 @@ const credentials = content.credentials as { icon: 'id' | 'cap' | 'building' | '
             <nav class="cond-breadcrumb" aria-label="Você está em">
               <a href="/">Início</a><span aria-hidden="true">›</span><a href="/#areas">Áreas de atuação</a><span aria-hidden="true">›</span><span aria-current="page">{breadcrumb}</span>
             </nav>
-            <h1 id="titulo">{titleMain} <span>{titleAccent}</span></h1>
+            <h1 id="titulo" class:list={[{ 'cond-title-long': titleAccent.length > 30 }]}>{titleMain} <span>{titleAccent}</span></h1>
             <p class="cond-hero-lead" data-copy="heroLead">{heroLead}</p>
             <p class="cond-hero-doctor"><strong>Dr. Lúcio Moreira</strong> <span aria-hidden="true">·</span> Médico psiquiatra</p>
             <div class="cond-hero-actions">

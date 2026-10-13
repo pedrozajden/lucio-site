@@ -1,0 +1,17 @@
+{
+  "heroLead": "Oscilações intensas de humor e energia, com fases de euforia, irritabilidade ou impulsividade alternadas com períodos de tristeza profunda, podem ser sinais de transtorno bipolar. A avaliação psiquiátrica ajuda a compreender o quadro e a escolher o tratamento adequado.",
+  "careSteps": [
+    {
+      "title": "Avaliação psiquiátrica",
+      "text": "Durante as consultas, são investigados a frequência, a intensidade e os gatilhos dos episódios, além dos impactos do transtorno na rotina, no sono, na alimentação e nas relações pessoais."
+    },
+    {
+      "title": "Plano terapêutico individualizado",
+      "text": "A partir dessa avaliação detalhada, é elaborado um plano terapêutico individualizado, que pode incluir o uso de estabilizadores de humor, ajuste de medicamentos, encaminhamento para psicoterapia e orientações sobre estilo de vida, como regularidade do sono, cessar o uso de substâncias e gestão do estresse."
+    },
+    {
+      "title": "Confiança e continuidade",
+      "text": "O acompanhamento se apoia em uma relação terapêutica pautada na confiança, empatia e escuta ativa, permitindo que o paciente se sinta seguro para relatar sintomas e ajustar o tratamento conforme necessário."
+    }
+  ]
+}

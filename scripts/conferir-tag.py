@@ -24,7 +24,7 @@ for key, field in {'oQueE':'ID027','sintomasDiagnostico':'ID028','tratamento':'I
 for key in ['oQueE.0','sintomasDiagnostico.0','sintomasDiagnostico.3','sintomasDiagnostico.4','tratamento.0','tratamento.9','tratamento.11']:
     field, index = key.split('.')
     assert norm(selected('data-original', key).text_content()) == plain(original[field][int(index)]), key
-items = selected('data-original','symptoms').xpath('./li')
+items = selected('data-original','sintomasDiagnostico.1').xpath('./li')
 assert [norm(li.text_content()) for li in items] == [norm(li.text_content()) for li in html.fromstring(original['sintomasDiagnostico'][1]).xpath('//li')]
 # Textos condensados exibidos como registrados.
 assert norm(selected('data-copy','heroLead').text_content()) == copy['heroLead']

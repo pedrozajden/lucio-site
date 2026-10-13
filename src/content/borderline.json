@@ -1,0 +1,22 @@
+{
+  "heroLead": "Instabilidade emocional intensa, impulsividade, medo de abandono e dificuldade em manter relacionamentos estáveis podem ser sinais de transtorno de personalidade borderline. A avaliação psiquiátrica ajuda a compreender o quadro e a traçar um plano terapêutico adequado.",
+  "medication": [
+    "Embora não exista um medicamento específico para o TPB, antidepressivos, estabilizadores de humor e antipsicóticos atípicos podem ser prescritos para controlar sintomas associados, como depressão, ansiedade, impulsividade e irritabilidade.",
+    "O uso de medicações deve sempre ser acompanhado por um psiquiatra."
+  ],
+  "psychotherapy": "A Terapia Comportamental Dialética (DBT) é considerada uma das abordagens mais eficazes para o TPB. Ela auxilia o paciente a desenvolver habilidades de regulação emocional, melhorar a tolerância à frustração e fortalecer relacionamentos interpessoais.",
+  "careSteps": [
+    {
+      "title": "Avaliação psiquiátrica",
+      "text": "Durante as consultas, é avaliado como os sintomas se manifestam nas relações, nas emoções e nas decisões do cotidiano, identificando padrões que perpetuam o sofrimento emocional."
+    },
+    {
+      "title": "Plano terapêutico personalizado",
+      "text": "A partir dessa análise, é estruturado um plano terapêutico personalizado, que pode incluir ajuste medicamentoso, encaminhamento para psicoterapia especializada e orientações práticas sobre rotina, manejo de crises e estratégias de autocuidado."
+    },
+    {
+      "title": "Vínculo e continuidade do cuidado",
+      "text": "O acompanhamento se apoia em um vínculo terapêutico sólido, pautado na confiança, na empatia e na continuidade do cuidado."
+    }
+  ]
+}

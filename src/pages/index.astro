@@ -18,6 +18,15 @@ const areaPreviews = [
   { title: 'Transtorno de personalidade borderline', text: 'Instabilidade emocional intensa, impulsividade e dificuldades nos relacionamentos.' },
   { title: 'Esquizofrenia', text: 'Alterações no pensamento, na percepção da realidade e no comportamento.' },
 ];
+// Um símbolo por área, em traço fino: sol nascente, ondas, foco, equilíbrio, vínculos e mente.
+const areaIcons = [
+  '<path d="M4 22h24M8 26.5h16"/><path d="M10 22a6 6 0 0 1 12 0"/><path d="M16 12.5V8.5M10.4 14.6l-2.6-2.6M21.6 14.6l2.6-2.6"/>',
+  '<path d="M4 11c2.7-2.7 5.3-2.7 8 0s5.3 2.7 8 0 5.3-2.7 8 0"/><path d="M4 16.5c2.7-2.7 5.3-2.7 8 0s5.3 2.7 8 0 5.3-2.7 8 0"/><path d="M4 22c2.7-2.7 5.3-2.7 8 0s5.3 2.7 8 0 5.3-2.7 8 0"/>',
+  '<circle cx="16" cy="16" r="11"/><circle cx="16" cy="16" r="6.5"/><circle cx="16" cy="16" r="2"/>',
+  '<path d="M16 6.5v19M11 25.5h10M7 10h18"/><path d="M7 10 3.5 18M7 10l3.5 8M25 10l-3.5 8M25 10l3.5 8"/><path d="M3.5 18a3.5 3.5 0 0 0 7 0ZM21.5 18a3.5 3.5 0 0 0 7 0Z"/>',
+  '<circle cx="12.5" cy="16" r="7"/><circle cx="19.5" cy="16" r="7"/>',
+  '<path d="M19.5 27v-4h3a2 2 0 0 0 2-2v-3.2l2-.8-2-4.2A9.5 9.5 0 1 0 9.5 21.5V27"/><circle cx="15.5" cy="13" r="2.5"/>',
+];
 const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...text.matchAll(/\*\*(.*?)\*\*/g)].map(match => match[1]));
 ---
 <!doctype html>
@@ -78,7 +87,7 @@ const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...
       <section id="areas" class="home-areas" aria-labelledby="areas-title"><div class="home-container areas-panel" data-reveal>
         <div class="section-heading"><p class="section-kicker">Psiquiatra</p><h2 id="areas-title">Áreas de Atuação</h2></div>
         <div class="areas-grid">{areaPreviews.map((area, index) => <article class:list={['area-item', `area-${index}`, { 'area-active': pageForArea(index) }]} aria-label={home.areas[index]}>
-          <div class="area-copy"><span class="area-symbol" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6 23V12a6 6 0 0 1 12 0v8a6 6 0 0 0 12 0"/><path d="M2 20a6 6 0 0 0 12 0v-8a6 6 0 0 1 12 0v11"/></svg></span><h3>{area.title}</h3>
+          <div class="area-copy"><span class="area-symbol" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" set:html={areaIcons[index]} /></span><h3>{area.title}</h3>
             <p class="area-description">{area.text}</p>
             {pageForArea(index) ? <a href={pageForArea(index)!.href}>{pageForArea(index)!.cta} <span class="area-arrow"><Icon name="arrow" /></span></a> : <span class="area-pending">Página em preparação</span>}
           </div>

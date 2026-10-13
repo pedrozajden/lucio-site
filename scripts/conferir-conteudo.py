@@ -74,8 +74,8 @@ for url in page.xpath('//a/@href'):
     if not path:
         target_page = page
     else:
-        assert path in ['/', '/enfermidades/depressao/', '/enfermidades/transtorno-de-ansiedade-generalizada-tag/'], f'Destino não implementado: {url}'
         target_path = SITE/'dist'/path.strip('/')/'index.html'
+        assert target_path.is_file(), f'Destino não implementado: {url}'
         target_page = html.fromstring(target_path.read_text('utf-8'))
     if fragment:
         assert target_page.xpath(f'//*[@id="{fragment}"]'), f'Âncora inexistente: {url}'

@@ -30,7 +30,7 @@ const sections: [string, string][] = [['sintomas', 'Sinais'], ['medico', 'O méd
         <div class="cond-prose" data-original="sintomasDiagnostico.0"><Fragment set:html={original.sintomasDiagnostico[0]} /></div>
       </div>
       <div class="cond-signs-body" data-reveal>
-        <ul class="cond-symptoms" aria-label="Sintomas físicos e cognitivos da ansiedade generalizada" data-original="symptoms">
+        <ul class="cond-symptoms" aria-label="Sintomas físicos e cognitivos da ansiedade generalizada" data-original="sintomasDiagnostico.1">
           {symptoms.map(symptom => <li set:html={symptom} />)}
         </ul>
         <aside class="cond-highlight" aria-label="Ciclo da ansiedade">

@@ -1,0 +1,98 @@
+---
+import original from '../../content/originais/bipolar.json';
+import content from '../../content/bipolar.json';
+import shared from '../../content/redesign.json';
+import CondicaoLayout from '../../layouts/CondicaoLayout.astro';
+import Medico from '../../components/condicao/Medico.astro';
+import Acompanhamento from '../../components/condicao/Acompanhamento.astro';
+import ChamadaSinais from '../../components/condicao/ChamadaSinais.astro';
+import Icon from '../../components/Icon.astro';
+import { listItems } from '../../utils/emphasis';
+
+const sections: [string, string][] = [['sintomas', 'Sinais'], ['medico', 'O médico'], ['bipolar', 'O que é'], ['tratamento', 'Tratamento'], ['atendimento', 'Acompanhamento'], ['contato', 'Agendar']];
+const phases = [
+  { lead: 2, list: 3, label: 'Sinais das fases maníacas ou hipomaníacas' },
+  { lead: 5, list: 6, label: 'Sinais das fases depressivas' },
+];
+---
+<CondicaoLayout
+  active="bipolar"
+  title="Avaliação psiquiátrica do transtorno bipolar | Dr. Lúcio Moreira"
+  description="Avaliação psiquiátrica do Transtorno Afetivo Bipolar com Dr. Lúcio Moreira. Atendimento presencial em Nova Lima e online. Conheça o médico, o atendimento e as abordagens de tratamento."
+  breadcrumb="Transtorno bipolar"
+  titleMain="Avaliação psiquiátrica"
+  titleAccent="do transtorno bipolar"
+  heroLead={content.heroLead}
+  sections={sections}
+  variant="b"
+>
+  <section id="sintomas" class="cond-section cond-signs" aria-labelledby="sintomas-titulo">
+    <div class="cond-container cond-signs-grid">
+      <div class="cond-signs-intro" data-reveal>
+        <h2 id="sintomas-titulo">Como o transtorno bipolar se manifesta</h2>
+        <div class="cond-prose" data-original="sintomasDiagnostico.0"><Fragment set:html={original.sintomasDiagnostico[0]} /></div>
+      </div>
+      <div class="cond-signs-body" data-reveal>
+        {phases.map(phase => <div class="cond-symptom-group">
+          <div class="cond-symptom-group-title" data-original={'sintomasDiagnostico.' + phase.lead}><Fragment set:html={original.sintomasDiagnostico[phase.lead]} /></div>
+          <ul class="cond-symptoms" aria-label={phase.label} data-original={'sintomasDiagnostico.' + phase.list}>
+            {listItems(original.sintomasDiagnostico[phase.list]).map(item => <li set:html={item} />)}
+          </ul>
+        </div>)}
+        <aside class="cond-highlight" aria-label="Sintomas mistos">
+          <span class="cond-round-icon"><Icon name="activity" /></span>
+          <div class="cond-prose" data-original="sintomasDiagnostico.8"><Fragment set:html={original.sintomasDiagnostico[8]} /></div>
+        </aside>
+      </div>
+    </div>
+    <ChamadaSinais />
+  </section>
+
+  <Medico />
+
+  <section id="bipolar" class="cond-section cond-understand" aria-labelledby="bipolar-titulo">
+    <div class="cond-container cond-understand-grid">
+      <div class="cond-definition" data-reveal>
+        <h2 id="bipolar-titulo">O que é o transtorno bipolar?</h2>
+        <div class="cond-prose cond-prose-large" data-original="oQueE.0"><Fragment set:html={original.oQueE[0]} /></div>
+      </div>
+      <aside id="diagnostico" class="cond-diagnosis" data-reveal aria-labelledby="diagnostico-titulo">
+        <div class="cond-diagnosis-heading"><span class="cond-round-icon"><Icon name="conversation" /></span><h3 id="diagnostico-titulo">O diagnóstico é clínico</h3></div>
+        <div class="cond-prose" data-original="sintomasDiagnostico.10"><Fragment set:html={original.sintomasDiagnostico[10]} /></div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="tratamento" class="cond-section cond-treatment" aria-labelledby="tratamento-titulo">
+    <div class="cond-container">
+      <div class="cond-section-heading" data-reveal>
+        <h2 id="tratamento-titulo">Abordagens de tratamento</h2>
+        <div class="cond-prose" data-original="tratamento.0"><Fragment set:html={original.tratamento[0]} /></div>
+        <p class="cond-scope" data-copy="treatmentScope">{shared.treatmentScope}</p>
+      </div>
+      <div class="cond-treatment-grid">
+        <article class="cond-treatment-card" data-reveal>
+          <span class="cond-round-icon"><Icon name="medicine" /></span>
+          <h3>Tratamento medicamentoso</h3>
+          <div class="cond-prose" data-original="tratamento.3"><Fragment set:html={original.tratamento[3]} /></div>
+        </article>
+        <article class="cond-treatment-card" data-reveal>
+          <span class="cond-round-icon"><Icon name="conversation" /></span>
+          <h3>Tratamento psicoterápico</h3>
+          <div class="cond-prose" data-original="tratamento.6"><Fragment set:html={original.tratamento[6]} /></div>
+        </article>
+        <article class="cond-treatment-card" data-reveal>
+          <span class="cond-round-icon"><Icon name="activity" /></span>
+          <h3>Educação e suporte familiar</h3>
+          <div class="cond-prose" data-original="tratamento.9"><Fragment set:html={original.tratamento[9]} /></div>
+        </article>
+      </div>
+      <aside class="cond-treatment-note" data-reveal aria-label="Continuidade do tratamento">
+        <Icon name="clock" />
+        <div class="cond-prose" data-original="tratamento.10"><Fragment set:html={original.tratamento[10]} /></div>
+      </aside>
+    </div>
+  </section>
+
+  <Acompanhamento steps={content.careSteps} />
+</CondicaoLayout>

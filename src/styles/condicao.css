@@ -67,6 +67,7 @@ p{text-wrap:pretty}
 .cond-breadcrumb [aria-current]{color:#fff;font-weight:600}
 .cond-hero h1{font-size:clamp(44px,4.2vw,62px);line-height:1.16;color:#fff;margin-bottom:24px}
 .cond-hero h1 span{display:block;color:#a9c6db}
+.cond-hero h1.cond-title-long{font-size:clamp(38px,3.4vw,50px)}
 .cond-hero-lead{font-size:18px;line-height:1.75;color:#d2dfe9;max-width:520px}
 .cond-hero-doctor{margin-top:22px;padding-top:20px;border-top:1px solid #ffffff24;font-size:15px;color:#b4c8d7;max-width:520px}
 .cond-hero-doctor strong{color:#fff}
@@ -138,6 +139,11 @@ p{text-wrap:pretty}
 .cond-symptoms li{position:relative;padding:16px 18px 16px 46px;border-radius:16px;background:var(--c-paper);border:1px solid #e6edf2;font-size:16px;line-height:1.6;transition:border-color .2s,background .2s}
 .cond-symptoms li::before{content:"";position:absolute;left:19px;top:24px;width:10px;height:10px;border-radius:50%;background:var(--c-blue);box-shadow:0 0 0 4px #a2b5c440}
 .cond-symptoms li:last-child:nth-child(odd){grid-column:1/-1}
+.cond-symptom-group+.cond-symptom-group{margin-top:28px}
+.cond-symptom-group-title{margin-bottom:12px;font-size:15px;font-weight:600;letter-spacing:.01em;color:var(--c-accent)}
+.cond-prose ul{display:grid;gap:8px;margin-top:12px}
+.cond-prose ul li{position:relative;padding-left:20px}
+.cond-prose ul li::before{content:"";position:absolute;left:2px;top:.72em;width:7px;height:7px;border-radius:50%;background:var(--c-blue)}
 .cond-emergency{display:flex;gap:16px;align-items:flex-start;margin-top:20px;padding:20px 24px;border-radius:16px;background:#fff;border:1px solid #c8d8e4;border-left:4px solid var(--c-accent)}
 .cond-emergency svg{width:24px;height:24px;color:var(--c-accent);margin-top:2px}
 .cond-emergency p{font-size:16px;line-height:1.65;color:var(--c-ink)}
@@ -305,6 +311,7 @@ p{text-wrap:pretty}
   .cond-hero-badge-icon{width:34px;height:34px}
   .cond-breadcrumb{margin-bottom:18px;font-size:12px;gap:8px}
   .cond-hero h1{font-size:34px;margin-bottom:16px}
+  .cond-hero h1.cond-title-long{font-size:29px}
   .cond-hero-lead{font-size:16px}
   .cond-hero-doctor{font-size:14px}
   .cond-hero-actions{flex-direction:column;align-items:stretch;gap:10px;margin-top:24px}

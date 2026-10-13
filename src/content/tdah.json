@@ -1,0 +1,19 @@
+{
+  "heroLead": "Dificuldade em manter a atenção, esquecimentos frequentes, impulsividade e tendência à procrastinação podem ser sinais de TDAH, que pode persistir na vida adulta. A avaliação psiquiátrica ajuda a compreender o quadro e a orientar o tratamento.",
+  "psychotherapy": "A terapia comportamental e a Terapia Cognitivo-Comportamental (TCC) ajudam o paciente a compreender seu funcionamento mental, desenvolver estratégias de organização e gerenciamento do tempo, aprimorar o foco e lidar com frustrações cotidianas.",
+  "routine": "Para adultos, ajustes na rotina, ambiente de trabalho e uso de ferramentas de produtividade contribuem para melhorar a performance e reduzir distrações.",
+  "careSteps": [
+    {
+      "title": "Avaliação psiquiátrica",
+      "text": "Durante as consultas, são avaliadas as situações em que a desatenção e a impulsividade mais se manifestam, assim como seus impactos na vida acadêmica, profissional e pessoal."
+    },
+    {
+      "title": "Plano terapêutico personalizado",
+      "text": "Com base nessa análise, é elaborado um plano terapêutico personalizado, que pode incluir o uso de medicamentos, estratégias de organização diária e orientações práticas sobre hábitos de sono, planejamento e foco."
+    },
+    {
+      "title": "Olhar individual e acolhimento",
+      "text": "O acompanhamento busca compreender o funcionamento individual de cada paciente, identificando seus pontos fortes e as áreas que necessitam de maior suporte, com acolhimento, empatia e escuta ativa."
+    }
+  ]
+}
