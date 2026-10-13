@@ -72,16 +72,17 @@ const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...
       <section class="home-credentials home-container" aria-label="Registro, formação e atendimento">
         <ul>{credentials.map(item => <li><span class="credential-icon"><Icon name={item.icon} /></span><span class="credential-text"><span class="credential-label">{item.label}</span><span class="credential-value">{item.value.split(' · ').map((part, index) => <>{index > 0 && <span class="credential-sep" aria-hidden="true"> · </span>}<span class="credential-part">{part}</span></>)}</span></span></li>)}</ul>
       </section>
-      <section id="consulta" class="home-consultation home-container" aria-labelledby="consultation-title">
-        <div class="consultation-panel" data-reveal>
-          <div class="consultation-intro"><h2 id="consultation-title">Como funciona<br /> a consulta?</h2><p>A consulta com o Dr. Lúcio <strong>geralmente dura em torno de uma hora</strong>, para conversar sobre suas queixas e compreender sua história, sua saúde e sua rotina.</p><a class="consultation-link" href="#medico">Conheça o médico <Icon name="arrow" /></a></div>
-          <div class="consultation-topics">
-            <div><h3>Suas queixas e sua história</h3><p>A conversa começa pelo que motivou a consulta e considera <strong>acontecimentos atuais e aspectos da sua trajetória</strong>, para compreender como essas questões se relacionam com sua vida.</p></div>
-            <div><h3>Outros tratamentos e medicamentos</h3><p>Também são considerados <strong>medicamentos em uso e tratamentos com outras especialidades</strong>, como parte da avaliação do que você está vivendo.</p></div>
-            <div><h3>Hábitos, sono e rotina</h3><p>A conversa inclui <strong>sono, atividade física e hábitos do dia a dia</strong>, para entender melhor o contexto de cada pessoa.</p></div>
-          </div>
-          <div class="consultation-practical"><span><Icon name="video" /><span>Atendimento <strong>presencial e online</strong></span></span><span><Icon name="pin" /><span>Consultório em <strong>Nova Lima · Vila da Serra</strong></span></span></div>
+      <section id="consulta" class="home-consult home-container" aria-labelledby="consultation-title">
+        <div class="consult-intro" data-reveal>
+          <h2 id="consultation-title">Como funciona a consulta?</h2>
+          <p>A consulta com o Dr. Lúcio geralmente dura <em>em torno de uma hora</em>, para conversar sobre suas queixas e compreender sua história, sua saúde e sua rotina.</p>
+          <a class="consultation-link" href="#medico">Conheça o médico <Icon name="arrow" /></a>
         </div>
+        <ol class="consult-path" aria-label="Assuntos da conversa, na ordem em que costumam aparecer" data-reveal>
+          <li><h3>Suas queixas e sua história</h3><p>A conversa começa pelo que motivou a consulta e considera acontecimentos atuais e aspectos da sua trajetória, para compreender como essas questões se relacionam com sua vida.</p></li>
+          <li><h3>Outros tratamentos e medicamentos</h3><p>Também são considerados medicamentos em uso e tratamentos com outras especialidades, como parte da avaliação do que você está vivendo.</p></li>
+          <li><h3>Hábitos, sono e rotina</h3><p>A conversa inclui sono, atividade física e hábitos do dia a dia, para entender melhor o contexto de cada pessoa.</p></li>
+        </ol>
       </section>
       <section id="medico" class="home-doctor home-container" aria-labelledby="doctor-title">
         <figure class="home-portrait"><img src="/assets/dr-lucio-800.webp" srcset="/assets/dr-lucio-480.webp 480w, /assets/dr-lucio-800.webp 800w, /assets/dr-lucio-1200.webp 1200w" sizes="(max-width: 760px) 100vw, 440px" width="800" height="1077" alt="Dr. Lúcio Moreira sorrindo, sentado à mesa." loading="lazy" decoding="async" /></figure>
@@ -151,6 +152,26 @@ const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...
       window.addEventListener('resize', scheduleParallax, { passive: true });
       reducedMotion.addEventListener('change', scheduleParallax);
       updateParallax();
+      // Percurso da consulta: a linha se preenche com a rolagem e cada ponto acende ao chegar ao centro da tela.
+      const path = document.querySelector<HTMLElement>('.consult-path');
+      if (path) {
+        const steps = [...path.querySelectorAll<HTMLElement>('li')];
+        let pathFrame = 0;
+        const updatePath = () => {
+          cancelAnimationFrame(pathFrame);
+          pathFrame = requestAnimationFrame(() => {
+            const box = path.getBoundingClientRect();
+            const center = innerHeight * 0.55;
+            const lastDot = steps[steps.length - 1].offsetTop + 16;
+            const progress = Math.max(0, Math.min(lastDot - 16, center - box.top - 16));
+            path.style.setProperty('--consult-progress', `${progress}px`);
+            steps.forEach(step => step.classList.toggle('is-lit', box.top + step.offsetTop + 16 <= center));
+          });
+        };
+        addEventListener('scroll', updatePath, { passive: true });
+        addEventListener('resize', updatePath, { passive: true });
+        updatePath();
+      }
       // Carrossel de depoimentos: setas avançam um cartão; ao chegar ao fim, volta ao início.
       const track = document.querySelector<HTMLElement>('.review-track');
       if (track) {

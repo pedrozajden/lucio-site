@@ -160,3 +160,53 @@
   .area-item.area-active h3{font-size:21px}
   .area-item .area-description{margin:12px 0 14px}
 }
+
+/* Áreas de atuação: cartões da mesma altura e ícone fixo no canto superior esquerdo */
+.areas-grid{grid-auto-rows:1fr}
+.area-item .area-copy{align-items:start}
+.area-item .area-symbol{align-self:start}
+.area-item.area-active h3{align-self:start;padding-top:4px}
+
+/* Fotos do Dr. Lúcio com saturação um pouco maior */
+.hero-picture img,.home-portrait img{filter:saturate(1.2)}
+
+/* Como funciona a consulta: percurso aberto, sem moldura */
+.home-consult{display:grid;grid-template-columns:.9fr 1.1fr;gap:88px;align-items:start;padding:104px 0 96px}
+.consult-intro{position:sticky;top:calc(var(--shared-header-height,112px) + 48px)}
+.consult-intro h2{margin:0 0 22px;text-wrap:balance;font-family:Gotu,Georgia,serif;font-weight:400;font-size:clamp(32px,2.8vw,42px);line-height:1.25;color:#243c50}
+.consult-intro p{margin:0;max-width:440px;font-size:18px;line-height:1.75;color:#45606f}
+.consult-intro em{font-family:Gotu,Georgia,serif;font-style:normal;font-size:1.3em;line-height:1;color:#2f6188;white-space:nowrap}
+.consult-intro .consultation-link{margin-top:30px}
+.consult-path{position:relative;margin:0;padding:0;list-style:none}
+.consult-path li{position:relative;padding:0 0 40px 46px}
+.consult-path li:last-child{padding-bottom:0}
+.consult-path li::before{content:"";position:absolute;left:0;top:9px;width:13px;height:13px;border-radius:50%;border:2px solid #386d92;background:#fff;box-shadow:0 0 0 6px #edf3f7}
+.consult-path li:not(:last-child)::after{content:"";position:absolute;left:7px;top:30px;bottom:6px;width:1px;background:linear-gradient(#a2b5c4,#d5e1ea)}
+.consult-path h3{margin:0 0 8px;font-family:Gotu,Georgia,serif;font-weight:400;font-size:23px;line-height:1.35;color:#243c50}
+.consult-path p{margin:0;max-width:560px;font-size:16px;line-height:1.75;color:#4a6274}
+@media(max-width:1100px){.home-consult{gap:56px}}
+@media(max-width:760px){
+  .home-consult{grid-template-columns:1fr;gap:36px;padding:64px 0 56px}
+  .consult-intro{position:static}
+  .consult-intro h2{font-size:29px;margin-bottom:16px}
+  .consult-intro p{font-size:16px}
+  .consult-intro .consultation-link{margin-top:22px}
+  .consult-path li{padding:0 0 30px 38px}
+  .consult-path li::before{width:11px;height:11px;top:8px}
+  .consult-path li:not(:last-child)::after{left:6px;top:27px}
+  .consult-path h3{font-size:20px}
+  .consult-path p{font-size:15px}
+}
+
+/* Detalhes de destaque do percurso da consulta */
+.home-consult{position:relative;isolation:isolate;--consult-blue:#2a7bc0}
+.home-consult::before{content:"";position:absolute;z-index:-1;right:-6%;top:6%;width:min(620px,48vw);aspect-ratio:71.86/54.8;background:url('/assets/monograma.svg') no-repeat center/contain;opacity:.07;pointer-events:none}
+.consult-intro em{padding:0 .06em;background:linear-gradient(transparent 82%,#e1edf7 82%,#e1edf7 94%,transparent 94%)}
+.consult-path li:not(:last-child)::after{background:#dbe6ee}
+.consult-path::after{content:"";position:absolute;left:7px;top:16px;width:1px;height:var(--consult-progress,0px);background:linear-gradient(var(--consult-blue),#7fb3dc);transition:height .2s linear}
+.consult-path li::before{z-index:1;border-color:var(--consult-blue);background:radial-gradient(circle,#fff 0 45%,#fff 46%);box-shadow:0 0 0 6px #2a7bc014;transition:background .4s,box-shadow .4s,transform .4s cubic-bezier(.22,.61,.36,1)}
+.consult-path li.is-lit::before{background:radial-gradient(circle,var(--consult-blue) 0 38%,#fff 42%);box-shadow:0 0 0 7px #2a7bc026,0 4px 12px #2a7bc033;transform:scale(1.08)}
+.consult-path h3{transition:color .4s}
+.consult-path li.is-lit h3{color:#1f4f74}
+@media(max-width:760px){.home-consult::before{width:80vw;right:-20%;top:auto;bottom:4%;opacity:.06}.consult-path::after{left:6px;top:14px}}
+@media(prefers-reduced-motion:reduce){.consult-path::after,.consult-path li::before,.consult-path h3{transition:none}}

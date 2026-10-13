@@ -336,3 +336,6 @@ p{text-wrap:pretty}
 
 @media(max-width:360px){.cond-container{width:calc(100% - 32px)}.cond-hero h1{font-size:30px}.cond-credentials{grid-template-columns:1fr}.cond-credentials li{flex-direction:row;padding-left:0}.cond-credentials li+li{border-left:0;border-top:1px solid #ffffff1f}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}.will-reveal{opacity:1;transform:none}}
+
+/* Fotos do Dr. Lúcio com saturação um pouco maior */
+.cond-hero-frame img,.cond-portrait img{filter:saturate(1.2)}

@@ -154,3 +154,6 @@ Aprovada pelo usuário após prévias. Versão anterior preservada na branch `ba
 
 ### Ajustes de interação na Home — 13/10/2026
 Sem mudança de redação. Foto do médico visível ao chegar e fixa no centro da tela durante a seção; cartões de áreas com o título ao lado do ícone; depoimentos em carrossel com setas laterais (os três mais sóbrios abrem o carrossel, os demais seguem; “Ver mais depoimentos” retirado).
+
+### “Como funciona a consulta?” em percurso — 13/10/2026
+Mesma redação, sem os negritos internos; destaque visual apenas em “em torno de uma hora”. Retirada a faixa “Atendimento presencial e online · Consultório em Nova Lima · Vila da Serra”, repetida nas credenciais e no agendamento. Os três assuntos aparecem como percurso, na ordem da fala do médico. Também: cartões de áreas com a mesma altura e saturação um pouco maior nas fotos do Dr. Lúcio (sem alteração de texto).
