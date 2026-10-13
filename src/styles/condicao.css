@@ -108,9 +108,10 @@ p{text-wrap:pretty}
 .cond-toc a:hover{color:var(--c-ink);background:var(--c-paper)}
 .cond-toc a.is-current{background:var(--c-pale);color:var(--c-ink);font-weight:600}
 .cond-toc{transition:transform .35s var(--c-ease),opacity .25s,padding .25s,box-shadow .25s}
-.cond-toc.is-stuck{padding:4px;box-shadow:0 8px 22px #213d5317}
+/* A versão compacta não muda a altura: alterar a altura na fronteira desloca a página e faz o índice oscilar. */
+.cond-toc{overflow-anchor:none}
+.cond-toc.is-stuck{box-shadow:0 8px 22px #213d5317}
 .cond-toc.is-stuck .cond-toc-label{display:none}
-.cond-toc.is-stuck a{padding:6px 14px;font-size:13px}
 .cond-toc.is-hidden{transform:translateY(calc(-100% - var(--shared-header-height,112px)));opacity:0;pointer-events:none}
 
 /* Revelação suave ao rolar */
