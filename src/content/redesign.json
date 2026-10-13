@@ -1,5 +1,28 @@
 {
   "heroTitle": "Avaliação psiquiátrica da depressão",
+  "heroLead": "Tristeza persistente, perda de interesse e mudanças no humor, no sono e no apetite podem ser sinais de depressão. A avaliação psiquiátrica ajuda a compreender o quadro e a orientar o tratamento mais adequado.",
+  "credentials": [
+    {
+      "icon": "id",
+      "label": "Registro profissional",
+      "value": "CRM-MG 82117 · RQE 57394"
+    },
+    {
+      "icon": "cap",
+      "label": "Residência em Psiquiatria",
+      "value": "IPSEMG · 2023"
+    },
+    {
+      "icon": "building",
+      "label": "Residente externo",
+      "value": "IPq HC-FMUSP"
+    },
+    {
+      "icon": "video",
+      "label": "Atendimento",
+      "value": "Presencial e online"
+    }
+  ],
   "careIntro": "O acompanhamento psiquiátrico tem como foco a individualização do cuidado e a compreensão profunda das necessidades emocionais e clínicas de cada pessoa.",
   "careSteps": [
     {
@@ -32,14 +55,25 @@
     }
   ],
   "experience": "Sua experiência inclui consultas ambulatoriais, atendimento de urgências psiquiátricas e cuidado hospitalar a pacientes em estado grave.",
+  "doctorLead": "Com mais de cinco anos de atuação, o Dr. Lúcio Moreira já atendeu centenas de pacientes em hospitais, clínicas e ambulatórios, sempre com um olhar atento às necessidades individuais.",
   "experienceDetails": [
-    {"title": "Psiquiatra assistente", "text": "Atuou no Instituto Assistencial André Luiz e na Clínica Novos Rumos."},
-    {"title": "Ambulatórios municipais", "text": "Trabalho em ambulatórios dos municípios de Raposos e Nova Lima."},
-    {"title": "Dependência química", "text": "Atuação no tratamento da dependência química no Centro de Atenção Psicossocial Álcool e Drogas (CAPS AD) de Nova Lima-MG."}
+    {
+      "title": "Psiquiatra assistente",
+      "text": "Atuou no Instituto Assistencial André Luiz e na Clínica Novos Rumos."
+    },
+    {
+      "title": "Ambulatórios municipais",
+      "text": "Trabalho em ambulatórios dos municípios de Raposos e Nova Lima."
+    },
+    {
+      "title": "Dependência química",
+      "text": "Atuação no tratamento da dependência química no Centro de Atenção Psicossocial Álcool e Drogas (CAPS AD) de Nova Lima-MG."
+    }
   ],
   "emergency": "Em casos graves, ideias de morte ou pensamentos suicidas exigem atenção médica imediata.",
   "treatmentNote": "Na consulta com o Dr. Lúcio, é realizada uma avaliação para o diagnóstico psiquiátrico e a elaboração de um plano terapêutico individualizado. Ele também pode orientar tratamentos complementares, conforme as necessidades de cada paciente.",
   "treatmentScope": "As informações abaixo descrevem abordagens gerais de tratamento.",
+  "consultDuration": "A consulta geralmente dura em torno de uma hora.",
   "medication": [
     "Os antidepressivos atuam sobre os neurotransmissores cerebrais, como serotonina, noradrenalina e dopamina.",
     "Entre as classes mais prescritas estão os inibidores seletivos da recaptação de serotonina (ISRS) e os inibidores da recaptação de serotonina e noradrenalina (IRSN).",

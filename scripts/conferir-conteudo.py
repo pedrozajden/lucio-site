@@ -35,7 +35,7 @@ warning = norm(selected('data-copy','emergency').text_content())
 assert warning == copy['emergency']
 for phrase in ['Em casos graves','ideias de morte','pensamentos suicidas','atenção médica imediata']:
     assert phrase in warning and phrase in source_items[7].text_content()
-for key in ['careIntro','experience','treatmentNote','treatmentScope','psychotherapy']:
+for key in ['heroLead','doctorLead','consultDuration','experience','treatmentNote','treatmentScope','psychotherapy']:
     assert norm(selected('data-copy',key).text_content()) == norm(copy[key])
 for i, step in enumerate(copy['careSteps']):
     assert norm(selected('data-copy',f'careSteps.{i}').text_content()) == step['text']
@@ -60,12 +60,13 @@ assert len(page.xpath('//h1')) == 1
 assert norm(page.xpath('//h1')[0].text_content()) == copy['heroTitle']
 assert not page.xpath('//main//script | //iframe | //form')
 assert len(page.xpath('//header[contains(@class,"shared-header")]')) == 1
-assert len(page.xpath('//script')) == 1  # Somente o menu compartilhado local.
+assert len(page.xpath('//script')) == 2  # Menu compartilhado e índice/animações locais.
 assert all(not src or src.startswith('/_astro/') for src in page.xpath('//script/@src'))
 assert len(page.xpath('//main//img')) == 2
 assert not any('composicao-editorial' in src for src in page.xpath('//img/@src'))
+assert len(page.xpath('//*[contains(@class,"cond-credentials")]//li')) == len(copy['credentials'])
 assert page.xpath('//meta[@name="robots"]/@content') == ['noindex, nofollow']
-assert all(url.startswith('#') for url in page.xpath('//main//a/@href'))
+assert all(url.startswith('#') or url in ['/', '/#areas'] for url in page.xpath('//main//a/@href'))  # Trilha de navegação.
 for url in page.xpath('//a/@href'):
     path, _, fragment = url.partition('#')
     if not path:
