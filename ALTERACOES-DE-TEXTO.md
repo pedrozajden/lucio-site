@@ -151,3 +151,6 @@ Aprovada pelo usuário após prévias. Versão anterior preservada na branch `ba
 - **Títulos e navegação:** “Áreas de Atuação” → “Áreas de atuação” (Home, menu e rodapé), em frase normal como os demais títulos.
 - **Leitura e contraste:** textos de 13–15px aumentados levemente; rótulos cinza-claros escurecidos (Home e páginas de condição).
 - **Rolagem:** links internos (FAQ, índice, “Conheça o Dr. Lúcio” etc.) passam a rolar suavemente com duração proporcional à distância, respeitando a preferência de reduzir animações.
+
+### Ajustes de interação na Home — 13/10/2026
+Sem mudança de redação. Foto do médico visível ao chegar e fixa no centro da tela durante a seção; cartões de áreas com o título ao lado do ícone; depoimentos em carrossel com setas laterais (os três mais sóbrios abrem o carrossel, os demais seguem; “Ver mais depoimentos” retirado).

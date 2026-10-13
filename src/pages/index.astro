@@ -38,10 +38,10 @@ const mobileSmall = await getImage({ src: mobilePhoto, width: 600, format: 'webp
 const mobileLarge = await getImage({ src: mobilePhoto, width: 1000, format: 'webp', quality: 82 });
 const credentials = shared.credentials as { icon: 'id' | 'cap' | 'building' | 'video'; label: string; value: string }[];
 const differenceIcons = ['activity', 'conversation', 'science'] as const;
-// Depoimentos: três mais sóbrios em destaque (sem promessa de resultado); os demais em "ver mais".
+// Depoimentos: os três mais sóbrios abrem o carrossel (sem promessa de resultado); os demais vêm em seguida.
 const featuredOrder = [3, 6, 8];
 const featuredReviews = featuredOrder.map(index => home.reviews[index]);
-const otherReviews = home.reviews.filter((_, index) => !featuredOrder.includes(index));
+const carouselReviews = [...featuredReviews, ...home.reviews.filter((_, index) => !featuredOrder.includes(index))];
 const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...text.matchAll(/\*\*(.*?)\*\*/g)].map(match => match[1]));
 ---
 <!doctype html>
@@ -84,7 +84,7 @@ const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...
         </div>
       </section>
       <section id="medico" class="home-doctor home-container" aria-labelledby="doctor-title">
-        <figure class="home-portrait" data-reveal><img src="/assets/dr-lucio-800.webp" srcset="/assets/dr-lucio-480.webp 480w, /assets/dr-lucio-800.webp 800w, /assets/dr-lucio-1200.webp 1200w" sizes="(max-width: 760px) 100vw, 440px" width="800" height="1077" alt="Dr. Lúcio Moreira sorrindo, sentado à mesa." loading="lazy" decoding="async" /></figure>
+        <figure class="home-portrait"><img src="/assets/dr-lucio-800.webp" srcset="/assets/dr-lucio-480.webp 480w, /assets/dr-lucio-800.webp 800w, /assets/dr-lucio-1200.webp 1200w" sizes="(max-width: 760px) 100vw, 440px" width="800" height="1077" alt="Dr. Lúcio Moreira sorrindo, sentado à mesa." loading="lazy" decoding="async" /></figure>
         <div class="home-biography" data-reveal>
           <div class="doctor-heading"><h2 id="doctor-title">Dr. Lúcio Moreira</h2><p class="doctor-specialty">Médico psiquiatra</p><p class="doctor-registration">CRM-MG: 82117 <span aria-hidden="true">|</span> RQE: 57394</p></div>
           <div class="biography-text"><p>Com <strong>mais de cinco anos de atuação</strong>, o Dr. Lúcio Moreira já atendeu centenas de pacientes em <strong>hospitais, clínicas e ambulatórios</strong>, sempre com um olhar atento às necessidades individuais.</p></div>
@@ -110,11 +110,11 @@ const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...
       <section id="depoimentos" class="home-reviews home-reviews-cards" aria-labelledby="reviews-title">
         <div class="home-container">
           <div class="section-heading" data-reveal><h2 id="reviews-title">Depoimentos</h2><p class="reviews-subtitle">Palavras gentis de pacientes</p></div>
-          <ul class="review-cards" aria-label="Depoimentos em destaque">{featuredReviews.map(review => <li data-reveal><figure><blockquote><p>{review.text}</p></blockquote><figcaption>{review.author}</figcaption></figure></li>)}</ul>
-          <details class="reviews-more">
-            <summary><span class="reviews-more-closed">Ver mais depoimentos</span><span class="reviews-more-open">Mostrar menos</span><span class="reviews-more-toggle" aria-hidden="true"></span></summary>
-            <ul class="review-cards" aria-label="Outros depoimentos">{otherReviews.map(review => <li><figure><blockquote><p>{review.text}</p></blockquote><figcaption>{review.author}</figcaption></figure></li>)}</ul>
-          </details>
+          <div class="reviews-carousel">
+            <button type="button" class="reviews-arrow reviews-prev" data-review-step="-1" aria-label="Depoimentos anteriores"><Icon name="arrow" /></button>
+            <ul class="review-cards review-track" tabindex="0" aria-label="Depoimentos de pacientes">{carouselReviews.map((review, index) => <li aria-label={`Depoimento ${index + 1} de ${carouselReviews.length}`}><figure><blockquote><p>{review.text}</p></blockquote><figcaption>{review.author}</figcaption></figure></li>)}</ul>
+            <button type="button" class="reviews-arrow reviews-next" data-review-step="1" aria-label="Próximos depoimentos"><Icon name="arrow" /></button>
+          </div>
         </div>
       </section>
       <Duvidas />
@@ -151,6 +151,40 @@ const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...
       window.addEventListener('resize', scheduleParallax, { passive: true });
       reducedMotion.addEventListener('change', scheduleParallax);
       updateParallax();
+      // Carrossel de depoimentos: setas avançam um cartão; ao chegar ao fim, volta ao início.
+      const track = document.querySelector<HTMLElement>('.review-track');
+      if (track) {
+        const step = (direction: number) => {
+          const card = track.querySelector<HTMLElement>('li');
+          if (!card) return;
+          const distance = card.offsetWidth + parseFloat(getComputedStyle(track).columnGap || '0');
+          const max = track.scrollWidth - track.clientWidth - 2;
+          const behavior = reducedMotion.matches ? 'instant' : 'smooth';
+          if (direction > 0 && track.scrollLeft >= max) track.scrollTo({ left: 0, behavior });
+          else if (direction < 0 && track.scrollLeft <= 2) track.scrollTo({ left: track.scrollWidth, behavior });
+          else track.scrollBy({ left: direction * distance, behavior });
+        };
+        document.querySelectorAll<HTMLButtonElement>('[data-review-step]').forEach(button => button.addEventListener('click', () => step(Number(button.dataset.reviewStep))));
+        // A altura acompanha os cartões visíveis (evita espaço vazio quando um depoimento longo está fora de vista).
+        const cards = [...track.querySelectorAll<HTMLElement>('li')];
+        let fitting = 0;
+        const fit = () => {
+          cancelAnimationFrame(fitting);
+          fitting = requestAnimationFrame(() => {
+            const view = track.getBoundingClientRect();
+            const visible = cards.filter(card => { const box = card.getBoundingClientRect(); return box.right > view.left + 20 && box.left < view.right - 20; });
+            track.style.removeProperty('--row-h');
+            const tallest = Math.max(...visible.map(card => card.firstElementChild!.getBoundingClientRect().height));
+            track.style.setProperty('--row-h', `${Math.ceil(tallest)}px`);
+            track.style.height = `${Math.ceil(tallest) + 26}px`;
+          });
+        };
+        track.addEventListener('scroll', fit, { passive: true });
+        addEventListener('resize', fit, { passive: true });
+        addEventListener('load', fit);
+        fit();
+        track.addEventListener('keydown', event => { if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') { event.preventDefault(); step(event.key === 'ArrowRight' ? 1 : -1); } });
+      }
     </script>
   </body>
 </html>
