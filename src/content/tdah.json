@@ -1,11 +1,20 @@
 {
-  "heroLead": "Dificuldade em manter a atenção, esquecimentos frequentes, impulsividade e tendência à procrastinação podem ser sinais de TDAH, que pode persistir na vida adulta. A avaliação psiquiátrica ajuda a compreender o quadro e a orientar o tratamento.",
+  "heroLead": "Dificuldade em manter a atenção, esquecimentos frequentes, impulsividade e tendência à procrastinação, presentes desde a infância, podem ser sinais de TDAH, que pode persistir na vida adulta. A avaliação psiquiátrica ajuda a compreender o quadro e a orientar o tratamento.",
+  "signsIntro": [
+    "O TDAH é caracterizado por um padrão persistente de desatenção, hiperatividade e impulsividade. Esses sintomas estão presentes desde a infância e se manifestam de forma diferente em cada pessoa.",
+    "Eles não decorrem de falta de esforço ou interesse, mas de alterações na forma como o cérebro regula a atenção e o controle dos impulsos. Entre as manifestações mais comuns estão:"
+  ],
+  "definition": "O Transtorno de Déficit de Atenção e Hiperatividade (TDAH) é uma condição do neurodesenvolvimento que interfere na capacidade de manter o foco, controlar impulsos e regular o nível de atividade. Seus sintomas estão presentes desde a infância e podem persistir na vida adulta, impactando o desempenho acadêmico, profissional e as relações interpessoais.",
+  "diagnosis": [
+    "O diagnóstico do TDAH é clínico e depende de uma avaliação psiquiátrica detalhada, que considera o histórico de desenvolvimento do paciente para identificar se os sintomas estão presentes desde a infância, os relatos de familiares e, quando indicado, o uso de escalas e questionários específicos. É fundamental distinguir o TDAH de outras condições, como transtornos de ansiedade, depressão ou dificuldades de aprendizagem, que podem apresentar sintomas semelhantes.",
+    "Um diagnóstico preciso é o primeiro passo para um tratamento eficaz e para a construção de estratégias que favoreçam o desenvolvimento pessoal e profissional."
+  ],
   "psychotherapy": "A terapia comportamental e a Terapia Cognitivo-Comportamental (TCC) ajudam o paciente a compreender seu funcionamento mental, desenvolver estratégias de organização e gerenciamento do tempo, aprimorar o foco e lidar com frustrações cotidianas.",
   "routine": "Para adultos, ajustes na rotina, ambiente de trabalho e uso de ferramentas de produtividade contribuem para melhorar a performance e reduzir distrações.",
   "careSteps": [
     {
       "title": "Avaliação psiquiátrica",
-      "text": "Durante as consultas, são avaliadas as situações em que a desatenção e a impulsividade mais se manifestam, assim como seus impactos na vida acadêmica, profissional e pessoal."
+      "text": "Durante as consultas, são avaliadas a história dos sintomas desde a infância e as situações em que a desatenção e a impulsividade mais se manifestam, assim como seus impactos na vida acadêmica, profissional e pessoal."
     },
     {
       "title": "Plano terapêutico personalizado",

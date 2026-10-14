@@ -26,7 +26,7 @@ const sections: [string, string][] = [['sintomas', 'Sinais'], ['medico', 'O méd
     <div class="cond-container cond-signs-grid">
       <div class="cond-signs-intro" data-reveal>
         <h2 id="sintomas-titulo">Como o TDAH se manifesta</h2>
-        <div class="cond-prose" data-original="sintomasDiagnostico.0"><Fragment set:html={original.sintomasDiagnostico[0]} /></div>
+        <div class="cond-prose" data-copy="signsIntro">{content.signsIntro.map(paragraph => <p set:html={emphasize(paragraph, ['presentes desde a infância'])} />)}</div>
       </div>
       <div class="cond-signs-body" data-reveal>
         <ul class="cond-symptoms" aria-label="Manifestações mais comuns do TDAH" data-original="sintomasDiagnostico.1">
@@ -47,11 +47,11 @@ const sections: [string, string][] = [['sintomas', 'Sinais'], ['medico', 'O méd
     <div class="cond-container cond-understand-grid">
       <div class="cond-definition" data-reveal>
         <h2 id="tdah-titulo">O que é o TDAH?</h2>
-        <div class="cond-prose cond-prose-large" data-original="oQueE.0"><Fragment set:html={original.oQueE[0]} /></div>
+        <div class="cond-prose cond-prose-large" data-copy="definition"><p set:html={emphasize(content.definition, ['presentes desde a infância'])} /></div>
       </div>
       <aside id="diagnostico" class="cond-diagnosis" data-reveal aria-labelledby="diagnostico-titulo">
         <div class="cond-diagnosis-heading"><span class="cond-round-icon"><Icon name="conversation" /></span><h3 id="diagnostico-titulo">O diagnóstico é clínico</h3></div>
-        <div class="cond-prose" data-original="sintomasDiagnostico.4+6"><Fragment set:html={original.sintomasDiagnostico[4]} /><Fragment set:html={original.sintomasDiagnostico[6]} /></div>
+        <div class="cond-prose" data-copy="diagnosis">{content.diagnosis.map(paragraph => <p set:html={emphasize(paragraph, ['presentes desde a infância'])} />)}</div>
       </aside>
     </div>
   </section>

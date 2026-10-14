@@ -160,3 +160,15 @@ Mesma redação, sem os negritos internos; destaque visual apenas em “em torno
 
 ### Depoimentos de volta ao estilo anterior — 13/10/2026
 A pedido do usuário, os depoimentos voltam ao formato anterior (um por vez sobre a foto, ordem e subtítulo originais “Palavras gentis de pacientes satisfeitos”), agora com setas laterais, sem contador e com avanço automático a cada 5 segundos (pausa com o mouse ou o foco). Os cartões e o carrossel de três colunas foram retirados.
+
+## Ajustes pedidos pelo usuário — 14/10/2026
+
+- **Home, diferencial “Atuação em múltiplos contextos”:** “…incluindo vivência em perícia psiquiátrica e psiquiatria forense.” → “…incluindo vivência em perícia psiquiátrica.” (retirada a psiquiatria forense, a pedido do usuário).
+- **FAQ, horários:** “A secretária atende para agendamentos de segunda a sexta-feira, das 8h às 18h. As consultas com o Dr. Lúcio Moreira acontecem às segundas, quartas e sextas-feiras, das 8h às 18h.” → “Os atendimentos acontecem de segunda a sexta-feira, das 8h às 18h. A secretária também atende para agendamentos de segunda a sexta-feira, das 8h às 18h.” Informação atualizada pelo usuário; diverge do FAQ do site antigo (segundas, quartas e sextas). O horário das consultas (8h–18h) foi mantido do original; confirmar.
+- **TDAH, “desde a infância”, a pedido do usuário (redação nova, revisão médica pendente):**
+  - Abertura: acrescentado “, presentes desde a infância,” após os sinais.
+  - “Como o TDAH se manifesta” (ID028, 1º parágrafo, antes literal): “…que se manifesta de forma diferente em cada pessoa. Esses sintomas não decorrem…” → “O TDAH é caracterizado por um padrão persistente de desatenção, hiperatividade e impulsividade. Esses sintomas estão presentes desde a infância e se manifestam de forma diferente em cada pessoa.” / “Eles não decorrem de falta de esforço ou interesse…”.
+  - “O que é o TDAH?” (ID027, antes literal): “Embora seja frequentemente identificado na infância, o TDAH pode persistir na vida adulta e impactar…” → “Seus sintomas estão presentes desde a infância e podem persistir na vida adulta, impactando…”.
+  - Diagnóstico (ID028, antes literal): “…considera o histórico de desenvolvimento do paciente, os relatos…” → “…considera o histórico de desenvolvimento do paciente para identificar se os sintomas estão presentes desde a infância, os relatos…”.
+  - Acompanhamento, avaliação: “são avaliadas as situações em que…” → “são avaliadas a história dos sintomas desde a infância e as situações em que…”.
+  - Os textos originais continuam em `src/content/originais/tdah.json`.
