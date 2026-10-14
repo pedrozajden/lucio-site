@@ -172,3 +172,6 @@ A pedido do usuário, os depoimentos voltam ao formato anterior (um por vez sobr
   - Diagnóstico (ID028, antes literal): “…considera o histórico de desenvolvimento do paciente, os relatos…” → “…considera o histórico de desenvolvimento do paciente para identificar se os sintomas estão presentes desde a infância, os relatos…”.
   - Acompanhamento, avaliação: “são avaliadas as situações em que…” → “são avaliadas a história dos sintomas desde a infância e as situações em que…”.
   - Os textos originais continuam em `src/content/originais/tdah.json`.
+
+### Cartões da Home — TDAH e Transtorno bipolar — 14/10/2026
+A pedido do usuário, com nomes populares pesquisados em fontes de divulgação. TDAH: subtítulo “(déficit de atenção)”; “Desatenção, hiperatividade e impulsividade.” → “Falta de foco, desorganização, impulsividade e dificuldade de concluir tarefas.” (termos da lista de sintomas de ID028). Transtorno bipolar: subtítulo “(bipolaridade)”; “Episódios de mania ou hipomania e períodos de depressão.” → “Oscilações intensas de humor e energia, com fases de euforia ou irritabilidade e períodos de depressão.” (da abertura da página). TDAH também passou a ser o primeiro na ordem do menu e dos cartões.

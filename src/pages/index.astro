@@ -20,8 +20,8 @@ import '../styles/home-autoridade.css';
 const areaPreviews = [
   { title: 'Depressão', text: 'Sintomas, diagnóstico e abordagens de tratamento.' },
   { title: 'Ansiedade generalizada', text: 'Preocupação excessiva e persistente e seus impactos na rotina.' },
-  { title: 'TDAH', text: 'Desatenção, hiperatividade e impulsividade.' },
-  { title: 'Transtorno bipolar', text: 'Episódios de mania ou hipomania e períodos de depressão.' },
+  { title: 'TDAH', alias: 'déficit de atenção', text: 'Falta de foco, desorganização, impulsividade e dificuldade de concluir tarefas.' },
+  { title: 'Transtorno bipolar', alias: 'bipolaridade', text: 'Oscilações intensas de humor e energia, com fases de euforia ou irritabilidade e períodos de depressão.' },
   { title: 'Transtorno de personalidade borderline', text: 'Instabilidade emocional intensa, impulsividade e dificuldades nos relacionamentos.' },
   { title: 'Esquizofrenia', text: 'Alterações no pensamento, na percepção da realidade e no comportamento.' },
 ];
@@ -99,7 +99,7 @@ const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...
       <section id="areas" class="home-areas" aria-labelledby="areas-title"><div class="home-container areas-panel" data-reveal>
         <div class="section-heading"><p class="section-kicker">Psiquiatra</p><h2 id="areas-title">Áreas de atuação</h2></div>
         <div class="areas-grid">{areaOrder.map(index => [areaPreviews[index], index] as const).map(([area, index]) => <article class:list={['area-item', `area-${index}`, { 'area-active': pageForArea(index) }]} aria-label={home.areas[index]}>
-          <div class="area-copy"><span class="area-symbol" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" set:html={areaIcons[index]} /></span><h3>{area.title}</h3>
+          <div class="area-copy"><span class="area-symbol" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" set:html={areaIcons[index]} /></span><h3>{area.title}{'alias' in area && <span class="area-alias">({area.alias})</span>}</h3>
             <p class="area-description">{area.text}</p>
             {pageForArea(index) ? <a href={pageForArea(index)!.href}>{pageForArea(index)!.cta} <span class="area-arrow"><Icon name="arrow" /></span></a> : <span class="area-pending">Página em preparação</span>}
           </div>
