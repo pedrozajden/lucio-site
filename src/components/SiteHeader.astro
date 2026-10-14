@@ -1,6 +1,6 @@
 ---
 import home from '../content/home.json';
-import { pageForArea, type ConditionKey } from '../content/condicoes';
+import { areaOrder, pageForArea, type ConditionKey } from '../content/condicoes';
 interface Props { active: 'home' | ConditionKey; scheduleHref?: string; }
 const { active, scheduleHref = '#contato' } = Astro.props;
 const external = scheduleHref.startsWith('http');
@@ -19,7 +19,7 @@ const onCondition = active !== 'home';
       <details class:list={['shared-areas', { 'shared-current-area': onCondition }]}>
         <summary>Áreas de atuação <span class="shared-chevron" aria-hidden="true"></span></summary>
         <ul class="shared-area-list">
-          {home.areas.map((area, index) => { const page = pageForArea(index); return <li>{page ? <a href={page.href} aria-current={active === page.key ? 'page' : undefined}>{area}</a> : <span aria-disabled="true">{area}<small>Em breve</small></span>}</li>; })}
+          {areaOrder.map(index => [home.areas[index], index] as const).map(([area, index]) => { const page = pageForArea(index); return <li>{page ? <a href={page.href} aria-current={active === page.key ? 'page' : undefined}>{area}</a> : <span aria-disabled="true">{area}<small>Em breve</small></span>}</li>; })}
         </ul>
       </details>
       <span class="shared-separator" aria-hidden="true">·</span>
@@ -34,7 +34,7 @@ const onCondition = active !== 'home';
         <details class:list={['shared-areas', { 'shared-current-area': onCondition }]}>
           <summary>Áreas de atuação <span class="shared-chevron" aria-hidden="true"></span></summary>
           <ul class="shared-area-list">
-            {home.areas.map((area, index) => { const page = pageForArea(index); return <li>{page ? <a href={page.href} aria-current={active === page.key ? 'page' : undefined}>{area}</a> : <span aria-disabled="true">{area}<small>Em breve</small></span>}</li>; })}
+            {areaOrder.map(index => [home.areas[index], index] as const).map(([area, index]) => { const page = pageForArea(index); return <li>{page ? <a href={page.href} aria-current={active === page.key ? 'page' : undefined}>{area}</a> : <span aria-disabled="true">{area}<small>Em breve</small></span>}</li>; })}
           </ul>
         </details>
         <a href="#duvidas">FAQ</a>

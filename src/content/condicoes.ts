@@ -14,3 +14,6 @@ export const pageForArea = (area: number) => conditionPages.find(page => page.ar
 
 // Destino de todos os botões de agendamento das páginas de condição e do WhatsApp flutuante (informado pelo usuário em 13/10/2026).
 export const scheduleUrl = 'https://api.cqc.onpromedia.com.br/t/2F04D22F';
+
+// Ordem de exibição das áreas (posições em home.json → areas) no menu e nos cartões da Home: TDAH primeiro.
+export const areaOrder = [2, 0, 1, 3, 4, 5];
