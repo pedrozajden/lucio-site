@@ -175,3 +175,4 @@ A pedido do usuário, os depoimentos voltam ao formato anterior (um por vez sobr
 
 ### Cartões da Home — TDAH e Transtorno bipolar — 14/10/2026
 A pedido do usuário, com nomes populares pesquisados em fontes de divulgação. TDAH: subtítulo “(déficit de atenção)”; “Desatenção, hiperatividade e impulsividade.” → “Falta de foco, desorganização, impulsividade e dificuldade de concluir tarefas.” (termos da lista de sintomas de ID028). Transtorno bipolar: subtítulo “(bipolaridade)”; “Episódios de mania ou hipomania e períodos de depressão.” → “Oscilações intensas de humor e energia, com fases de euforia ou irritabilidade e períodos de depressão.” (da abertura da página). TDAH também passou a ser o primeiro na ordem do menu e dos cartões.
+- **Cartão de Depressão (Home), texto do usuário — 14/10/2026:** “Sintomas, diagnóstico e abordagens de tratamento.” → “Tristeza persistente, desânimo, cansaço e perda de interesse pelas atividades do dia a dia.” Sem subtítulo.
