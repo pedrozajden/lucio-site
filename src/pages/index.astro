@@ -68,7 +68,11 @@ const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...
         <div class="hero-picture" data-parallax="hero"><picture><source media="(max-width: 760px)" srcset={mobileHero.srcSet.attribute} sizes="100vw" type="image/webp" /><Image src={banner} width={1920} height={1080} widths={[768, 1280, 1920]} sizes="100vw" alt="Dr. Lúcio Moreira, de jaleco branco e camisa azul." format="webp" quality={85} loading="eager" fetchpriority="high" /></picture></div>
         <div class="home-container hero-layout"><div class="hero-copy">
           <h1 id="hero-title">Dr. Lúcio Moreira</h1>
-          <p class="hero-specialty"><span>Médico psiquiatra em Belo Horizonte e Nova Lima</span>{' '}<span class="hero-specialty-mode">Atendimento presencial e online</span></p>
+          <p class="hero-specialty"><span class="hero-role">Médico psiquiatra</span></p>
+          <ul class="hero-modes" aria-label="Formas de atendimento">
+            <li><Icon name="video" /><span>Atendimento online</span></li>
+            <li><Icon name="pin" /><span>Presencial em Belo Horizonte e Nova Lima</span></li>
+          </ul>
           <div class="hero-message"><p class="hero-motto">Cuidar da mente é um ato de coragem.</p><p>Aqui, cada paciente é ouvido, compreendido e tratado com empatia e conhecimento técnico.</p></div>
           <div class="hero-actions"><a class="home-button" href={scheduleUrl} target="_blank" rel="noopener">Agende uma consulta <Icon name="arrow" /></a><a class="hero-secondary" href="#consulta">Como funciona a consulta <span aria-hidden="true">↓</span></a></div>
         </div></div>

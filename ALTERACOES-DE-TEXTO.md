@@ -183,3 +183,6 @@ Sem mudança no texto visível das páginas. Aprovado pelo usuário: novos títu
 - Títulos no padrão “Psiquiatra para {condição} em BH e Nova Lima | Dr. Lúcio Moreira” (TDAH, depressão, ansiedade, transtorno bipolar, transtorno borderline, esquizofrenia). Antes: “Avaliação psiquiátrica d… | Dr. Lúcio Moreira”.
 - Descrições no padrão “Avaliação e tratamento d{e/a/o} {condição} com o psiquiatra Dr. Lúcio Moreira, em Nova Lima (BH) e online. Sintomas, diagnóstico e acompanhamento.”
 Também: endereço canônico, Open Graph (imagem `public/assets/og-dr-lucio.jpg`), dados estruturados (Physician com CRM/RQE e endereço, MedicalWebPage, BreadcrumbList, FAQPage com o FAQ já publicado), `robots.txt`, `sitemap.xml` e página 404. O `noindex` foi mantido (decisão do usuário). A tag do Google Ads passa a ser baixada após o carregamento da página (aprovado pelo usuário).
+
+### Abertura da Home — subtítulo e formas de atendimento — 15/10/2026
+A pedido do usuário (opção A entre prévias): “Médico psiquiatra em Belo Horizonte e Nova Lima / Atendimento presencial e online” → “Médico psiquiatra” + lista “Atendimento online” e “Presencial em Belo Horizonte e Nova Lima”, com o mesmo peso e o online primeiro. Lema “Cuidar da mente é um ato de coragem.” em uma linha a partir de ~1024 px.
