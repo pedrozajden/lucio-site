@@ -191,3 +191,6 @@
 
 /* Nome popular abaixo do título do cartão */
 .area-alias{display:block;margin-top:2px;font-family:Montserrat,Arial,sans-serif;font-size:14px;line-height:1.4;color:#5f7586;letter-spacing:0}
+
+/* A marca d'água "LM" do percurso não pode alargar a página no celular. */
+.home-consult{overflow-x:clip}

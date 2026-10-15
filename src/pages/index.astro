@@ -37,7 +37,7 @@ const areaIcons = [
   '<path d="M19.5 27v-4h3a2 2 0 0 0 2-2v-3.2l2-.8-2-4.2A9.5 9.5 0 1 0 9.5 21.5V27"/><circle cx="15.5" cy="13" r="2.5"/>',
 ];
 // Foto própria para o celular, com o Dr. Lúcio centralizado.
-const mobileHero = await getImage({ src: mobilePhoto, widths: [480, 640, 800, 1000], format: 'webp', quality: 82 });
+const mobileHero = await getImage({ src: mobilePhoto, widths: [480, 640, 720, 800, 1000], format: 'webp', quality: 74 });
 // Mesmos parâmetros do <Image> da abertura, para o pré-carregamento usar exatamente os mesmos arquivos.
 const desktopHero = await getImage({ src: banner, width: 1920, height: 1080, widths: [768, 1280, 1920], format: 'webp', quality: 85 });
 const credentials = shared.credentials as { icon: 'id' | 'cap' | 'building' | 'video'; label: string; value: string }[];
@@ -118,7 +118,7 @@ const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...
           <div class="section-heading"><h2 id="reviews-title">Depoimentos</h2><p class="reviews-subtitle">Palavras gentis de pacientes satisfeitos</p></div>
           <div class="reviews-stage">
             <button type="button" class="review-arrow review-arrow-prev" data-review-direction="-1" aria-label="Depoimento anterior"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
-            <div class="reviews-slider" role="region" aria-roledescription="carrossel" aria-label="Depoimentos capturados no site anterior" tabindex="0">{home.reviews.map((review, index) => <figure class="review-slide" role="group" aria-roledescription="depoimento" aria-label={`${index + 1} de ${home.reviews.length}`}><blockquote><p>{review.text}</p></blockquote><figcaption>{review.author}</figcaption></figure>)}</div>
+            <div class="reviews-slider" role="region" aria-roledescription="carrossel" aria-label="Depoimentos capturados no site anterior" tabindex="0">{home.reviews.map((review, index) => <figure class="review-slide" aria-label={`Depoimento ${index + 1} de ${home.reviews.length}`}><blockquote><p>{review.text}</p></blockquote><figcaption>{review.author}</figcaption></figure>)}</div>
             <button type="button" class="review-arrow review-arrow-next" data-review-direction="1" aria-label="Próximo depoimento"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
           </div>
         </div>
