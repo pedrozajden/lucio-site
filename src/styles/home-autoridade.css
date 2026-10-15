@@ -194,3 +194,8 @@
 
 /* A marca d'água "LM" do percurso não pode alargar a página no celular. */
 .home-consult{overflow-x:clip}
+
+/* Foto da abertura no celular (só a Home): saturação 10% menor e 10% mais próxima. */
+@media(max-width:760px){
+  .home-hero .hero-picture img{filter:saturate(1.08);transform:scale(1.1);transform-origin:50% 30%}
+}

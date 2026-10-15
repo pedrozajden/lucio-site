@@ -93,6 +93,15 @@ const onCondition = active !== 'home' && active !== 'none';
     .shared-schedule{min-width:0;min-height:42px;padding:11px 20px;font-size:12px}
   }
   @media(max-width:600px){:global(:root){--shared-header-height:72px}.shared-header-row{width:calc(100% - 32px);gap:8px}.shared-brand img{width:clamp(148px,48vw,230px)}.shared-schedule{padding:10px 15px;min-height:39px;font-size:11px}.shared-desktop-label{display:none}.shared-mobile-label{display:inline}.shared-mobile-menu>summary{width:36px}.shared-mobile-panel{left:16px;right:16px}}
+  /* Celular e tablet: sem o botão de agendar no cabeçalho (há o WhatsApp flutuante e os botões da página); menu sanduíche um pouco maior. */
+  @media(max-width:1050px){
+    .shared-schedule{display:none}
+    .shared-header-row{grid-template-columns:minmax(0,1fr) auto}
+    .shared-mobile-menu>summary{width:48px;height:48px}
+    .shared-menu-icon{width:26px;gap:6px}
+    .shared-menu-icon i{height:1.5px;border-radius:1px}
+  }
+  @media(max-width:600px){.shared-mobile-menu>summary{width:46px}}
   @media(prefers-reduced-motion:reduce){.shared-schedule{transition:none}}
 </style>
 <script>
