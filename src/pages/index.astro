@@ -13,6 +13,7 @@ import Agendar from '../components/fechamento/Agendar.astro';
 import Rodape from '../components/fechamento/Rodape.astro';
 import WhatsAppFlutuante from '../components/fechamento/WhatsAppFlutuante.astro';
 import GoogleTag from '../components/GoogleTag.astro';
+import SeoHead from '../components/SeoHead.astro';
 import { emphasize } from '../utils/emphasis';
 import '../styles/home.css';
 import '../styles/home-refinements.css';
@@ -36,8 +37,9 @@ const areaIcons = [
   '<path d="M19.5 27v-4h3a2 2 0 0 0 2-2v-3.2l2-.8-2-4.2A9.5 9.5 0 1 0 9.5 21.5V27"/><circle cx="15.5" cy="13" r="2.5"/>',
 ];
 // Foto própria para o celular, com o Dr. Lúcio centralizado.
-const mobileSmall = await getImage({ src: mobilePhoto, width: 600, format: 'webp', quality: 82 });
-const mobileLarge = await getImage({ src: mobilePhoto, width: 1000, format: 'webp', quality: 82 });
+const mobileHero = await getImage({ src: mobilePhoto, widths: [480, 640, 800, 1000], format: 'webp', quality: 82 });
+// Mesmos parâmetros do <Image> da abertura, para o pré-carregamento usar exatamente os mesmos arquivos.
+const desktopHero = await getImage({ src: banner, width: 1920, height: 1080, widths: [768, 1280, 1920], format: 'webp', quality: 85 });
 const credentials = shared.credentials as { icon: 'id' | 'cap' | 'building' | 'video'; label: string; value: string }[];
 const differenceIcons = ['activity', 'conversation', 'science'] as const;
 const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...text.matchAll(/\*\*(.*?)\*\*/g)].map(match => match[1]));
@@ -52,7 +54,10 @@ const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...
     <title>Dr. Lúcio Moreira | Psiquiatra em BH e Nova Lima</title>
     <link rel="icon" type="image/svg+xml" href="/assets/monograma.svg" />
     <link rel="preload" href="/assets/montserrat-regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/assets/gotu-regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/assets/gotu-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" as="image" type="image/webp" media="(max-width: 760px)" imagesrcset={mobileHero.srcSet.attribute} imagesizes="100vw" fetchpriority="high" />
+    <link rel="preload" as="image" type="image/webp" media="(min-width: 761px)" imagesrcset={desktopHero.srcSet.attribute} imagesizes="100vw" fetchpriority="high" />
+    <SeoHead title="Dr. Lúcio Moreira | Psiquiatra em BH e Nova Lima" description="O Dr. Lúcio Moreira é psiquiatra em Belo Horizonte e Nova Lima, oferecendo atendimento acolhedor. Agende sua consulta e cuide da sua saúde mental!" page="home" />
     <GoogleTag />
   </head>
   <body id="inicio">
@@ -60,7 +65,7 @@ const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...
     <SiteHeader active="home" scheduleHref={scheduleUrl} />
     <main id="conteudo">
       <section class="home-hero" aria-labelledby="hero-title">
-        <div class="hero-picture" data-parallax="hero"><picture><source media="(max-width: 760px)" srcset={`${mobileSmall.src} 600w, ${mobileLarge.src} 1000w`} sizes="100vw" type="image/webp" /><Image src={banner} width={1920} height={1080} widths={[768, 1280, 1920]} sizes="100vw" alt="Dr. Lúcio Moreira, de jaleco branco e camisa azul." format="webp" quality={85} loading="eager" fetchpriority="high" /></picture></div>
+        <div class="hero-picture" data-parallax="hero"><picture><source media="(max-width: 760px)" srcset={mobileHero.srcSet.attribute} sizes="100vw" type="image/webp" /><Image src={banner} width={1920} height={1080} widths={[768, 1280, 1920]} sizes="100vw" alt="Dr. Lúcio Moreira, de jaleco branco e camisa azul." format="webp" quality={85} loading="eager" fetchpriority="high" /></picture></div>
         <div class="home-container hero-layout"><div class="hero-copy">
           <h1 id="hero-title">Dr. Lúcio Moreira</h1>
           <p class="hero-specialty"><span>Médico psiquiatra em Belo Horizonte e Nova Lima</span>{' '}<span class="hero-specialty-mode">Atendimento presencial e online</span></p>
@@ -84,7 +89,7 @@ const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...
         </ol>
       </section>
       <section id="medico" class="home-doctor home-container" aria-labelledby="doctor-title">
-        <figure class="home-portrait"><img src="/assets/dr-lucio-800.webp" srcset="/assets/dr-lucio-480.webp 480w, /assets/dr-lucio-800.webp 800w, /assets/dr-lucio-1200.webp 1200w" sizes="(max-width: 760px) 100vw, 440px" width="800" height="1077" alt="Dr. Lúcio Moreira sorrindo, sentado à mesa." loading="lazy" decoding="async" /></figure>
+        <figure class="home-portrait"><img src="/assets/dr-lucio-800.webp" srcset="/assets/dr-lucio-480.webp 480w, /assets/dr-lucio-640.webp 640w, /assets/dr-lucio-800.webp 800w, /assets/dr-lucio-1200.webp 1200w" sizes="(max-width: 760px) min(364px, calc(100vw - 48px)), 440px" width="800" height="1077" alt="Dr. Lúcio Moreira sorrindo, sentado à mesa." loading="lazy" decoding="async" /></figure>
         <div class="home-biography" data-reveal>
           <div class="doctor-heading"><h2 id="doctor-title">Dr. Lúcio Moreira</h2><p class="doctor-specialty">Médico psiquiatra</p><p class="doctor-registration">CRM-MG: 82117 <span aria-hidden="true">|</span> RQE: 57394</p></div>
           <div class="biography-text"><p>Com <strong>mais de cinco anos de atuação</strong>, o Dr. Lúcio Moreira já atendeu centenas de pacientes em <strong>hospitais, clínicas e ambulatórios</strong>, sempre com um olhar atento às necessidades individuais.</p></div>
@@ -136,12 +141,14 @@ const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...
       const layers = [...document.querySelectorAll<HTMLElement>('[data-parallax]')];
       let scheduled = false;
       function updateParallax() {
-        for (const layer of layers) {
+        // Lê todas as medidas antes de alterar estilos, para não forçar recálculos de layout.
+        const viewport = window.innerHeight;
+        const frames = layers.map(layer => ({ layer, bounds: layer.parentElement!.getBoundingClientRect() }));
+        for (const { layer, bounds } of frames) {
           if (reducedMotion.matches) { layer.style.transform = ''; layer.style.opacity = ''; continue; }
-          const bounds = layer.parentElement!.getBoundingClientRect();
-          if (bounds.bottom < 0 || bounds.top > window.innerHeight) continue;
+          if (bounds.bottom < 0 || bounds.top > viewport) continue;
           const hero = layer.dataset.parallax === 'hero';
-          const offset = hero ? Math.max(0, -bounds.top) * 0.16 : (window.innerHeight / 2 - bounds.top - bounds.height / 2) * 0.1;
+          const offset = hero ? Math.max(0, -bounds.top) * 0.16 : (viewport / 2 - bounds.top - bounds.height / 2) * 0.1;
           layer.style.transform = `translate3d(0, ${Math.max(-55, Math.min(90, offset))}px, 0)`;
           if (hero) layer.style.opacity = `${1 - Math.min(0.45, Math.max(0, -bounds.top) / bounds.height * 0.45)}`;
         }
@@ -151,7 +158,7 @@ const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...
       window.addEventListener('scroll', scheduleParallax, { passive: true });
       window.addEventListener('resize', scheduleParallax, { passive: true });
       reducedMotion.addEventListener('change', scheduleParallax);
-      updateParallax();
+      scheduleParallax();
       // Percurso da consulta: a linha se preenche com a rolagem e cada ponto acende ao chegar ao centro da tela.
       const path = document.querySelector<HTMLElement>('.consult-path');
       if (path) {
@@ -162,10 +169,11 @@ const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...
           pathFrame = requestAnimationFrame(() => {
             const box = path.getBoundingClientRect();
             const center = innerHeight * 0.55;
-            const lastDot = steps[steps.length - 1].offsetTop + 16;
+            const offsets = steps.map(step => step.offsetTop);
+            const lastDot = offsets[offsets.length - 1] + 16;
             const progress = Math.max(0, Math.min(lastDot - 16, center - box.top - 16));
             path.style.setProperty('--consult-progress', `${progress}px`);
-            steps.forEach(step => step.classList.toggle('is-lit', box.top + step.offsetTop + 16 <= center));
+            steps.forEach((step, index) => step.classList.toggle('is-lit', box.top + offsets[index] + 16 <= center));
           });
         };
         addEventListener('scroll', updatePath, { passive: true });

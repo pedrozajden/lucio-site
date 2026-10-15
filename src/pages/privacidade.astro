@@ -3,6 +3,7 @@ import SiteHeader from '../components/SiteHeader.astro';
 import Rodape from '../components/fechamento/Rodape.astro';
 import WhatsAppFlutuante from '../components/fechamento/WhatsAppFlutuante.astro';
 import GoogleTag from '../components/GoogleTag.astro';
+import SeoHead from '../components/SeoHead.astro';
 import { scheduleUrl } from '../content/condicoes';
 import '../styles/condicao.css';
 
@@ -18,7 +19,8 @@ const updated = '15 de outubro de 2026';
     <title>Política de privacidade | Dr. Lúcio Moreira</title>
     <link rel="icon" type="image/svg+xml" href="/assets/monograma.svg" />
     <link rel="preload" href="/assets/montserrat-regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/assets/gotu-regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/assets/gotu-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <SeoHead title="Política de privacidade | Dr. Lúcio Moreira" description="Política de privacidade e de cookies do site do Dr. Lúcio Moreira, médico psiquiatra." page="privacidade" />
     <GoogleTag />
   </head>
   <body id="inicio">

@@ -176,3 +176,10 @@ A pedido do usuário, os depoimentos voltam ao formato anterior (um por vez sobr
 ### Cartões da Home — TDAH e Transtorno bipolar — 14/10/2026
 A pedido do usuário, com nomes populares pesquisados em fontes de divulgação. TDAH: subtítulo “(déficit de atenção)”; “Desatenção, hiperatividade e impulsividade.” → “Falta de foco, desorganização, impulsividade e dificuldade de concluir tarefas.” (termos da lista de sintomas de ID028). Transtorno bipolar: subtítulo “(bipolaridade)”; “Episódios de mania ou hipomania e períodos de depressão.” → “Oscilações intensas de humor e energia, com fases de euforia ou irritabilidade e períodos de depressão.” (da abertura da página). TDAH também passou a ser o primeiro na ordem do menu e dos cartões.
 - **Cartão de Depressão (Home), texto do usuário — 14/10/2026:** “Sintomas, diagnóstico e abordagens de tratamento.” → “Tristeza persistente, desânimo, cansaço e perda de interesse pelas atividades do dia a dia.” Sem subtítulo.
+
+## SEO e desempenho — 15/10/2026
+
+Sem mudança no texto visível das páginas. Aprovado pelo usuário: novos títulos e descrições para o Google (aparecem só na busca e no compartilhamento):
+- Títulos no padrão “Psiquiatra para {condição} em BH e Nova Lima | Dr. Lúcio Moreira” (TDAH, depressão, ansiedade, transtorno bipolar, transtorno borderline, esquizofrenia). Antes: “Avaliação psiquiátrica d… | Dr. Lúcio Moreira”.
+- Descrições no padrão “Avaliação e tratamento d{e/a/o} {condição} com o psiquiatra Dr. Lúcio Moreira, em Nova Lima (BH) e online. Sintomas, diagnóstico e acompanhamento.”
+Também: endereço canônico, Open Graph (imagem `public/assets/og-dr-lucio.jpg`), dados estruturados (Physician com CRM/RQE e endereço, MedicalWebPage, BreadcrumbList, FAQPage com o FAQ já publicado), `robots.txt`, `sitemap.xml` e página 404. O `noindex` foi mantido (decisão do usuário). A tag do Google Ads passa a ser baixada após o carregamento da página (aprovado pelo usuário).

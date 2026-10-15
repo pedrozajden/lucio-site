@@ -1,7 +1,7 @@
 /* Template das páginas de condições (piloto: Depressão). Linguagem da Home — Gotu nos títulos, Montserrat no texto, azuis acinzentados —
    com abertura escura para diferenciar as páginas clínicas. Ritmo: escuro (abertura) → claro → escuro (diagnóstico) → claro → escuro (contato). */
 @font-face{font-family:Montserrat;src:url('/assets/montserrat-regular.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
-@font-face{font-family:Gotu;src:url('/assets/gotu-regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Gotu;src:url('/assets/gotu-regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
 
 :root{
   --c-ink:#243c50;--c-text:#3d5366;--c-muted:#5f7586;--c-soft:#62788a;

@@ -1,0 +1,65 @@
+---
+// SEO técnico: endereço canônico, pré-visualização ao compartilhar (Open Graph) e dados estruturados (schema.org).
+import faq from '../content/faq.json';
+import { address } from '../content/contato';
+import { conditionPages, type ConditionKey } from '../content/condicoes';
+
+interface Props {
+  title: string;
+  description: string;
+  page: 'home' | 'privacidade' | ConditionKey;
+}
+const { title, description, page } = Astro.props;
+const site = Astro.site!.origin;
+const canonical = new URL(Astro.url.pathname, site).href;
+const image = `${site}/assets/og-dr-lucio.jpg`;
+const street = address.split(', ').slice(0, 3).join(', ');
+
+const physician = {
+  '@type': 'Physician',
+  '@id': `${site}/#medico`,
+  name: 'Dr. Lúcio Moreira',
+  alternateName: 'Lúcio Lourenço Moreira',
+  medicalSpecialty: 'Psychiatric',
+  url: `${site}/`,
+  image: `${site}/assets/dr-lucio-800.webp`,
+  identifier: [
+    { '@type': 'PropertyValue', propertyID: 'CRM-MG', value: '82117' },
+    { '@type': 'PropertyValue', propertyID: 'RQE', value: '57394' },
+  ],
+  address: { '@type': 'PostalAddress', streetAddress: `${street}, Vila da Serra`, addressLocality: 'Nova Lima', addressRegion: 'MG', addressCountry: 'BR' },
+  areaServed: ['Belo Horizonte', 'Nova Lima'],
+};
+const faqPage = {
+  '@type': 'FAQPage',
+  mainEntity: faq.map(item => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer.join(' ') } })),
+};
+const condition = conditionPages.find(item => item.key === page);
+const graph: object[] = [physician];
+if (page === 'home') graph.push({ '@type': 'WebSite', '@id': `${site}/#site`, url: `${site}/`, name: 'Dr. Lúcio Moreira | Psiquiatra', inLanguage: 'pt-BR' }, faqPage);
+if (condition) {
+  graph.push(
+    { '@type': 'MedicalWebPage', url: canonical, name: title, inLanguage: 'pt-BR', about: { '@type': 'MedicalCondition', name: condition.medicalName }, publisher: { '@id': `${site}/#medico` } },
+    { '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Início', item: `${site}/` },
+      { '@type': 'ListItem', position: 2, name: 'Áreas de atuação', item: `${site}/#areas` },
+      { '@type': 'ListItem', position: 3, name: condition.label, item: canonical },
+    ] },
+    faqPage,
+  );
+}
+const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\u003c');
+---
+<link rel="canonical" href={canonical} />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:site_name" content="Dr. Lúcio Moreira | Psiquiatra" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={image} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Dr. Lúcio Moreira, médico psiquiatra, de jaleco branco." />
+<meta name="twitter:card" content="summary_large_image" />
+<script type="application/ld+json" set:html={jsonLd} />

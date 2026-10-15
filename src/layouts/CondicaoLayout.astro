@@ -1,7 +1,7 @@
 ---
 // Estrutura comum das páginas de condição: abertura escura, credenciais, índice, contato e rodapé.
 // O conteúdo clínico entra pelo slot, entre o índice e o contato.
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import content from '../content/redesign.json';
 import heroPhoto from '../assets/dr-lucio-jaleco-retrato.jpg';
 import Icon from '../components/Icon.astro';
@@ -11,6 +11,7 @@ import Agendar from '../components/fechamento/Agendar.astro';
 import Rodape from '../components/fechamento/Rodape.astro';
 import WhatsAppFlutuante from '../components/fechamento/WhatsAppFlutuante.astro';
 import GoogleTag from '../components/GoogleTag.astro';
+import SeoHead from '../components/SeoHead.astro';
 import { scheduleUrl, type ConditionKey } from '../content/condicoes';
 import '../styles/condicao.css';
 
@@ -29,6 +30,8 @@ const { active, title, description, breadcrumb, titleMain, titleAccent, heroLead
 
 // O índice ganha "Dúvidas" antes do último item (Agendar).
 const tocSections: [string, string][] = [...sections.slice(0, -1), ['duvidas', 'Dúvidas'], ...sections.slice(-1)];
+// Mesmos parâmetros do <Image> da abertura, para o pré-carregamento usar os mesmos arquivos.
+const heroImage = await getImage({ src: heroPhoto, width: 920, height: 1060, widths: [460, 690, 920], format: 'webp', quality: 86 });
 const credentials = content.credentials as { icon: 'id' | 'cap' | 'building' | 'video'; label: string; value: string }[];
 ---
 <!doctype html>
@@ -41,7 +44,9 @@ const credentials = content.credentials as { icon: 'id' | 'cap' | 'building' | '
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/assets/monograma.svg" />
     <link rel="preload" href="/assets/montserrat-regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/assets/gotu-regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/assets/gotu-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" as="image" type="image/webp" imagesrcset={heroImage.srcSet.attribute} imagesizes="(max-width: 760px) 300px, 440px" fetchpriority="high" />
+    <SeoHead title={title} description={description} page={active} />
     <GoogleTag />
   </head>
   <body id="inicio" class={`cond-variant-${variant}`}>
@@ -108,37 +113,46 @@ const credentials = content.credentials as { icon: 'id' | 'cap' | 'building' | '
       const toc = document.querySelector<HTMLElement>('.cond-toc-links')!;
       const links = new Map([...toc.querySelectorAll<HTMLAnchorElement>('[data-toc]')].map(link => [link.dataset.toc!, link]));
       const targets = [...links.keys()].map(id => document.getElementById(id)!).filter(Boolean);
-      let currentId = '';
-      function markCurrent() {
-        const line = window.innerHeight * 0.35;
-        let current = targets[0];
-        for (const target of targets) if (target.getBoundingClientRect().top <= line) current = target;
-        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) current = targets[targets.length - 1];
-        if (current.id === currentId) return;
-        currentId = current.id;
-        for (const [id, link] of links) {
-          const active = id === currentId;
-          link.classList.toggle('is-current', active);
-          if (active) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
-        }
-        const link = links.get(currentId)!;
-        if (toc.scrollWidth > toc.clientWidth) toc.scrollTo({ left: link.offsetLeft - 16, behavior: reducedMotion.matches ? 'instant' : 'smooth' });
-      }
       // Índice no fluxo abaixo da abertura; depois de passar por ele, some ao descer e volta compacto ao subir.
+      // Cada quadro lê todas as medidas primeiro e só depois altera a página, para não forçar recálculos de layout.
       const tocBar = toc.closest<HTMLElement>('.cond-toc')!;
       const anchor = document.createElement('div');
       anchor.setAttribute('aria-hidden', 'true');
       tocBar.before(anchor);
+      let stickyTop = 0;
+      const readStickyTop = () => { stickyTop = parseFloat(getComputedStyle(tocBar).top) || 0; };
+      let currentId = '';
       let lastY = window.scrollY;
       let travel = 0;
-      function updateTocBar() {
-        const y = window.scrollY;
-        const stuck = anchor.getBoundingClientRect().top < parseFloat(getComputedStyle(tocBar).top);
-        const delta = y - lastY;
+      function measure() {
+        const line = window.innerHeight * 0.35;
+        let current = targets[0];
+        for (const target of targets) if (target.getBoundingClientRect().top <= line) current = target;
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) current = targets[targets.length - 1];
+        const link = links.get(current.id)!;
+        return {
+          currentId: current.id,
+          linkLeft: link.offsetLeft,
+          tocScrolls: toc.scrollWidth > toc.clientWidth,
+          y: window.scrollY,
+          stuck: anchor.getBoundingClientRect().top < stickyTop,
+        };
+      }
+      function apply(m: ReturnType<typeof measure>) {
+        if (m.currentId !== currentId) {
+          currentId = m.currentId;
+          for (const [id, link] of links) {
+            const active = id === currentId;
+            link.classList.toggle('is-current', active);
+            if (active) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
+          }
+          if (m.tocScrolls) toc.scrollTo({ left: m.linkLeft - 16, behavior: reducedMotion.matches ? 'instant' : 'smooth' });
+        }
+        const delta = m.y - lastY;
         travel = Math.sign(delta) === Math.sign(travel) ? travel + delta : delta;
-        lastY = y;
-        tocBar.classList.toggle('is-stuck', stuck);
-        if (!stuck || travel < -24) tocBar.classList.remove('is-hidden');
+        lastY = m.y;
+        tocBar.classList.toggle('is-stuck', m.stuck);
+        if (!m.stuck || travel < -24) tocBar.classList.remove('is-hidden');
         else if (travel > 8) tocBar.classList.add('is-hidden');
         scheduleIdleHide();
       }
@@ -154,9 +168,10 @@ const credentials = content.credentials as { icon: 'id' | 'cap' | 'building' | '
       tocBar.addEventListener('mouseleave', scheduleIdleHide);
       tocBar.addEventListener('focusout', scheduleIdleHide);
       let pending = false;
-      window.addEventListener('scroll', () => { if (!pending) { pending = true; requestAnimationFrame(() => { markCurrent(); updateTocBar(); pending = false; }); } }, { passive: true });
-      markCurrent();
-      updateTocBar();
+      const schedule = () => { if (!pending) { pending = true; requestAnimationFrame(() => { apply(measure()); pending = false; }); } };
+      window.addEventListener('scroll', schedule, { passive: true });
+      window.addEventListener('resize', () => { readStickyTop(); schedule(); }, { passive: true });
+      requestAnimationFrame(() => { readStickyTop(); schedule(); });
     </script>
   </body>
 </html>

@@ -4,11 +4,11 @@ import json, re
 from lxml import html
 
 def own_scripts(page):
-    # Scripts próprios do site (menu e página), sem a tag do Google Ads autorizada em 15/10/2026.
-    scripts = page.xpath('//script')
-    google = [s for s in scripts if (s.get('src') or '') == 'https://www.googletagmanager.com/gtag/js?id=AW-17472982128' or 'AW-17472982128' in (s.text or '')]
-    assert len(google) == 2, 'Tag do Google ausente ou duplicada'
-    assert all((s.get('src') or '') in ('', 'https://www.googletagmanager.com/gtag/js?id=AW-17472982128') for s in scripts), 'Script externo inesperado'
+    # Scripts próprios do site (menu e página), sem a tag do Google Ads (autorizada em 15/10/2026) e sem dados estruturados.
+    scripts = [s for s in page.xpath('//script') if s.get('type') != 'application/ld+json']
+    google = [s for s in scripts if 'AW-17472982128' in (s.text or '')]
+    assert len(google) == 1, 'Tag do Google ausente ou duplicada'
+    assert not [s for s in scripts if s.get('src')], 'Script externo inesperado'
     return [s for s in scripts if s not in google]
 
 SITE = Path(__file__).resolve().parent.parent

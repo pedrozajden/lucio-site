@@ -1,6 +1,6 @@
 /* Fechamento comum (agendamento, rodapé e WhatsApp flutuante) da Home e das páginas de condição. Independe de condicao.css. */
 .cond-contact,.cond-footer,.cond-whatsapp{
-  --c-ink:#243c50;--c-text:#3d5366;--c-muted:#5f7586;--c-soft:#62788a;--c-blue:#a2b5c4;--c-accent:#386d92;--c-deep:#22405a;
+  --c-ink:#243c50;--c-text:#3d5366;--c-muted:#5f7586;--c-soft:#5b7487;--c-blue:#a2b5c4;--c-accent:#386d92;--c-deep:#22405a;
   --c-pale:#edf3f7;--c-line:#dce6ed;--c-night:linear-gradient(140deg,#2b4c65 0%,#203b51 55%,#1a3145 100%);
   --c-heading:Gotu,Georgia,serif;--c-ease:cubic-bezier(.22,.61,.36,1);
   font-family:Montserrat,Arial,sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased
@@ -80,3 +80,7 @@
 .cond-assurance-icon{display:grid;place-items:center;flex-shrink:0;width:26px;height:26px;border-radius:50%;background:#ffffff1f;color:#cfe3f0}
 .cond-assurance-icon svg{width:15px;height:15px;stroke-width:2}
 @media(max-width:760px){.cond-assurances{margin-top:22px;gap:10px}.cond-assurances li{font-size:15px}}
+
+/* Mapa do site: áreas de toque maiores (mínimo recomendado de 24px, com folga entre links) */
+.cond-footer-nav a{display:block;padding:5px 8px;line-height:1.5}
+.cond-footer-nav .cond-footer-title{margin-bottom:6px}

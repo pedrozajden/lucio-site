@@ -1,11 +1,20 @@
 ---
-// Tag do Google Ads (autorizada pelo usuário em 15/10/2026), padrão, ativa sem aviso de cookies, como no site antigo.
-// Configurações de anúncios (personalização, públicos) ficam a cargo do gestor de tráfego, na conta do Google Ads.
+// Tag do Google Ads (autorizada pelo usuário em 15/10/2026), código padrão, sem aviso de cookies, como no site antigo.
+// O arquivo do Google é baixado só depois que a página termina de carregar (aprovado pelo usuário), para não atrasar a exibição.
+// Os comandos abaixo ficam na fila e são enviados assim que ele chega. Configurações de anúncios ficam com o gestor de tráfego.
 ---
-<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=AW-17472982128"></script>
 <script is:inline>
   window.dataLayer = window.dataLayer || [];
   function gtag() { dataLayer.push(arguments); }
   gtag('js', new Date());
   gtag('config', 'AW-17472982128');
+  window.addEventListener('load', function () {
+    var load = function () {
+      var tag = document.createElement('script');
+      tag.async = true;
+      tag.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17472982128';
+      document.head.appendChild(tag);
+    };
+    if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 2000 }); else setTimeout(load, 1000);
+  }, { once: true });
 </script>

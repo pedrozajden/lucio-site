@@ -1,6 +1,6 @@
 @font-face{font-family:Montserrat;src:url('/assets/montserrat-regular.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
 @font-face{font-family:Belanosima;src:url('/assets/belanosima-regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:Gotu;src:url('/assets/gotu-regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Gotu;src:url('/assets/gotu-regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
 :root{--ink:#213d53;--slate:#40596d;--blue:#94bad3;--accent:#386d92;--pale:#e8f1f7;--paper:#f2f7fb;--white:#fff;--line:#d3e2ed;--body:Montserrat,Arial,sans-serif;--heading:Belanosima,Arial,sans-serif;--radius:28px;color:var(--ink);background:var(--white);font-family:var(--body);font-synthesis:none}
 *{box-sizing:border-box}
 html{scroll-padding-top:24px}

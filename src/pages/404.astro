@@ -1,0 +1,39 @@
+---
+import SiteHeader from '../components/SiteHeader.astro';
+import Rodape from '../components/fechamento/Rodape.astro';
+import WhatsAppFlutuante from '../components/fechamento/WhatsAppFlutuante.astro';
+import { conditionPages, scheduleUrl } from '../content/condicoes';
+import '../styles/condicao.css';
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Página não encontrada | Dr. Lúcio Moreira</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/monograma.svg" />
+    <link rel="preload" href="/assets/gotu-regular.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+  <body id="inicio">
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+    <SiteHeader active="none" scheduleHref={scheduleUrl} />
+    <main id="conteudo" class="cond-container not-found">
+      <h1>Página não encontrada</h1>
+      <p>O endereço acessado não existe ou mudou. Você pode voltar à página inicial ou escolher uma das áreas de atuação:</p>
+      <ul>
+        <li><a href="/">Página inicial</a></li>
+        {conditionPages.map(page => <li><a href={page.href}>{page.label}</a></li>)}
+      </ul>
+    </main>
+    <Rodape active="none" />
+    <WhatsAppFlutuante />
+  </body>
+</html>
+<style>
+  .not-found{max-width:760px;padding:72px 0 96px}
+  .not-found h1{font-size:clamp(34px,3.2vw,46px);line-height:1.2;margin-bottom:16px}
+  .not-found p{font-size:17px;line-height:1.75}
+  .not-found ul{display:grid;gap:10px;margin-top:20px;padding-left:20px;list-style:disc}
+  .not-found a{color:var(--c-deep);font-size:16px}
+</style>
