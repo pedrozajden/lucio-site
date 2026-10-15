@@ -3,6 +3,14 @@ from pathlib import Path
 import json, re
 from lxml import html
 
+def own_scripts(page):
+    # Scripts próprios do site (menu e página), sem a tag do Google Ads autorizada em 15/10/2026.
+    scripts = page.xpath('//script')
+    google = [s for s in scripts if (s.get('src') or '') == 'https://www.googletagmanager.com/gtag/js?id=AW-17472982128' or 'AW-17472982128' in (s.text or '')]
+    assert len(google) == 2, 'Tag do Google ausente ou duplicada'
+    assert all((s.get('src') or '') in ('', 'https://www.googletagmanager.com/gtag/js?id=AW-17472982128') for s in scripts), 'Script externo inesperado'
+    return [s for s in scripts if s not in google]
+
 SITE = Path(__file__).resolve().parent.parent
 page = html.fromstring((SITE/'dist/enfermidades/transtorno-de-ansiedade-generalizada-tag/index.html').read_text('utf-8'))
 original = json.loads((SITE/'src/content/originais/tag.json').read_text('utf-8'))
@@ -45,7 +53,7 @@ markup = html.tostring(page, encoding='unicode')
 assert norm(page.xpath('//h1')[0].text_content()) == 'Avaliação psiquiátrica da ansiedade generalizada'
 assert page.xpath('//meta[@name="robots"]/@content') == ['noindex, nofollow']
 assert not page.xpath('//main//script | //iframe | //form')
-assert len(page.xpath('//script')) == 2
+assert len(own_scripts(page)) == 2
 assert len(page.xpath('//main//img')) == 2
 assert not page.xpath('//*[contains(@class,"cond-emergency")]')
 assert not any(term in markup for term in ['wa.me','tintim.link','98998-0356','9541-0374'])

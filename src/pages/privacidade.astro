@@ -1,0 +1,75 @@
+---
+import SiteHeader from '../components/SiteHeader.astro';
+import Rodape from '../components/fechamento/Rodape.astro';
+import WhatsAppFlutuante from '../components/fechamento/WhatsAppFlutuante.astro';
+import GoogleTag from '../components/GoogleTag.astro';
+import { scheduleUrl } from '../content/condicoes';
+import '../styles/condicao.css';
+
+const updated = '15 de outubro de 2026';
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="description" content="Política de privacidade e de cookies do site do Dr. Lúcio Moreira, médico psiquiatra." />
+    <title>Política de privacidade | Dr. Lúcio Moreira</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/monograma.svg" />
+    <link rel="preload" href="/assets/montserrat-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/gotu-regular.ttf" as="font" type="font/ttf" crossorigin />
+    <GoogleTag />
+  </head>
+  <body id="inicio">
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+    <SiteHeader active="none" scheduleHref={scheduleUrl} />
+    <main id="conteudo" class="cond-container privacy">
+      <h1>Política de privacidade</h1>
+      <p class="privacy-updated">Atualizada em {updated}.</p>
+
+      <h2>Quem somos</h2>
+      <p>Este site apresenta o atendimento psiquiátrico do Dr. Lúcio Lourenço Moreira, médico psiquiatra (CRM-MG 82117 · RQE 57394), com consultório em Nova Lima - MG e atendimento online. Ele é o responsável pelo tratamento dos dados descritos nesta política.</p>
+
+      <h2>Quais dados o site coleta</h2>
+      <p>O site não tem formulários e não pede nenhuma informação pessoal ou de saúde. Os únicos dados envolvidos são:</p>
+      <ul>
+        <li><strong>Cookies de medição de anúncios</strong> do Google Ads (veja abaixo).</li>
+        <li><strong>Registros técnicos de acesso</strong> (como endereço IP e tipo de navegador), gerados automaticamente pelo serviço de hospedagem para manter o site seguro e funcionando.</li>
+      </ul>
+
+      <h2 id="cookies">Cookies e anúncios</h2>
+      <p>Usamos a tag do Google Ads para saber quantas pessoas chegaram ao site por meio dos nossos anúncios e entraram em contato para agendar.</p>
+      <p>Você pode bloquear ou apagar esses cookies a qualquer momento nas configurações do seu navegador, sem prejuízo ao uso do site.</p>
+
+      <h2>Agendamento e contato</h2>
+      <p>Os botões de agendamento e de WhatsApp levam a um serviço de atendimento externo, que encaminha sua conversa para a equipe do consultório. As informações que você enviar nessa conversa são usadas apenas para responder e agendar sua consulta, e são tratadas com sigilo.</p>
+
+      <h2>Com quem os dados são compartilhados</h2>
+      <ul>
+        <li><strong>Google</strong>, para a medição dos anúncios.</li>
+        <li><strong>Cloudflare</strong>, empresa que hospeda o site.</li>
+        <li><strong>Serviço de atendimento</strong> usado nos botões de agendamento e WhatsApp.</li>
+      </ul>
+      <p>Não vendemos nem cedemos seus dados a terceiros para outros fins.</p>
+
+      <h2>Seus direitos</h2>
+      <p>Pela Lei Geral de Proteção de Dados (LGPD), você pode pedir a confirmação de que tratamos seus dados, o acesso a eles, a correção, a exclusão. Para isso, fale conosco pelo <a href={scheduleUrl} target="_blank" rel="noopener">canal de atendimento do consultório</a>.</p>
+
+      <h2>Alterações</h2>
+      <p>Esta política pode ser atualizada. A data da versão atual aparece no início da página.</p>
+    </main>
+    <Rodape active="none" />
+    <WhatsAppFlutuante />
+  </body>
+</html>
+<style>
+  .privacy{max-width:760px;padding:64px 0 88px}
+  .privacy h1{font-size:clamp(34px,3.2vw,46px);line-height:1.2;margin-bottom:8px}
+  .privacy-updated{font-size:14px;color:var(--c-soft);margin-bottom:28px}
+  .privacy h2{font-size:24px;line-height:1.35;margin:36px 0 12px}
+  .privacy p,.privacy li{font-size:16px;line-height:1.75}
+  .privacy p+p{margin-top:12px}
+  .privacy ul{display:grid;gap:8px;margin:12px 0;padding-left:20px;list-style:disc}
+  .privacy a{color:var(--c-deep)}
+</style>

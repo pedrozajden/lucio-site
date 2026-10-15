@@ -8,6 +8,14 @@ from pathlib import Path
 import json, re
 from lxml import html
 
+def own_scripts(page):
+    # Scripts próprios do site (menu e página), sem a tag do Google Ads autorizada em 15/10/2026.
+    scripts = page.xpath('//script')
+    google = [s for s in scripts if (s.get('src') or '') == 'https://www.googletagmanager.com/gtag/js?id=AW-17472982128' or 'AW-17472982128' in (s.text or '')]
+    assert len(google) == 2, 'Tag do Google ausente ou duplicada'
+    assert all((s.get('src') or '') in ('', 'https://www.googletagmanager.com/gtag/js?id=AW-17472982128') for s in scripts), 'Script externo inesperado'
+    return [s for s in scripts if s not in google]
+
 SITE = Path(__file__).resolve().parent.parent
 SCHEDULE = 'https://api.cqc.onpromedia.com.br/t/2F04D22F'
 PAGES = {
@@ -50,7 +58,7 @@ for name, (slug, h1) in PAGES.items():
     assert re.sub(r'\s+', ' ', page.xpath('//h1')[0].text_content()).strip() == h1, name
     assert page.xpath('//meta[@name="robots"]/@content') == ['noindex, nofollow']
     assert not page.xpath('//main//script | //iframe | //form')
-    assert len(page.xpath('//script')) == 2 and len(page.xpath('//main//img')) == 2
+    assert len(own_scripts(page)) == 2 and len(page.xpath('//main//img')) == 2
     assert not any(term in markup for term in ['wa.me', 'tintim.link', '98998-0356', '9541-0374'])
     assert not [u for u in page.xpath('//a/@href') if u.startswith('http') and u != SCHEDULE], f'{name}: link externo inesperado'
     ctas = page.xpath('//a[contains(string(.),"Agende uma consulta") or contains(string(.),"Agende uma avaliação")]')

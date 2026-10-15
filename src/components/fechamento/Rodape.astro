@@ -5,7 +5,7 @@ import { conditionPages, type ConditionKey } from '../../content/condicoes';
 import { address } from '../../content/contato';
 import '../../styles/fechamento.css';
 
-interface Props { active: 'home' | ConditionKey; }
+interface Props { active: 'home' | 'none' | ConditionKey; }
 const { active } = Astro.props;
 const addressParts = address.split(', ');
 const addressLines = [addressParts.slice(0, 3).join(', ') + ',', addressParts.slice(3).join(', ')];
@@ -18,6 +18,6 @@ const year = new Date().getFullYear();
       <div class="cond-footer-contact"><p class="cond-footer-title">Atendimento</p><p class="cond-footer-mode"><Icon name="video" /><span><strong>Online</strong> · onde você estiver</span></p><p class="cond-footer-mode"><Icon name="pin" /><span><strong>Presencial</strong> · Consultório em Nova Lima</span></p><address><span>{addressLines[0]}</span><span>{addressLines[1]}</span></address></div>
       <nav class="cond-footer-nav" aria-label="Mapa do site"><p class="cond-footer-title">Mapa do site</p><a href={active === 'home' ? '#inicio' : '/'} aria-current={active === 'home' ? 'page' : undefined}>Home</a><a href="/#areas">Áreas de atuação</a>{conditionPages.map(page => <a href={page.key === active ? '#inicio' : page.href} aria-current={page.key === active ? 'page' : undefined}>{page.label}</a>)}</nav>
     </div>
-    <div class="cond-footer-bottom"><p>Responsável Técnico: Lúcio Lourenço Moreira <span aria-hidden="true">|</span> CRM-MG: 82117 <span aria-hidden="true">|</span> RQE: 57394</p><p>© {year} Dr. Lúcio Moreira <span aria-hidden="true">·</span> <a href="#inicio">Voltar ao início <span aria-hidden="true">↑</span></a></p></div>
+    <div class="cond-footer-bottom"><p>Responsável Técnico: Lúcio Lourenço Moreira <span aria-hidden="true">|</span> CRM-MG: 82117 <span aria-hidden="true">|</span> RQE: 57394</p><p>© {year} Dr. Lúcio Moreira <span aria-hidden="true">·</span> <a href="/privacidade/">Política de privacidade</a> <span aria-hidden="true">·</span> <a href="#inicio">Voltar ao início <span aria-hidden="true">↑</span></a></p></div>
   </div>
 </footer>

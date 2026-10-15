@@ -1,10 +1,10 @@
 ---
 import home from '../content/home.json';
 import { areaOrder, pageForArea, type ConditionKey } from '../content/condicoes';
-interface Props { active: 'home' | ConditionKey; scheduleHref?: string; }
+interface Props { active: 'home' | 'none' | ConditionKey; scheduleHref?: string; }
 const { active, scheduleHref = '#contato' } = Astro.props;
 const external = scheduleHref.startsWith('http');
-const onCondition = active !== 'home';
+const onCondition = active !== 'home' && active !== 'none';
 ---
 <header class="shared-header">
   <div class="shared-header-row">

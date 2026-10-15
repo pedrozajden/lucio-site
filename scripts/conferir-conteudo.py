@@ -3,6 +3,14 @@ from pathlib import Path
 import hashlib, json, re
 from lxml import html
 
+def own_scripts(page):
+    # Scripts próprios do site (menu e página), sem a tag do Google Ads autorizada em 15/10/2026.
+    scripts = page.xpath('//script')
+    google = [s for s in scripts if (s.get('src') or '') == 'https://www.googletagmanager.com/gtag/js?id=AW-17472982128' or 'AW-17472982128' in (s.text or '')]
+    assert len(google) == 2, 'Tag do Google ausente ou duplicada'
+    assert all((s.get('src') or '') in ('', 'https://www.googletagmanager.com/gtag/js?id=AW-17472982128') for s in scripts), 'Script externo inesperado'
+    return [s for s in scripts if s not in google]
+
 SITE = Path(__file__).resolve().parent.parent
 ROOT = SITE.parent
 page = html.fromstring((SITE/'dist/enfermidades/depressao/index.html').read_text('utf-8'))
@@ -60,8 +68,7 @@ assert len(page.xpath('//h1')) == 1
 assert norm(page.xpath('//h1')[0].text_content()) == copy['heroTitle']
 assert not page.xpath('//main//script | //iframe | //form')
 assert len(page.xpath('//header[contains(@class,"shared-header")]')) == 1
-assert len(page.xpath('//script')) == 2  # Menu compartilhado e índice/animações locais.
-assert all(not src or src.startswith('/_astro/') for src in page.xpath('//script/@src'))
+assert len(own_scripts(page)) == 2  # Menu compartilhado e índice/animações locais.
 assert len(page.xpath('//main//img')) == 2
 assert not any('composicao-editorial' in src for src in page.xpath('//img/@src'))
 assert len(page.xpath('//*[contains(@class,"cond-credentials")]//li')) == len(copy['credentials'])
@@ -100,7 +107,7 @@ report = {
     'experienciaClinicaConferida':'biografia e trajetória; apresentada antes da formação',
     'fotosReaisNaPagina':2,
     'botoesContato':len(ctas),
-    'scriptsLocaisDeNavegacao':len(page.xpath('//script')),
+    'scriptsLocaisDeNavegacao':len(own_scripts(page)),
     'formulariosIframes':0,
     'linksExternos':'somente o link de agendamento informado pelo usuário',
     'referenciasInalteradas':len(manifest),

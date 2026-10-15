@@ -12,6 +12,7 @@ import { areaOrder, pageForArea, scheduleUrl } from '../content/condicoes';
 import Agendar from '../components/fechamento/Agendar.astro';
 import Rodape from '../components/fechamento/Rodape.astro';
 import WhatsAppFlutuante from '../components/fechamento/WhatsAppFlutuante.astro';
+import GoogleTag from '../components/GoogleTag.astro';
 import { emphasize } from '../utils/emphasis';
 import '../styles/home.css';
 import '../styles/home-refinements.css';
@@ -52,6 +53,7 @@ const markdownBold = (text: string) => emphasize(text.replace(/\*\*/g, ''), [...
     <link rel="icon" type="image/svg+xml" href="/assets/monograma.svg" />
     <link rel="preload" href="/assets/montserrat-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/assets/gotu-regular.ttf" as="font" type="font/ttf" crossorigin />
+    <GoogleTag />
   </head>
   <body id="inicio">
     <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>

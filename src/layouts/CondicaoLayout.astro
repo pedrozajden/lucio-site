@@ -10,6 +10,7 @@ import Duvidas from '../components/Duvidas.astro';
 import Agendar from '../components/fechamento/Agendar.astro';
 import Rodape from '../components/fechamento/Rodape.astro';
 import WhatsAppFlutuante from '../components/fechamento/WhatsAppFlutuante.astro';
+import GoogleTag from '../components/GoogleTag.astro';
 import { scheduleUrl, type ConditionKey } from '../content/condicoes';
 import '../styles/condicao.css';
 
@@ -41,6 +42,7 @@ const credentials = content.credentials as { icon: 'id' | 'cap' | 'building' | '
     <link rel="icon" type="image/svg+xml" href="/assets/monograma.svg" />
     <link rel="preload" href="/assets/montserrat-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/assets/gotu-regular.ttf" as="font" type="font/ttf" crossorigin />
+    <GoogleTag />
   </head>
   <body id="inicio" class={`cond-variant-${variant}`}>
     <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
